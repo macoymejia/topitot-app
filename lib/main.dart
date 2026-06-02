@@ -5,6 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'theme/app_colors.dart';
+import 'theme/app_radius.dart';
+import 'theme/app_spacing.dart';
+import 'theme/topitot_theme.dart';
+
 void main() {
   runApp(const TopitotApp());
 }
@@ -22,36 +27,7 @@ class TopitotApp extends StatelessWidget {
     return MaterialApp(
       title: 'Topitot AAC',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF00A7A5),
-          brightness: Brightness.light,
-        ),
-        scaffoldBackgroundColor: const Color(0xFFFFFBF3),
-        filledButtonTheme: FilledButtonThemeData(
-          style: FilledButton.styleFrom(
-            minimumSize: const Size(64, 56),
-            textStyle: const TextStyle(fontWeight: FontWeight.w900),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-          ),
-        ),
-        iconButtonTheme: IconButtonThemeData(
-          style: IconButton.styleFrom(
-            minimumSize: const Size(52, 52),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-          ),
-        ),
-        textTheme: const TextTheme(
-          titleLarge: TextStyle(fontWeight: FontWeight.w800),
-          titleMedium: TextStyle(fontWeight: FontWeight.w800),
-          bodyLarge: TextStyle(fontWeight: FontWeight.w700),
-        ),
-      ),
+      theme: TopitotTheme.light,
       home: const AacHomePage(),
     );
   }
@@ -261,7 +237,7 @@ class _AacHomePageState extends State<AacHomePage> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(AppSpacing.xxl),
           child: Column(
             children: <Widget>[
               _BoardToolbar(
@@ -285,7 +261,7 @@ class _AacHomePageState extends State<AacHomePage> {
                   await _saveVoice();
                 },
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: AppSpacing.lg),
               _SentenceStrip(
                 sentence: _sentence,
                 onSpeak: () => _speak(_sentenceText()),
@@ -295,7 +271,7 @@ class _AacHomePageState extends State<AacHomePage> {
                         ? null
                         : () => setState(() => _sentence.removeLast()),
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: AppSpacing.lg),
               Expanded(
                 child: _AacGrid(
                   cells: _currentBoard.cells,
@@ -335,12 +311,12 @@ class _SentenceStrip extends StatelessWidget {
     return Container(
       height: 96,
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: const Color(0xFF1E8E89), width: 3),
+        color: AppColors.surface,
+        borderRadius: AppRadius.mediumBorder,
+        border: Border.all(color: AppColors.primary, width: 3),
         boxShadow: const <BoxShadow>[
           BoxShadow(
-            color: Color(0x1F17202A),
+            color: AppColors.shadow,
             blurRadius: 14,
             offset: Offset(0, 5),
           ),
@@ -349,37 +325,40 @@ class _SentenceStrip extends StatelessWidget {
       child: Row(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(AppSpacing.sm),
             child: FilledButton(
               style: FilledButton.styleFrom(
-                backgroundColor: const Color(0xFF11A36A),
-                disabledBackgroundColor: const Color(0xFFE2E8EF),
-                foregroundColor: Colors.white,
-                disabledForegroundColor: const Color(0xFF7C8794),
-                padding: const EdgeInsets.symmetric(horizontal: 14),
+                backgroundColor: AppColors.success,
+                disabledBackgroundColor: AppColors.neutral200,
+                foregroundColor: AppColors.surface,
+                disabledForegroundColor: AppColors.neutral500,
+                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
               ),
               onPressed: sentence.isEmpty ? null : onSpeak,
               child: const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Icon(Icons.volume_up_rounded, size: 32),
-                  SizedBox(height: 2),
+                  SizedBox(height: AppSpacing.xxs),
                   Text('Speak'),
                 ],
               ),
             ),
           ),
-          Container(width: 2, height: 58, color: const Color(0xFFE7EEF5)),
-          const SizedBox(width: 14),
+          Container(width: 2, height: 58, color: AppColors.neutral200),
+          const SizedBox(width: AppSpacing.xl),
           Expanded(
             child:
                 sentence.isEmpty
                     ? const _EmptySentencePrompt()
                     : ListView.separated(
                       scrollDirection: Axis.horizontal,
-                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: AppSpacing.md,
+                      ),
                       itemCount: sentence.length,
-                      separatorBuilder: (_, __) => const SizedBox(width: 8),
+                      separatorBuilder:
+                          (_, __) => const SizedBox(width: AppSpacing.sm),
                       itemBuilder: (context, index) {
                         final cell = sentence[index];
                         return Chip(
@@ -396,15 +375,15 @@ class _SentenceStrip extends StatelessWidget {
                           ),
                           backgroundColor: cell.color.withValues(alpha: 0.20),
                           side: BorderSide(color: cell.color, width: 2),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: AppRadius.mediumBorder,
                           ),
                         );
                       },
                     ),
           ),
           Padding(
-            padding: const EdgeInsets.only(right: 8),
+            padding: const EdgeInsets.only(right: AppSpacing.sm),
             child: _SentenceUndoButton(
               enabled: sentence.isNotEmpty,
               onRemoveLast: onRemoveLast,
@@ -430,10 +409,9 @@ class _SentenceUndoButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final foreground =
-        enabled ? const Color(0xFF294154) : const Color(0xFF8A96A3);
+    final foreground = enabled ? AppColors.neutral700 : AppColors.neutral500;
     final background =
-        enabled ? const Color(0xFFE8F2F4) : const Color(0xFFE2E8EF);
+        enabled ? AppColors.selectedSurface : AppColors.neutral200;
 
     return Tooltip(
       message: 'Tap to delete one word. Double tap or hold to clear.',
@@ -444,7 +422,7 @@ class _SentenceUndoButton extends StatelessWidget {
         hint: 'Tap once to delete one word. Double tap or hold to clear.',
         child: Material(
           color: background,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: AppRadius.mediumBorder,
           clipBehavior: Clip.antiAlias,
           child: InkWell(
             onTap: enabled ? onRemoveLast : null,
@@ -473,12 +451,12 @@ class _EmptySentencePrompt extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Row(
       children: <Widget>[
-        Icon(Icons.touch_app_rounded, color: Color(0xFF1E8E89), size: 34),
-        SizedBox(width: 10),
+        Icon(Icons.touch_app_rounded, color: AppColors.primary, size: 34),
+        SizedBox(width: AppSpacing.md),
         Text(
           'Choose words',
           style: TextStyle(
-            color: Color(0xFF364A5C),
+            color: AppColors.neutral700,
             fontSize: 24,
             fontWeight: FontWeight.w900,
           ),
@@ -515,14 +493,15 @@ class _BoardToolbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: editMode ? const Color(0xFFFFF2CC) : Colors.white,
-        borderRadius: BorderRadius.circular(8),
+        color: editMode ? AppColors.editSurface : AppColors.surface,
+        borderRadius: AppRadius.mediumBorder,
         border: Border.all(
-          color: editMode ? const Color(0xFFF0B429) : const Color(0xFFE0E7EE),
+          color: editMode ? AppColors.secondary : AppColors.neutral200,
           width: 2,
         ),
       ),
       child: Padding(
+<<<<<<< HEAD
         padding: const EdgeInsets.all(10),
         child:
             expanded
@@ -539,6 +518,40 @@ class _BoardToolbar extends StatelessWidget {
                           labelText: 'Voice',
                           border: OutlineInputBorder(),
                           isDense: true,
+=======
+        padding: const EdgeInsets.all(AppSpacing.md),
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Text(
+                    title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  Row(
+                    children: List<Widget>.generate(maxFolderDepth, (index) {
+                      final active = index < depth;
+                      return Padding(
+                        padding: const EdgeInsets.only(
+                          right: AppSpacing.xs,
+                          top: AppSpacing.xs,
+                        ),
+                        child: Container(
+                          width: 22,
+                          height: 8,
+                          decoration: BoxDecoration(
+                            color:
+                                active
+                                    ? AppColors.primary
+                                    : AppColors.neutral200,
+                            borderRadius: AppRadius.mediumBorder,
+                          ),
+>>>>>>> a21ee88 (Refactor theme implementation by consolidating color, radius, spacing, and typography definitions into dedicated classes for improved maintainability and consistency.)
                         ),
                         items:
                             voices
@@ -639,6 +652,7 @@ class _LevelDots extends StatelessWidget {
               color: active ? const Color(0xFF1E8E89) : const Color(0xFFD5DEE8),
               borderRadius: BorderRadius.circular(8),
             ),
+<<<<<<< HEAD
           ),
         );
       }),
@@ -665,6 +679,29 @@ class _AppIconMark extends StatelessWidget {
         Icons.record_voice_over_rounded,
         color: const Color(0xFF1E8E89),
         size: size * 0.58,
+=======
+            const SizedBox(width: AppSpacing.lg),
+            SegmentedButton<bool>(
+              segments: const <ButtonSegment<bool>>[
+                ButtonSegment<bool>(
+                  value: false,
+                  icon: Icon(Icons.touch_app_rounded),
+                  label: Text('Use'),
+                ),
+                ButtonSegment<bool>(
+                  value: true,
+                  icon: Icon(Icons.edit_rounded),
+                  label: Text('Edit'),
+                ),
+              ],
+              selected: <bool>{editMode},
+              onSelectionChanged: (selection) {
+                onEditModeChanged(selection.first);
+              },
+            ),
+          ],
+        ),
+>>>>>>> a21ee88 (Refactor theme implementation by consolidating color, radius, spacing, and typography definitions into dedicated classes for improved maintainability and consistency.)
       ),
     );
   }
@@ -691,7 +728,7 @@ class _AacGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        const spacing = 10.0;
+        const spacing = AppSpacing.gridGap;
         final gridWidth = constraints.maxWidth;
         final gridHeight = constraints.maxHeight;
         final tileWidth =
@@ -761,11 +798,10 @@ class _GridNavigationTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final foreground =
-        enabled ? const Color(0xFF294154) : const Color(0xFF8A96A3);
+    final foreground = enabled ? AppColors.neutral700 : AppColors.neutral500;
     final background =
-        enabled ? const Color(0xFFE8F2F4) : const Color(0xFFF1F4F7);
-    final border = enabled ? const Color(0xFF1E8E89) : const Color(0xFFD9E1EA);
+        enabled ? AppColors.selectedSurface : AppColors.disabledSurface;
+    final border = enabled ? AppColors.primary : AppColors.neutral200;
 
     return Semantics(
       button: true,
@@ -773,14 +809,14 @@ class _GridNavigationTile extends StatelessWidget {
       label: label,
       child: Material(
         color: background,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: AppRadius.mediumBorder,
         clipBehavior: Clip.antiAlias,
         child: InkWell(
           onTap: enabled ? onTap : null,
           child: DecoratedBox(
             decoration: BoxDecoration(
               border: Border.all(color: border, width: 3),
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: AppRadius.mediumBorder,
             ),
             child: LayoutBuilder(
               builder: (context, constraints) {
@@ -792,7 +828,9 @@ class _GridNavigationTile extends StatelessWidget {
 
                 return Center(
                   child: Padding(
-                    padding: EdgeInsets.all(compact ? 5 : 8),
+                    padding: EdgeInsets.all(
+                      compact ? AppSpacing.xs : AppSpacing.sm,
+                    ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
@@ -801,7 +839,9 @@ class _GridNavigationTile extends StatelessWidget {
                           color: foreground,
                           size: iconSize.clamp(24, 54),
                         ),
-                        SizedBox(height: compact ? 2 : 6),
+                        SizedBox(
+                          height: compact ? AppSpacing.xxs : AppSpacing.xs,
+                        ),
                         Text(
                           label,
                           maxLines: 1,
@@ -842,17 +882,21 @@ class _AacTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final foreground =
         cell.color.computeLuminance() > 0.45
-            ? const Color(0xFF17202A)
-            : Colors.white;
+            ? AppColors.neutral900
+            : AppColors.surface;
     final tileColor =
+<<<<<<< HEAD
         cell.isBlank && !editMode ? const Color(0xFFF4F7FA) : cell.color;
     final canTap = editMode || !cell.isBlank;
+=======
+        cell.isBlank && !editMode ? AppColors.disabledSurface : cell.color;
+>>>>>>> a21ee88 (Refactor theme implementation by consolidating color, radius, spacing, and typography definitions into dedicated classes for improved maintainability and consistency.)
     final borderColor =
         editMode
-            ? const Color(0xFF17202A)
+            ? AppColors.neutral900
             : cell.isFolder
-            ? const Color(0xFF17202A).withValues(alpha: 0.42)
-            : Colors.transparent;
+            ? AppColors.neutral900.withValues(alpha: 0.42)
+            : AppColors.transparent;
 
     return Semantics(
       button: canTap,
@@ -865,19 +909,25 @@ class _AacTile extends StatelessWidget {
               : 'Say ${cell.label}',
       child: Material(
         color: tileColor,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: AppRadius.mediumBorder,
         clipBehavior: Clip.antiAlias,
         child: InkWell(
+<<<<<<< HEAD
           onTap: canTap ? onTap : null,
           splashColor: Colors.white.withValues(alpha: 0.35),
           highlightColor: Colors.black.withValues(alpha: 0.08),
+=======
+          onTap: onTap,
+          splashColor: AppColors.surface.withValues(alpha: 0.35),
+          highlightColor: AppColors.neutral900.withValues(alpha: 0.08),
+>>>>>>> a21ee88 (Refactor theme implementation by consolidating color, radius, spacing, and typography definitions into dedicated classes for improved maintainability and consistency.)
           child: DecoratedBox(
             decoration: BoxDecoration(
               border: Border.all(
                 color: borderColor,
                 width: editMode || cell.isFolder ? 3 : 0,
               ),
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: AppRadius.mediumBorder,
             ),
             child: Stack(
               children: <Widget>[
@@ -885,7 +935,7 @@ class _AacTile extends StatelessWidget {
                   const Positioned.fill(
                     child: DecoratedBox(
                       decoration: BoxDecoration(
-                        color: Color(0xFFF4F7FA),
+                        color: AppColors.disabledSurface,
                         backgroundBlendMode: BlendMode.srcOver,
                       ),
                     ),
@@ -906,10 +956,10 @@ class _AacTile extends StatelessWidget {
                     return Center(
                       child: Padding(
                         padding: EdgeInsets.fromLTRB(
-                          compact ? 5 : 10,
-                          compact ? 5 : 10,
-                          cell.isFolder ? 32 : (compact ? 6 : 10),
-                          compact ? 5 : 10,
+                          compact ? AppSpacing.xs : AppSpacing.md,
+                          compact ? AppSpacing.xs : AppSpacing.md,
+                          cell.isFolder ? 32 : (compact ? 6 : AppSpacing.md),
+                          compact ? AppSpacing.xs : AppSpacing.md,
                         ),
                         child:
                             showContent
@@ -930,7 +980,9 @@ class _AacTile extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(height: compact ? 1 : 8),
+                                    SizedBox(
+                                      height: compact ? 1 : AppSpacing.sm,
+                                    ),
                                     Flexible(
                                       child: Text(
                                         cell.label,
@@ -940,7 +992,7 @@ class _AacTile extends StatelessWidget {
                                         style: TextStyle(
                                           color:
                                               cell.isBlank
-                                                  ? const Color(0xFF5E6B7A)
+                                                  ? AppColors.neutral500
                                                   : foreground,
                                           fontSize: labelSize.clamp(13, 20),
                                           fontWeight: FontWeight.w900,
@@ -964,7 +1016,7 @@ class _AacTile extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: foreground.withValues(alpha: 0.16),
                         borderRadius: const BorderRadius.horizontal(
-                          left: Radius.circular(8),
+                          left: Radius.circular(AppRadius.medium),
                         ),
                       ),
                       child: Icon(
@@ -1005,8 +1057,8 @@ class _TileCue extends StatelessWidget {
       width: 30,
       height: 30,
       decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.78),
-        borderRadius: BorderRadius.circular(8),
+        color: AppColors.surface.withValues(alpha: 0.78),
+        borderRadius: AppRadius.mediumBorder,
       ),
       child: Icon(icon, color: foreground, size: 20),
     );
@@ -1030,16 +1082,7 @@ class _CellEditorDialogState extends State<CellEditorDialog> {
   late Color _color;
   late bool _isFolder;
 
-  static const List<Color> _swatches = <Color>[
-    Color(0xFF4FC3F7),
-    Color(0xFF81C784),
-    Color(0xFFFFD54F),
-    Color(0xFFFF8A65),
-    Color(0xFFBA68C8),
-    Color(0xFF90A4AE),
-    Color(0xFFF06292),
-    Color(0xFFAED581),
-  ];
+  static const List<Color> _swatches = AppColors.cellSwatches;
 
   @override
   void initState() {
@@ -1078,7 +1121,7 @@ class _CellEditorDialogState extends State<CellEditorDialog> {
                   border: OutlineInputBorder(),
                 ),
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: AppSpacing.lg),
               TextField(
                 controller: _spokenTextController,
                 decoration: const InputDecoration(
@@ -1086,7 +1129,7 @@ class _CellEditorDialogState extends State<CellEditorDialog> {
                   border: OutlineInputBorder(),
                 ),
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: AppSpacing.lg),
               TextField(
                 controller: _symbolController,
                 decoration: const InputDecoration(
@@ -1095,7 +1138,7 @@ class _CellEditorDialogState extends State<CellEditorDialog> {
                   border: OutlineInputBorder(),
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: AppSpacing.xxl),
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
                 title: const Text('Open another board level'),
@@ -1110,7 +1153,7 @@ class _CellEditorDialogState extends State<CellEditorDialog> {
                         ? (value) => setState(() => _isFolder = value)
                         : null,
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: AppSpacing.lg),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Wrap(
@@ -1121,7 +1164,7 @@ class _CellEditorDialogState extends State<CellEditorDialog> {
                         final isSelected =
                             color.toARGB32() == _color.toARGB32();
                         return InkWell(
-                          borderRadius: BorderRadius.circular(999),
+                          borderRadius: BorderRadius.circular(AppRadius.pill),
                           onTap: () => setState(() => _color = color),
                           child: Container(
                             width: 42,
@@ -1132,8 +1175,8 @@ class _CellEditorDialogState extends State<CellEditorDialog> {
                               border: Border.all(
                                 color:
                                     isSelected
-                                        ? const Color(0xFF17202A)
-                                        : Colors.transparent,
+                                        ? AppColors.neutral900
+                                        : AppColors.transparent,
                                 width: 3,
                               ),
                             ),
@@ -1212,26 +1255,26 @@ class BoardLevel {
   factory BoardLevel.starter() {
     final board = BoardLevel.blank('Topitot');
     board.cells = <AacCell>[
-      AacCell.speak('I', 'I', 'I', const Color(0xFF4FC3F7)),
-      AacCell.speak('want', 'want', '🤲', const Color(0xFFFFD54F)),
-      AacCell.speak('eat', 'eat', '🍽️', const Color(0xFFFF8A65)),
-      AacCell.speak('drink', 'drink', '🥤', const Color(0xFF81C784)),
-      AacCell.speak('more', 'more', '+', const Color(0xFFBA68C8)),
-      AacCell.speak('finished', 'finished', '✓', const Color(0xFF90A4AE)),
+      AacCell.speak('I', 'I', 'I', AppColors.blueSoft),
+      AacCell.speak('want', 'want', '🤲', AppColors.yellowSoft),
+      AacCell.speak('eat', 'eat', '🍽️', AppColors.coralSoft),
+      AacCell.speak('drink', 'drink', '🥤', AppColors.greenSoft),
+      AacCell.speak('more', 'more', '+', AppColors.lavender),
+      AacCell.speak('finished', 'finished', '✓', AppColors.slateSoft),
       AacCell.folder(
         'Food',
         'Food',
         '🍎',
-        const Color(0xFFFF8A65),
+        AppColors.coralSoft,
         BoardLevel(
           title: 'Food',
           cells: <AacCell>[
-            AacCell.speak('rice', 'rice', '🍚', const Color(0xFFFFD54F)),
-            AacCell.speak('bread', 'bread', '🍞', const Color(0xFFFFD54F)),
-            AacCell.speak('banana', 'banana', '🍌', const Color(0xFFFFD54F)),
-            AacCell.speak('apple', 'apple', '🍎', const Color(0xFFFF8A65)),
-            AacCell.speak('chicken', 'chicken', '🍗', const Color(0xFFFF8A65)),
-            AacCell.speak('egg', 'egg', '🥚', const Color(0xFFFFD54F)),
+            AacCell.speak('rice', 'rice', '🍚', AppColors.yellowSoft),
+            AacCell.speak('bread', 'bread', '🍞', AppColors.yellowSoft),
+            AacCell.speak('banana', 'banana', '🍌', AppColors.yellowSoft),
+            AacCell.speak('apple', 'apple', '🍎', AppColors.coralSoft),
+            AacCell.speak('chicken', 'chicken', '🍗', AppColors.coralSoft),
+            AacCell.speak('egg', 'egg', '🥚', AppColors.yellowSoft),
             ...List<AacCell>.generate(
               cellsPerPage - 6,
               (index) => AacCell.blank(index + 6),
@@ -1243,16 +1286,16 @@ class BoardLevel {
         'Feelings',
         'Feelings',
         '🙂',
-        const Color(0xFFBA68C8),
+        AppColors.lavender,
         BoardLevel(
           title: 'Feelings',
           cells: <AacCell>[
-            AacCell.speak('happy', 'happy', '😊', const Color(0xFFFFD54F)),
-            AacCell.speak('sad', 'sad', '😢', const Color(0xFF4FC3F7)),
-            AacCell.speak('angry', 'angry', '😠', const Color(0xFFFF8A65)),
-            AacCell.speak('tired', 'tired', '😴', const Color(0xFF90A4AE)),
-            AacCell.speak('hurt', 'hurt', '🤕', const Color(0xFFF06292)),
-            AacCell.speak('scared', 'scared', '😟', const Color(0xFFBA68C8)),
+            AacCell.speak('happy', 'happy', '😊', AppColors.yellowSoft),
+            AacCell.speak('sad', 'sad', '😢', AppColors.blueSoft),
+            AacCell.speak('angry', 'angry', '😠', AppColors.coralSoft),
+            AacCell.speak('tired', 'tired', '😴', AppColors.slateSoft),
+            AacCell.speak('hurt', 'hurt', '🤕', AppColors.pinkSoft),
+            AacCell.speak('scared', 'scared', '😟', AppColors.lavender),
             ...List<AacCell>.generate(
               cellsPerPage - 6,
               (index) => AacCell.blank(index + 6),
@@ -1264,30 +1307,30 @@ class BoardLevel {
         'People',
         'People',
         '👨‍👩‍👧',
-        const Color(0xFFAED581),
+        AppColors.limeSoft,
         BoardLevel.blank('People'),
       ),
-      AacCell.speak('yes', 'yes', '✓', const Color(0xFF81C784)),
-      AacCell.speak('no', 'no', '✕', const Color(0xFFF06292)),
-      AacCell.speak('help', 'help', '🆘', const Color(0xFFFF8A65)),
-      AacCell.speak('please', 'please', '🙏', const Color(0xFF4FC3F7)),
-      AacCell.speak('thank you', 'thank you', '⭐', const Color(0xFFFFD54F)),
-      AacCell.speak('stop', 'stop', '✋', const Color(0xFFF06292)),
+      AacCell.speak('yes', 'yes', '✓', AppColors.greenSoft),
+      AacCell.speak('no', 'no', '✕', AppColors.pinkSoft),
+      AacCell.speak('help', 'help', '🆘', AppColors.coralSoft),
+      AacCell.speak('please', 'please', '🙏', AppColors.blueSoft),
+      AacCell.speak('thank you', 'thank you', '⭐', AppColors.yellowSoft),
+      AacCell.speak('stop', 'stop', '✋', AppColors.pinkSoft),
       AacCell.folder(
         'Places',
         'Places',
         '🏠',
-        const Color(0xFF90A4AE),
+        AppColors.slateSoft,
         BoardLevel.blank('Places'),
       ),
       AacCell.folder(
         'Actions',
         'Actions',
         '🏃',
-        const Color(0xFF4FC3F7),
+        AppColors.blueSoft,
         BoardLevel.blank('Actions'),
       ),
-      AacCell.speak('bathroom', 'bathroom', '🚽', const Color(0xFF81C784)),
+      AacCell.speak('bathroom', 'bathroom', '🚽', AppColors.greenSoft),
       ...List<AacCell>.generate(
         cellsPerPage - 18,
         (index) => AacCell.blank(index + 18),
@@ -1353,7 +1396,7 @@ class AacCell {
       label: 'Empty',
       spokenText: '',
       symbol: '+',
-      color: const Color(0xFFE8EDF3),
+      color: AppColors.emptyCell,
       kind: CellKind.speak,
     );
   }
@@ -1395,7 +1438,9 @@ class AacCell {
       label: '${json['label'] ?? 'Empty'}',
       spokenText: '${json['spokenText'] ?? ''}',
       symbol: '${json['symbol'] ?? '+'}',
-      color: Color(json['color'] is int ? json['color'] as int : 0xFFE8EDF3),
+      color: Color(
+        json['color'] is int ? json['color'] as int : AppColors.emptyCellArgb,
+      ),
       kind: json['kind'] == 'folder' ? CellKind.folder : CellKind.speak,
       children:
           json['children'] is Map<String, dynamic>
