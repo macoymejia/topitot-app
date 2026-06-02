@@ -39,7 +39,46 @@ void main() {
     await tester.pump();
 
     expect(find.byType(Chip), findsOneWidget);
-    expect(find.byIcon(Icons.clear_all_rounded), findsOneWidget);
+    expect(find.byIcon(Icons.backspace_outlined), findsOneWidget);
+    expect(find.byIcon(Icons.clear_all_rounded), findsNothing);
+  });
+
+  testWidgets('sentence undo button deletes one word or clears all words', (
+    tester,
+  ) async {
+    mockTts();
+
+    await tester.pumpWidget(const TopitotApp());
+    await tester.pump(const Duration(milliseconds: 250));
+
+    await tester.tap(find.text('want'));
+    await tester.tap(find.text('eat'));
+    await tester.pump();
+
+    expect(find.byType(Chip), findsNWidgets(2));
+
+    final undoButton = find.byTooltip(
+      'Tap to delete one word. Double tap or hold to clear.',
+    );
+
+    await tester.tap(undoButton);
+    await tester.pump(const Duration(milliseconds: 350));
+
+    expect(find.byType(Chip), findsOneWidget);
+    expect(find.text('want'), findsWidgets);
+
+    await tester.tap(find.text('eat'));
+    await tester.pump();
+
+    expect(find.byType(Chip), findsNWidgets(2));
+
+    await tester.tap(undoButton);
+    await tester.pump(const Duration(milliseconds: 80));
+    await tester.tap(undoButton);
+    await tester.pump(const Duration(milliseconds: 350));
+
+    expect(find.byType(Chip), findsNothing);
+    expect(find.text('Choose words'), findsOneWidget);
   });
 
   testWidgets('AAC board fits an iPad landscape viewport', (tester) async {
@@ -53,6 +92,13 @@ void main() {
     await tester.pump(const Duration(milliseconds: 250));
 
     expect(find.byType(GridView), findsOneWidget);
+    final gridRect = tester.getRect(find.byType(GridView));
+    final lastCellRect = tester.getRect(
+      find.byKey(const ValueKey<String>('aac-cell-24')),
+    );
+
+    expect(lastCellRect.bottom, lessThanOrEqualTo(gridRect.bottom + 0.1));
+    expect(lastCellRect.right, lessThanOrEqualTo(gridRect.right + 0.1));
     expect(tester.takeException(), isNull);
   });
 }

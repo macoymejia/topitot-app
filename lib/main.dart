@@ -389,22 +389,63 @@ class _SentenceStrip extends StatelessWidget {
                     ),
           ),
           Padding(
-            padding: const EdgeInsets.only(right: 6),
-            child: IconButton.filledTonal(
-              tooltip: 'Remove last word',
-              onPressed: onRemoveLast,
-              icon: const Icon(Icons.backspace_outlined),
-            ),
-          ),
-          Padding(
             padding: const EdgeInsets.only(right: 8),
-            child: IconButton(
-              tooltip: 'Clear sentence',
-              onPressed: sentence.isEmpty ? null : onClear,
-              icon: const Icon(Icons.clear_all_rounded),
+            child: _SentenceUndoButton(
+              enabled: sentence.isNotEmpty,
+              onRemoveLast: onRemoveLast,
+              onClear: onClear,
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _SentenceUndoButton extends StatelessWidget {
+  const _SentenceUndoButton({
+    required this.enabled,
+    required this.onRemoveLast,
+    required this.onClear,
+  });
+
+  final bool enabled;
+  final VoidCallback? onRemoveLast;
+  final VoidCallback onClear;
+
+  @override
+  Widget build(BuildContext context) {
+    final foreground =
+        enabled ? const Color(0xFF294154) : const Color(0xFF8A96A3);
+    final background =
+        enabled ? const Color(0xFFE8F2F4) : const Color(0xFFE2E8EF);
+
+    return Tooltip(
+      message: 'Tap to delete one word. Double tap or hold to clear.',
+      child: Semantics(
+        button: true,
+        enabled: enabled,
+        label: 'Delete one word, or clear all words',
+        hint: 'Tap once to delete one word. Double tap or hold to clear.',
+        child: Material(
+          color: background,
+          borderRadius: BorderRadius.circular(8),
+          clipBehavior: Clip.antiAlias,
+          child: InkWell(
+            onTap: enabled ? onRemoveLast : null,
+            onDoubleTap: enabled ? onClear : null,
+            onLongPress: enabled ? onClear : null,
+            child: SizedBox(
+              width: 64,
+              height: 64,
+              child: Icon(
+                Icons.backspace_outlined,
+                color: foreground,
+                size: 34,
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -591,8 +632,10 @@ class _AacGrid extends StatelessWidget {
         final tileWidth =
             (gridWidth - (boardColumns - 1) * spacing) / boardColumns;
         final tileHeight = (gridHeight - (boardRows - 1) * spacing) / boardRows;
+        final uncappedAspectRatio =
+            tileHeight <= 0 ? 1.0 : tileWidth / tileHeight;
         final aspectRatio =
-            tileHeight <= 0 ? 1.0 : (tileWidth / tileHeight).clamp(0.72, 1.45);
+            uncappedAspectRatio < 0.72 ? 0.72 : uncappedAspectRatio;
 
         return GridView.builder(
           physics: const NeverScrollableScrollPhysics(),
@@ -606,6 +649,7 @@ class _AacGrid extends StatelessWidget {
           itemBuilder: (context, index) {
             final cell = cells[index];
             return _AacTile(
+              key: ValueKey<String>('aac-cell-$index'),
               cell: cell,
               editMode: editMode,
               onTap: () => onCellTap(cell),
@@ -619,6 +663,7 @@ class _AacGrid extends StatelessWidget {
 
 class _AacTile extends StatelessWidget {
   const _AacTile({
+    super.key,
     required this.cell,
     required this.editMode,
     required this.onTap,
@@ -687,17 +732,17 @@ class _AacTile extends StatelessWidget {
                             ? constraints.maxWidth
                             : constraints.maxHeight;
                     final symbolBoxHeight =
-                        shortestSide * (compact ? 0.46 : 0.50);
+                        shortestSide * (compact ? 0.66 : 0.62);
                     final labelSize =
-                        compact ? constraints.maxHeight * 0.17 : 21.0;
+                        compact ? constraints.maxHeight * 0.14 : 21.0;
 
                     return Center(
                       child: Padding(
                         padding: EdgeInsets.fromLTRB(
-                          compact ? 6 : 10,
-                          compact ? 6 : 10,
+                          compact ? 5 : 10,
+                          compact ? 5 : 10,
                           cell.isFolder ? 32 : (compact ? 6 : 10),
-                          compact ? 6 : 10,
+                          compact ? 5 : 10,
                         ),
                         child:
                             showContent
@@ -706,35 +751,19 @@ class _AacTile extends StatelessWidget {
                                   children: <Widget>[
                                     SizedBox(
                                       height: symbolBoxHeight,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: <Widget>[
-                                          Flexible(
-                                            child: FittedBox(
-                                              fit: BoxFit.contain,
-                                              child: Text(
-                                                cell.symbol,
-                                                textAlign: TextAlign.center,
-                                                style: const TextStyle(
-                                                  fontWeight: FontWeight.w900,
-                                                ),
-                                              ),
-                                            ),
+                                      width: double.infinity,
+                                      child: FittedBox(
+                                        fit: BoxFit.contain,
+                                        child: Text(
+                                          cell.symbol,
+                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.w900,
                                           ),
-                                          if (!cell.isFolder &&
-                                              !cell.isBlank &&
-                                              !editMode) ...<Widget>[
-                                            const SizedBox(width: 4),
-                                            _InlineTileCue(
-                                              foreground: foreground,
-                                            ),
-                                          ],
-                                        ],
+                                        ),
                                       ),
                                     ),
-                                    SizedBox(height: compact ? 2 : 8),
+                                    SizedBox(height: compact ? 1 : 8),
                                     Flexible(
                                       child: Text(
                                         cell.label,
@@ -788,30 +817,20 @@ class _AacTile extends StatelessWidget {
                       foreground: foreground,
                     ),
                   ),
+                if (!cell.isFolder && !cell.isBlank && !editMode)
+                  Positioned(
+                    right: 7,
+                    top: 7,
+                    child: _TileCue(
+                      icon: Icons.volume_up_rounded,
+                      foreground: foreground,
+                    ),
+                  ),
               ],
             ),
           ),
         ),
       ),
-    );
-  }
-}
-
-class _InlineTileCue extends StatelessWidget {
-  const _InlineTileCue({required this.foreground});
-
-  final Color foreground;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 26,
-      height: 26,
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.78),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Icon(Icons.volume_up_rounded, color: foreground, size: 18),
     );
   }
 }
