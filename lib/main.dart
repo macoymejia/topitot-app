@@ -259,6 +259,20 @@ class _AacHomePageState extends State<AacHomePage> {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: <Widget>[
+              _BoardToolbar(
+                title: _currentBoard.title,
+                depth: _path.length + 1,
+                editMode: _editMode,
+                voices: _voices,
+                selectedVoice: _selectedVoice,
+                onEditModeChanged: (value) => setState(() => _editMode = value),
+                onVoiceChanged: (voice) async {
+                  setState(() => _selectedVoice = voice);
+                  await _applySelectedVoice();
+                  await _saveVoice();
+                },
+              ),
+              const SizedBox(height: 12),
               _SentenceStrip(
                 sentence: _sentence,
                 onSpeak: () => _speak(_sentenceText()),
@@ -269,28 +283,16 @@ class _AacHomePageState extends State<AacHomePage> {
                         : () => setState(() => _sentence.removeLast()),
               ),
               const SizedBox(height: 12),
-              _BoardToolbar(
-                title: _currentBoard.title,
-                depth: _path.length + 1,
-                canGoBack: _path.isNotEmpty,
-                editMode: _editMode,
-                voices: _voices,
-                selectedVoice: _selectedVoice,
-                onBack: _goBack,
-                onHome:
-                    _path.isEmpty ? null : () => setState(() => _path.clear()),
-                onEditModeChanged: (value) => setState(() => _editMode = value),
-                onVoiceChanged: (voice) async {
-                  setState(() => _selectedVoice = voice);
-                  await _applySelectedVoice();
-                  await _saveVoice();
-                },
-              ),
-              const SizedBox(height: 12),
               Expanded(
                 child: _AacGrid(
                   cells: _currentBoard.cells,
                   editMode: _editMode,
+                  canGoBack: _path.isNotEmpty,
+                  onBack: _goBack,
+                  onHome:
+                      _path.isEmpty
+                          ? null
+                          : () => setState(() => _path.clear()),
                   onCellTap: _handleCellTap,
                 ),
               ),
@@ -477,24 +479,18 @@ class _BoardToolbar extends StatelessWidget {
   const _BoardToolbar({
     required this.title,
     required this.depth,
-    required this.canGoBack,
     required this.editMode,
     required this.voices,
     required this.selectedVoice,
-    required this.onBack,
-    required this.onHome,
     required this.onEditModeChanged,
     required this.onVoiceChanged,
   });
 
   final String title;
   final int depth;
-  final bool canGoBack;
   final bool editMode;
   final List<TtsVoice> voices;
   final TtsVoice? selectedVoice;
-  final VoidCallback onBack;
-  final VoidCallback? onHome;
   final ValueChanged<bool> onEditModeChanged;
   final ValueChanged<TtsVoice?> onVoiceChanged;
 
@@ -513,18 +509,6 @@ class _BoardToolbar extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Row(
           children: <Widget>[
-            IconButton.filledTonal(
-              tooltip: 'Back',
-              onPressed: canGoBack ? onBack : null,
-              icon: const Icon(Icons.arrow_back_rounded, size: 30),
-            ),
-            const SizedBox(width: 8),
-            IconButton.filledTonal(
-              tooltip: 'Home board',
-              onPressed: onHome,
-              icon: const Icon(Icons.home_rounded, size: 30),
-            ),
-            const SizedBox(width: 14),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -615,11 +599,17 @@ class _AacGrid extends StatelessWidget {
   const _AacGrid({
     required this.cells,
     required this.editMode,
+    required this.canGoBack,
+    required this.onBack,
+    required this.onHome,
     required this.onCellTap,
   });
 
   final List<AacCell> cells;
   final bool editMode;
+  final bool canGoBack;
+  final VoidCallback onBack;
+  final VoidCallback? onHome;
   final ValueChanged<AacCell> onCellTap;
 
   @override
@@ -647,7 +637,26 @@ class _AacGrid extends StatelessWidget {
           ),
           itemCount: cellsPerPage,
           itemBuilder: (context, index) {
-            final cell = cells[index];
+            if (index == 0) {
+              return _GridNavigationTile(
+                key: const ValueKey<String>('grid-back-cell'),
+                label: 'Back',
+                icon: Icons.arrow_back_rounded,
+                enabled: canGoBack,
+                onTap: onBack,
+              );
+            }
+            if (index == 1) {
+              return _GridNavigationTile(
+                key: const ValueKey<String>('grid-home-cell'),
+                label: 'Home',
+                icon: Icons.home_rounded,
+                enabled: onHome != null,
+                onTap: onHome,
+              );
+            }
+
+            final cell = cells[index - 2];
             return _AacTile(
               key: ValueKey<String>('aac-cell-$index'),
               cell: cell,
@@ -657,6 +666,87 @@ class _AacGrid extends StatelessWidget {
           },
         );
       },
+    );
+  }
+}
+
+class _GridNavigationTile extends StatelessWidget {
+  const _GridNavigationTile({
+    super.key,
+    required this.label,
+    required this.icon,
+    required this.enabled,
+    required this.onTap,
+  });
+
+  final String label;
+  final IconData icon;
+  final bool enabled;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final foreground =
+        enabled ? const Color(0xFF294154) : const Color(0xFF8A96A3);
+    final background =
+        enabled ? const Color(0xFFE8F2F4) : const Color(0xFFF1F4F7);
+    final border = enabled ? const Color(0xFF1E8E89) : const Color(0xFFD9E1EA);
+
+    return Semantics(
+      button: true,
+      enabled: enabled,
+      label: label,
+      child: Material(
+        color: background,
+        borderRadius: BorderRadius.circular(8),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: enabled ? onTap : null,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              border: Border.all(color: border, width: 3),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                final compact = constraints.maxHeight < 112;
+                final iconSize =
+                    constraints.maxHeight * (compact ? 0.34 : 0.38);
+                final labelSize =
+                    constraints.maxHeight * (compact ? 0.14 : 0.16);
+
+                return Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(compact ? 5 : 8),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          icon,
+                          color: foreground,
+                          size: iconSize.clamp(24, 54),
+                        ),
+                        SizedBox(height: compact ? 2 : 6),
+                        Text(
+                          label,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: foreground,
+                            fontSize: labelSize.clamp(11, 20),
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

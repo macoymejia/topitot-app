@@ -32,6 +32,14 @@ void main() {
     expect(boardRows, 5);
     expect(boardColumns, 5);
     expect(cellsPerPage, 25);
+    expect(
+      find.byKey(const ValueKey<String>('grid-back-cell')),
+      findsOneWidget,
+    );
+    expect(
+      find.byKey(const ValueKey<String>('grid-home-cell')),
+      findsOneWidget,
+    );
     expect(find.text('I'), findsWidgets);
     expect(find.text('Food'), findsOneWidget);
 
@@ -41,6 +49,33 @@ void main() {
     expect(find.byType(Chip), findsOneWidget);
     expect(find.byIcon(Icons.backspace_outlined), findsOneWidget);
     expect(find.byIcon(Icons.clear_all_rounded), findsNothing);
+  });
+
+  testWidgets('grid navigation cells go back and home', (tester) async {
+    mockTts();
+
+    await tester.pumpWidget(const TopitotApp());
+    await tester.pump(const Duration(milliseconds: 250));
+
+    await tester.tap(find.text('Food'));
+    await tester.pump();
+
+    expect(find.text('Food'), findsOneWidget);
+    expect(find.text('rice'), findsOneWidget);
+
+    await tester.tap(find.byKey(const ValueKey<String>('grid-back-cell')));
+    await tester.pump();
+
+    expect(find.text('Topitot AAC'), findsOneWidget);
+    expect(find.text('Food'), findsOneWidget);
+
+    await tester.tap(find.text('Food'));
+    await tester.pump();
+    await tester.tap(find.byKey(const ValueKey<String>('grid-home-cell')));
+    await tester.pump();
+
+    expect(find.text('Topitot AAC'), findsOneWidget);
+    expect(find.text('Food'), findsOneWidget);
   });
 
   testWidgets('sentence undo button deletes one word or clears all words', (
