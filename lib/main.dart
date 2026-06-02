@@ -261,7 +261,7 @@ class _AacHomePageState extends State<AacHomePage> {
                   await _saveVoice();
                 },
               ),
-              const SizedBox(height: AppSpacing.lg),
+              const SizedBox(height: AppSpacing.sm),
               _SentenceStrip(
                 sentence: _sentence,
                 onSpeak: () => _speak(_sentenceText()),
@@ -491,78 +491,101 @@ class _BoardToolbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: editMode ? AppColors.editSurface : AppColors.surface,
-        borderRadius: AppRadius.mediumBorder,
-        border: Border.all(
-          color: editMode ? AppColors.secondary : AppColors.neutral200,
-          width: 2,
+    const toolbarSlotHeight = 96.0;
+    final toolbarHeight = expanded ? toolbarSlotHeight : 60.0;
+    final toolbarPadding = EdgeInsets.symmetric(
+      horizontal: AppSpacing.md,
+      vertical: expanded ? AppSpacing.md : AppSpacing.xs,
+    );
+
+    return SizedBox(
+      height: toolbarSlotHeight,
+      child: Align(
+        alignment: Alignment.topCenter,
+        child: SizedBox(
+          height: toolbarHeight,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: editMode ? AppColors.editSurface : AppColors.surface,
+              borderRadius: AppRadius.mediumBorder,
+              border: Border.all(
+                color: editMode ? AppColors.secondary : AppColors.neutral200,
+                width: 2,
+              ),
+            ),
+            child: Padding(
+              padding: toolbarPadding,
+              child:
+                  expanded
+                      ? Row(
+                        children: <Widget>[
+                          _ToolbarIdentity(title: title),
+                          SizedBox(
+                            width: 230,
+                            child: DropdownButtonFormField<TtsVoice>(
+                              isExpanded: true,
+                              value: selectedVoice,
+                              decoration: const InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.record_voice_over_rounded,
+                                ),
+                                labelText: 'Voice',
+                                border: OutlineInputBorder(),
+                                isDense: true,
+                              ),
+                              items:
+                                  voices
+                                      .map(
+                                        (voice) => DropdownMenuItem<TtsVoice>(
+                                          value: voice,
+                                          child: Text(
+                                            voice.label,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        ),
+                                      )
+                                      .toList(),
+                              hint: const Text('Default voice'),
+                              onChanged: voices.isEmpty ? null : onVoiceChanged,
+                            ),
+                          ),
+                          const SizedBox(width: AppSpacing.md),
+                          FilledButton.tonalIcon(
+                            onPressed: () => onEditModeChanged(!editMode),
+                            icon: Icon(
+                              editMode
+                                  ? Icons.edit_rounded
+                                  : Icons.touch_app_rounded,
+                            ),
+                            label: Text(editMode ? 'Edit' : 'Use'),
+                          ),
+                          const SizedBox(width: AppSpacing.xs),
+                          IconButton.filledTonal(
+                            tooltip: 'Collapse toolbar',
+                            onPressed: () => onExpandedChanged(false),
+                            icon: const Icon(Icons.expand_less_rounded),
+                          ),
+                        ],
+                      )
+                      : Row(
+                        children: <Widget>[
+                          _ToolbarIdentity(title: title),
+                          const SizedBox(width: AppSpacing.lg),
+                          _LevelDots(depth: depth),
+                          const Spacer(),
+                          SizedBox.square(
+                            dimension: 48,
+                            child: IconButton.filledTonal(
+                              tooltip: 'Expand toolbar',
+                              onPressed: () => onExpandedChanged(true),
+                              icon: const Icon(Icons.expand_more_rounded),
+                            ),
+                          ),
+                        ],
+                      ),
+            ),
+          ),
         ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(AppSpacing.md),
-        child:
-            expanded
-                ? Row(
-                  children: <Widget>[
-                    _ToolbarIdentity(title: title),
-                    SizedBox(
-                      width: 230,
-                      child: DropdownButtonFormField<TtsVoice>(
-                        isExpanded: true,
-                        value: selectedVoice,
-                        decoration: const InputDecoration(
-                          prefixIcon: Icon(Icons.record_voice_over_rounded),
-                          labelText: 'Voice',
-                          border: OutlineInputBorder(),
-                          isDense: true,
-                        ),
-                        items:
-                            voices
-                                .map(
-                                  (voice) => DropdownMenuItem<TtsVoice>(
-                                    value: voice,
-                                    child: Text(
-                                      voice.label,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                )
-                                .toList(),
-                        hint: const Text('Default voice'),
-                        onChanged: voices.isEmpty ? null : onVoiceChanged,
-                      ),
-                    ),
-                    const SizedBox(width: AppSpacing.md),
-                    FilledButton.tonalIcon(
-                      onPressed: () => onEditModeChanged(!editMode),
-                      icon: Icon(
-                        editMode ? Icons.edit_rounded : Icons.touch_app_rounded,
-                      ),
-                      label: Text(editMode ? 'Edit' : 'Use'),
-                    ),
-                    const SizedBox(width: AppSpacing.xs),
-                    IconButton.filledTonal(
-                      tooltip: 'Collapse toolbar',
-                      onPressed: () => onExpandedChanged(false),
-                      icon: const Icon(Icons.expand_less_rounded),
-                    ),
-                  ],
-                )
-                : Row(
-                  children: <Widget>[
-                    _ToolbarIdentity(title: title),
-                    const SizedBox(width: AppSpacing.lg),
-                    _LevelDots(depth: depth),
-                    const Spacer(),
-                    IconButton.filledTonal(
-                      tooltip: 'Expand toolbar',
-                      onPressed: () => onExpandedChanged(true),
-                      icon: const Icon(Icons.expand_more_rounded),
-                    ),
-                  ],
-                ),
       ),
     );
   }
