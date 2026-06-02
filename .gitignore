@@ -60,3 +60,4 @@ firebase_options.dart
 /android/app/debug
 /android/app/profile
 /android/app/release
+.vscode
