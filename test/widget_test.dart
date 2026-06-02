@@ -27,7 +27,8 @@ void main() {
     await tester.pump(const Duration(milliseconds: 250));
 
     expect(find.text('Choose words'), findsOneWidget);
-    expect(find.text('Topitot AAC'), findsOneWidget);
+    expect(find.text('Topitot'), findsOneWidget);
+    expect(find.text('Topitot AAC'), findsNothing);
     expect(find.byType(GridView), findsOneWidget);
     expect(boardRows, 5);
     expect(boardColumns, 5);
@@ -57,25 +58,75 @@ void main() {
     await tester.pumpWidget(const TopitotApp());
     await tester.pump(const Duration(milliseconds: 250));
 
-    await tester.tap(find.text('Food'));
+    await tester.tap(find.byKey(const ValueKey<String>('aac-cell-8')));
     await tester.pump();
 
-    expect(find.text('Food'), findsOneWidget);
     expect(find.text('rice'), findsOneWidget);
 
     await tester.tap(find.byKey(const ValueKey<String>('grid-back-cell')));
     await tester.pump();
 
-    expect(find.text('Topitot AAC'), findsOneWidget);
+    expect(find.text('Topitot'), findsOneWidget);
     expect(find.text('Food'), findsOneWidget);
 
-    await tester.tap(find.text('Food'));
+    await tester.tap(find.byKey(const ValueKey<String>('aac-cell-8')));
     await tester.pump();
     await tester.tap(find.byKey(const ValueKey<String>('grid-home-cell')));
     await tester.pump();
 
-    expect(find.text('Topitot AAC'), findsOneWidget);
+    expect(find.text('Topitot'), findsOneWidget);
     expect(find.text('Food'), findsOneWidget);
+  });
+
+  testWidgets('board toolbar expands and collapses into use mode', (
+    tester,
+  ) async {
+    mockTts();
+
+    await tester.pumpWidget(const TopitotApp());
+    await tester.pump(const Duration(milliseconds: 250));
+
+    expect(find.byTooltip('Expand toolbar'), findsOneWidget);
+    expect(find.text('Voice'), findsNothing);
+    expect(find.text('Use'), findsNothing);
+    expect(find.text('Edit'), findsNothing);
+
+    await tester.tap(find.byTooltip('Expand toolbar'));
+    await tester.pump();
+
+    expect(find.byTooltip('Collapse toolbar'), findsOneWidget);
+    expect(find.text('Voice'), findsOneWidget);
+    expect(find.text('Use'), findsOneWidget);
+
+    await tester.tap(find.text('Use'));
+    await tester.pump();
+
+    expect(find.text('Edit'), findsOneWidget);
+
+    await tester.tap(find.byTooltip('Collapse toolbar'));
+    await tester.pump();
+
+    expect(find.byTooltip('Expand toolbar'), findsOneWidget);
+    expect(find.text('Edit'), findsNothing);
+    expect(find.text('Voice'), findsNothing);
+
+    await tester.tap(find.byTooltip('Expand toolbar'));
+    await tester.pump();
+
+    expect(find.text('Use'), findsOneWidget);
+  });
+
+  testWidgets('empty cells do not add words in use mode', (tester) async {
+    mockTts();
+
+    await tester.pumpWidget(const TopitotApp());
+    await tester.pump(const Duration(milliseconds: 250));
+
+    await tester.tap(find.byKey(const ValueKey<String>('aac-cell-20')));
+    await tester.pump();
+
+    expect(find.byType(Chip), findsNothing);
+    expect(find.text('Choose words'), findsOneWidget);
   });
 
   testWidgets('sentence undo button deletes one word or clears all words', (

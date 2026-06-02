@@ -72,6 +72,7 @@ class _AacHomePageState extends State<AacHomePage> {
 
   bool _isLoading = true;
   bool _editMode = false;
+  bool _toolbarExpanded = false;
   List<TtsVoice> _voices = <TtsVoice>[];
   TtsVoice? _selectedVoice;
 
@@ -206,6 +207,10 @@ class _AacHomePageState extends State<AacHomePage> {
       return;
     }
 
+    if (cell.isBlank) {
+      return;
+    }
+
     if (cell.isFolder) {
       cell.children ??= BoardLevel.blank('${cell.label} board');
       setState(() => _path.add(cell.children!));
@@ -263,8 +268,16 @@ class _AacHomePageState extends State<AacHomePage> {
                 title: _currentBoard.title,
                 depth: _path.length + 1,
                 editMode: _editMode,
+                expanded: _toolbarExpanded,
                 voices: _voices,
                 selectedVoice: _selectedVoice,
+                onExpandedChanged:
+                    (value) => setState(() {
+                      _toolbarExpanded = value;
+                      if (!value) {
+                        _editMode = false;
+                      }
+                    }),
                 onEditModeChanged: (value) => setState(() => _editMode = value),
                 onVoiceChanged: (voice) async {
                   setState(() => _selectedVoice = voice);
@@ -480,8 +493,10 @@ class _BoardToolbar extends StatelessWidget {
     required this.title,
     required this.depth,
     required this.editMode,
+    required this.expanded,
     required this.voices,
     required this.selectedVoice,
+    required this.onExpandedChanged,
     required this.onEditModeChanged,
     required this.onVoiceChanged,
   });
@@ -489,8 +504,10 @@ class _BoardToolbar extends StatelessWidget {
   final String title;
   final int depth;
   final bool editMode;
+  final bool expanded;
   final List<TtsVoice> voices;
   final TtsVoice? selectedVoice;
+  final ValueChanged<bool> onExpandedChanged;
   final ValueChanged<bool> onEditModeChanged;
   final ValueChanged<TtsVoice?> onVoiceChanged;
 
@@ -507,89 +524,147 @@ class _BoardToolbar extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.all(10),
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Text(
-                    title,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  Row(
-                    children: List<Widget>.generate(maxFolderDepth, (index) {
-                      final active = index < depth;
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 5, top: 5),
-                        child: Container(
-                          width: 22,
-                          height: 8,
-                          decoration: BoxDecoration(
-                            color:
-                                active
-                                    ? const Color(0xFF1E8E89)
-                                    : const Color(0xFFD5DEE8),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
+        child:
+            expanded
+                ? Row(
+                  children: <Widget>[
+                    _ToolbarIdentity(title: title),
+                    SizedBox(
+                      width: 230,
+                      child: DropdownButtonFormField<TtsVoice>(
+                        isExpanded: true,
+                        value: selectedVoice,
+                        decoration: const InputDecoration(
+                          prefixIcon: Icon(Icons.record_voice_over_rounded),
+                          labelText: 'Voice',
+                          border: OutlineInputBorder(),
+                          isDense: true,
                         ),
-                      );
-                    }),
-                  ),
-                ],
+                        items:
+                            voices
+                                .map(
+                                  (voice) => DropdownMenuItem<TtsVoice>(
+                                    value: voice,
+                                    child: Text(
+                                      voice.label,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                )
+                                .toList(),
+                        hint: const Text('Default voice'),
+                        onChanged: voices.isEmpty ? null : onVoiceChanged,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    FilledButton.tonalIcon(
+                      onPressed: () => onEditModeChanged(!editMode),
+                      icon: Icon(
+                        editMode ? Icons.edit_rounded : Icons.touch_app_rounded,
+                      ),
+                      label: Text(editMode ? 'Edit' : 'Use'),
+                    ),
+                    const SizedBox(width: 6),
+                    IconButton.filledTonal(
+                      tooltip: 'Collapse toolbar',
+                      onPressed: () => onExpandedChanged(false),
+                      icon: const Icon(Icons.expand_less_rounded),
+                    ),
+                  ],
+                )
+                : Row(
+                  children: <Widget>[
+                    _ToolbarIdentity(title: title),
+                    const SizedBox(width: 12),
+                    _LevelDots(depth: depth),
+                    const Spacer(),
+                    IconButton.filledTonal(
+                      tooltip: 'Expand toolbar',
+                      onPressed: () => onExpandedChanged(true),
+                      icon: const Icon(Icons.expand_more_rounded),
+                    ),
+                  ],
+                ),
+      ),
+    );
+  }
+}
+
+class _ToolbarIdentity extends StatelessWidget {
+  const _ToolbarIdentity({required this.title});
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Row(
+        children: <Widget>[
+          const _AppIconMark(size: 36),
+          const SizedBox(width: 8),
+          Flexible(
+            child: Text(
+              title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                color: Color(0xFF294154),
+                fontSize: 20,
+                fontWeight: FontWeight.w900,
               ),
             ),
-            SizedBox(
-              width: 230,
-              child: DropdownButtonFormField<TtsVoice>(
-                isExpanded: true,
-                value: selectedVoice,
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.record_voice_over_rounded),
-                  labelText: 'Voice',
-                  border: OutlineInputBorder(),
-                  isDense: true,
-                ),
-                items:
-                    voices
-                        .map(
-                          (voice) => DropdownMenuItem<TtsVoice>(
-                            value: voice,
-                            child: Text(
-                              voice.label,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        )
-                        .toList(),
-                hint: const Text('Default voice'),
-                onChanged: voices.isEmpty ? null : onVoiceChanged,
-              ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _LevelDots extends StatelessWidget {
+  const _LevelDots({required this.depth});
+
+  final int depth;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: List<Widget>.generate(maxFolderDepth, (index) {
+        final active = index < depth;
+        return Padding(
+          padding: const EdgeInsets.only(right: 5),
+          child: Container(
+            width: 22,
+            height: 8,
+            decoration: BoxDecoration(
+              color: active ? const Color(0xFF1E8E89) : const Color(0xFFD5DEE8),
+              borderRadius: BorderRadius.circular(8),
             ),
-            const SizedBox(width: 12),
-            SegmentedButton<bool>(
-              segments: const <ButtonSegment<bool>>[
-                ButtonSegment<bool>(
-                  value: false,
-                  icon: Icon(Icons.touch_app_rounded),
-                  label: Text('Use'),
-                ),
-                ButtonSegment<bool>(
-                  value: true,
-                  icon: Icon(Icons.edit_rounded),
-                  label: Text('Edit'),
-                ),
-              ],
-              selected: <bool>{editMode},
-              onSelectionChanged: (selection) {
-                onEditModeChanged(selection.first);
-              },
-            ),
-          ],
-        ),
+          ),
+        );
+      }),
+    );
+  }
+}
+
+class _AppIconMark extends StatelessWidget {
+  const _AppIconMark({required this.size});
+
+  final double size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        color: const Color(0xFFE0F4F1),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: const Color(0xFF1E8E89), width: 2),
+      ),
+      child: Icon(
+        Icons.record_voice_over_rounded,
+        color: const Color(0xFF1E8E89),
+        size: size * 0.58,
       ),
     );
   }
@@ -771,6 +846,7 @@ class _AacTile extends StatelessWidget {
             : Colors.white;
     final tileColor =
         cell.isBlank && !editMode ? const Color(0xFFF4F7FA) : cell.color;
+    final canTap = editMode || !cell.isBlank;
     final borderColor =
         editMode
             ? const Color(0xFF17202A)
@@ -779,7 +855,8 @@ class _AacTile extends StatelessWidget {
             : Colors.transparent;
 
     return Semantics(
-      button: true,
+      button: canTap,
+      enabled: canTap,
       label:
           cell.isFolder
               ? 'Open ${cell.label}'
@@ -791,7 +868,7 @@ class _AacTile extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
-          onTap: onTap,
+          onTap: canTap ? onTap : null,
           splashColor: Colors.white.withValues(alpha: 0.35),
           highlightColor: Colors.black.withValues(alpha: 0.08),
           child: DecoratedBox(
@@ -904,15 +981,6 @@ class _AacTile extends StatelessWidget {
                     child: _TileCue(
                       icon:
                           cell.isBlank ? Icons.add_rounded : Icons.edit_rounded,
-                      foreground: foreground,
-                    ),
-                  ),
-                if (!cell.isFolder && !cell.isBlank && !editMode)
-                  Positioned(
-                    right: 7,
-                    top: 7,
-                    child: _TileCue(
-                      icon: Icons.volume_up_rounded,
                       foreground: foreground,
                     ),
                   ),
@@ -1142,7 +1210,7 @@ class BoardLevel {
   }
 
   factory BoardLevel.starter() {
-    final board = BoardLevel.blank('Topitot AAC');
+    final board = BoardLevel.blank('Topitot');
     board.cells = <AacCell>[
       AacCell.speak('I', 'I', 'I', const Color(0xFF4FC3F7)),
       AacCell.speak('want', 'want', '🤲', const Color(0xFFFFD54F)),
