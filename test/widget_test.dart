@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:topitot_app/main.dart';
 
 void main() {
-  testWidgets('AAC board shows sentence strip and 3 by 6 grid', (tester) async {
+  testWidgets('AAC board shows sentence strip and 5 by 5 grid', (tester) async {
     SharedPreferences.setMockInitialValues(<String, Object>{});
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(const MethodChannel('flutter_tts'), (
@@ -25,6 +25,9 @@ void main() {
     expect(find.text('Choose words'), findsOneWidget);
     expect(find.text('Topitot AAC'), findsOneWidget);
     expect(find.byType(GridView), findsOneWidget);
+    expect(boardRows, 5);
+    expect(boardColumns, 5);
+    expect(cellsPerPage, 25);
     expect(find.text('I'), findsWidgets);
     expect(find.text('Food'), findsOneWidget);
 

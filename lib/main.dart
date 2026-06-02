@@ -9,8 +9,8 @@ void main() {
   runApp(const TopitotApp());
 }
 
-const int boardRows = 3;
-const int boardColumns = 6;
+const int boardRows = 5;
+const int boardColumns = 5;
 const int cellsPerPage = boardRows * boardColumns;
 const int maxFolderDepth = 4;
 
@@ -589,7 +589,7 @@ class _AacGrid extends StatelessWidget {
         crossAxisCount: boardColumns,
         mainAxisSpacing: 10,
         crossAxisSpacing: 10,
-        childAspectRatio: 1.18,
+        childAspectRatio: 1,
       ),
       itemCount: cellsPerPage,
       itemBuilder: (context, index) {
@@ -669,8 +669,12 @@ class _AacTile extends StatelessWidget {
                   builder: (context, constraints) {
                     final compact = constraints.maxHeight < 112;
                     final showContent = !cell.isBlank || editMode;
+                    final shortestSide =
+                        constraints.maxWidth < constraints.maxHeight
+                            ? constraints.maxWidth
+                            : constraints.maxHeight;
                     final symbolBoxHeight =
-                        compact ? constraints.maxHeight * 0.40 : 56.0;
+                        shortestSide * (compact ? 0.46 : 0.50);
                     final labelSize =
                         compact ? constraints.maxHeight * 0.17 : 21.0;
 
@@ -700,6 +704,9 @@ class _AacTile extends StatelessWidget {
                                               child: Text(
                                                 cell.symbol,
                                                 textAlign: TextAlign.center,
+                                                style: const TextStyle(
+                                                  fontWeight: FontWeight.w900,
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -1035,7 +1042,10 @@ class BoardLevel {
             AacCell.speak('apple', 'apple', '🍎', const Color(0xFFFF8A65)),
             AacCell.speak('chicken', 'chicken', '🍗', const Color(0xFFFF8A65)),
             AacCell.speak('egg', 'egg', '🥚', const Color(0xFFFFD54F)),
-            ...List<AacCell>.generate(12, (index) => AacCell.blank(index + 6)),
+            ...List<AacCell>.generate(
+              cellsPerPage - 6,
+              (index) => AacCell.blank(index + 6),
+            ),
           ],
         ),
       ),
@@ -1053,7 +1063,10 @@ class BoardLevel {
             AacCell.speak('tired', 'tired', '😴', const Color(0xFF90A4AE)),
             AacCell.speak('hurt', 'hurt', '🤕', const Color(0xFFF06292)),
             AacCell.speak('scared', 'scared', '😟', const Color(0xFFBA68C8)),
-            ...List<AacCell>.generate(12, (index) => AacCell.blank(index + 6)),
+            ...List<AacCell>.generate(
+              cellsPerPage - 6,
+              (index) => AacCell.blank(index + 6),
+            ),
           ],
         ),
       ),
@@ -1085,6 +1098,10 @@ class BoardLevel {
         BoardLevel.blank('Actions'),
       ),
       AacCell.speak('bathroom', 'bathroom', '🚽', const Color(0xFF81C784)),
+      ...List<AacCell>.generate(
+        cellsPerPage - 18,
+        (index) => AacCell.blank(index + 18),
+      ),
     ];
     return board;
   }
