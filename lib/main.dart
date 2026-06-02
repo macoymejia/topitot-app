@@ -25,7 +25,7 @@ class TopitotApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Topitot AAC',
+      title: 'Topitot',
       debugShowCheckedModeBanner: false,
       theme: TopitotTheme.light,
       home: const AacHomePage(),
@@ -501,8 +501,7 @@ class _BoardToolbar extends StatelessWidget {
         ),
       ),
       child: Padding(
-<<<<<<< HEAD
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(AppSpacing.md),
         child:
             expanded
                 ? Row(
@@ -518,40 +517,6 @@ class _BoardToolbar extends StatelessWidget {
                           labelText: 'Voice',
                           border: OutlineInputBorder(),
                           isDense: true,
-=======
-        padding: const EdgeInsets.all(AppSpacing.md),
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Text(
-                    title,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  Row(
-                    children: List<Widget>.generate(maxFolderDepth, (index) {
-                      final active = index < depth;
-                      return Padding(
-                        padding: const EdgeInsets.only(
-                          right: AppSpacing.xs,
-                          top: AppSpacing.xs,
-                        ),
-                        child: Container(
-                          width: 22,
-                          height: 8,
-                          decoration: BoxDecoration(
-                            color:
-                                active
-                                    ? AppColors.primary
-                                    : AppColors.neutral200,
-                            borderRadius: AppRadius.mediumBorder,
-                          ),
->>>>>>> a21ee88 (Refactor theme implementation by consolidating color, radius, spacing, and typography definitions into dedicated classes for improved maintainability and consistency.)
                         ),
                         items:
                             voices
@@ -569,7 +534,7 @@ class _BoardToolbar extends StatelessWidget {
                         onChanged: voices.isEmpty ? null : onVoiceChanged,
                       ),
                     ),
-                    const SizedBox(width: 10),
+                    const SizedBox(width: AppSpacing.md),
                     FilledButton.tonalIcon(
                       onPressed: () => onEditModeChanged(!editMode),
                       icon: Icon(
@@ -577,7 +542,7 @@ class _BoardToolbar extends StatelessWidget {
                       ),
                       label: Text(editMode ? 'Edit' : 'Use'),
                     ),
-                    const SizedBox(width: 6),
+                    const SizedBox(width: AppSpacing.xs),
                     IconButton.filledTonal(
                       tooltip: 'Collapse toolbar',
                       onPressed: () => onExpandedChanged(false),
@@ -588,7 +553,7 @@ class _BoardToolbar extends StatelessWidget {
                 : Row(
                   children: <Widget>[
                     _ToolbarIdentity(title: title),
-                    const SizedBox(width: 12),
+                    const SizedBox(width: AppSpacing.lg),
                     _LevelDots(depth: depth),
                     const Spacer(),
                     IconButton.filledTonal(
@@ -621,7 +586,7 @@ class _ToolbarIdentity extends StatelessWidget {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
-                color: Color(0xFF294154),
+                color: AppColors.neutral700,
                 fontSize: 20,
                 fontWeight: FontWeight.w900,
               ),
@@ -649,10 +614,9 @@ class _LevelDots extends StatelessWidget {
             width: 22,
             height: 8,
             decoration: BoxDecoration(
-              color: active ? const Color(0xFF1E8E89) : const Color(0xFFD5DEE8),
-              borderRadius: BorderRadius.circular(8),
+              color: active ? AppColors.primary : AppColors.neutral200,
+              borderRadius: AppRadius.mediumBorder,
             ),
-<<<<<<< HEAD
           ),
         );
       }),
@@ -671,37 +635,14 @@ class _AppIconMark extends StatelessWidget {
       width: size,
       height: size,
       decoration: BoxDecoration(
-        color: const Color(0xFFE0F4F1),
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: const Color(0xFF1E8E89), width: 2),
+        color: AppColors.selectedSurface,
+        borderRadius: AppRadius.mediumBorder,
+        border: Border.all(color: AppColors.primary, width: 2),
       ),
       child: Icon(
         Icons.record_voice_over_rounded,
-        color: const Color(0xFF1E8E89),
+        color: AppColors.primary,
         size: size * 0.58,
-=======
-            const SizedBox(width: AppSpacing.lg),
-            SegmentedButton<bool>(
-              segments: const <ButtonSegment<bool>>[
-                ButtonSegment<bool>(
-                  value: false,
-                  icon: Icon(Icons.touch_app_rounded),
-                  label: Text('Use'),
-                ),
-                ButtonSegment<bool>(
-                  value: true,
-                  icon: Icon(Icons.edit_rounded),
-                  label: Text('Edit'),
-                ),
-              ],
-              selected: <bool>{editMode},
-              onSelectionChanged: (selection) {
-                onEditModeChanged(selection.first);
-              },
-            ),
-          ],
-        ),
->>>>>>> a21ee88 (Refactor theme implementation by consolidating color, radius, spacing, and typography definitions into dedicated classes for improved maintainability and consistency.)
       ),
     );
   }
@@ -885,12 +826,8 @@ class _AacTile extends StatelessWidget {
             ? AppColors.neutral900
             : AppColors.surface;
     final tileColor =
-<<<<<<< HEAD
-        cell.isBlank && !editMode ? const Color(0xFFF4F7FA) : cell.color;
-    final canTap = editMode || !cell.isBlank;
-=======
         cell.isBlank && !editMode ? AppColors.disabledSurface : cell.color;
->>>>>>> a21ee88 (Refactor theme implementation by consolidating color, radius, spacing, and typography definitions into dedicated classes for improved maintainability and consistency.)
+    final canTap = editMode || !cell.isBlank;
     final borderColor =
         editMode
             ? AppColors.neutral900
@@ -912,15 +849,9 @@ class _AacTile extends StatelessWidget {
         borderRadius: AppRadius.mediumBorder,
         clipBehavior: Clip.antiAlias,
         child: InkWell(
-<<<<<<< HEAD
           onTap: canTap ? onTap : null,
-          splashColor: Colors.white.withValues(alpha: 0.35),
-          highlightColor: Colors.black.withValues(alpha: 0.08),
-=======
-          onTap: onTap,
           splashColor: AppColors.surface.withValues(alpha: 0.35),
           highlightColor: AppColors.neutral900.withValues(alpha: 0.08),
->>>>>>> a21ee88 (Refactor theme implementation by consolidating color, radius, spacing, and typography definitions into dedicated classes for improved maintainability and consistency.)
           child: DecoratedBox(
             decoration: BoxDecoration(
               border: Border.all(
