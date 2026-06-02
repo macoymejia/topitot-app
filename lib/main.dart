@@ -583,21 +583,34 @@ class _AacGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: boardColumns,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 10,
-        childAspectRatio: 1,
-      ),
-      itemCount: cellsPerPage,
-      itemBuilder: (context, index) {
-        final cell = cells[index];
-        return _AacTile(
-          cell: cell,
-          editMode: editMode,
-          onTap: () => onCellTap(cell),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        const spacing = 10.0;
+        final gridWidth = constraints.maxWidth;
+        final gridHeight = constraints.maxHeight;
+        final tileWidth =
+            (gridWidth - (boardColumns - 1) * spacing) / boardColumns;
+        final tileHeight = (gridHeight - (boardRows - 1) * spacing) / boardRows;
+        final aspectRatio =
+            tileHeight <= 0 ? 1.0 : (tileWidth / tileHeight).clamp(0.72, 1.45);
+
+        return GridView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: boardColumns,
+            mainAxisSpacing: spacing,
+            crossAxisSpacing: spacing,
+            childAspectRatio: aspectRatio,
+          ),
+          itemCount: cellsPerPage,
+          itemBuilder: (context, index) {
+            final cell = cells[index];
+            return _AacTile(
+              cell: cell,
+              editMode: editMode,
+              onTap: () => onCellTap(cell),
+            );
+          },
         );
       },
     );

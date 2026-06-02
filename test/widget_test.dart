@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:topitot_app/main.dart';
 
 void main() {
-  testWidgets('AAC board shows sentence strip and 5 by 5 grid', (tester) async {
+  void mockTts() {
     SharedPreferences.setMockInitialValues(<String, Object>{});
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(const MethodChannel('flutter_tts'), (
@@ -18,6 +18,10 @@ void main() {
           }
           return null;
         });
+  }
+
+  testWidgets('AAC board shows sentence strip and 5 by 5 grid', (tester) async {
+    mockTts();
 
     await tester.pumpWidget(const TopitotApp());
     await tester.pump(const Duration(milliseconds: 250));
@@ -36,5 +40,19 @@ void main() {
 
     expect(find.byType(Chip), findsOneWidget);
     expect(find.byIcon(Icons.clear_all_rounded), findsOneWidget);
+  });
+
+  testWidgets('AAC board fits an iPad landscape viewport', (tester) async {
+    mockTts();
+    tester.view.physicalSize = const Size(1024, 768);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    await tester.pumpWidget(const TopitotApp());
+    await tester.pump(const Duration(milliseconds: 250));
+
+    expect(find.byType(GridView), findsOneWidget);
+    expect(tester.takeException(), isNull);
   });
 }
