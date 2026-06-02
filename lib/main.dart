@@ -25,10 +25,27 @@ class TopitotApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF1E88E5),
+          seedColor: const Color(0xFF00A7A5),
           brightness: Brightness.light,
         ),
-        scaffoldBackgroundColor: const Color(0xFFF5F7FA),
+        scaffoldBackgroundColor: const Color(0xFFFFFBF3),
+        filledButtonTheme: FilledButtonThemeData(
+          style: FilledButton.styleFrom(
+            minimumSize: const Size(64, 56),
+            textStyle: const TextStyle(fontWeight: FontWeight.w900),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+        ),
+        iconButtonTheme: IconButtonThemeData(
+          style: IconButton.styleFrom(
+            minimumSize: const Size(52, 52),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+        ),
         textTheme: const TextTheme(
           titleLarge: TextStyle(fontWeight: FontWeight.w800),
           titleMedium: TextStyle(fontWeight: FontWeight.w800),
@@ -260,6 +277,8 @@ class _AacHomePageState extends State<AacHomePage> {
                 voices: _voices,
                 selectedVoice: _selectedVoice,
                 onBack: _goBack,
+                onHome:
+                    _path.isEmpty ? null : () => setState(() => _path.clear()),
                 onEditModeChanged: (value) => setState(() => _editMode = value),
                 onVoiceChanged: (voice) async {
                   setState(() => _selectedVoice = voice);
@@ -303,30 +322,44 @@ class _SentenceStrip extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: const Color(0xFFD7DEE8)),
+        border: Border.all(color: const Color(0xFF1E8E89), width: 3),
+        boxShadow: const <BoxShadow>[
+          BoxShadow(
+            color: Color(0x1F17202A),
+            blurRadius: 14,
+            offset: Offset(0, 5),
+          ),
+        ],
       ),
       child: Row(
         children: <Widget>[
-          SizedBox(
-            width: 88,
-            height: double.infinity,
-            child: IconButton.filled(
-              tooltip: 'Play sentence',
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: FilledButton(
+              style: FilledButton.styleFrom(
+                backgroundColor: const Color(0xFF11A36A),
+                disabledBackgroundColor: const Color(0xFFE2E8EF),
+                foregroundColor: Colors.white,
+                disabledForegroundColor: const Color(0xFF7C8794),
+                padding: const EdgeInsets.symmetric(horizontal: 14),
+              ),
               onPressed: sentence.isEmpty ? null : onSpeak,
-              icon: const Icon(Icons.play_arrow_rounded, size: 42),
+              child: const Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(Icons.volume_up_rounded, size: 32),
+                  SizedBox(height: 2),
+                  Text('Speak'),
+                ],
+              ),
             ),
           ),
+          Container(width: 2, height: 58, color: const Color(0xFFE7EEF5)),
+          const SizedBox(width: 14),
           Expanded(
             child:
                 sentence.isEmpty
-                    ? const Text(
-                      'Choose words',
-                      style: TextStyle(
-                        color: Color(0xFF5E6B7A),
-                        fontSize: 24,
-                        fontWeight: FontWeight.w800,
-                      ),
-                    )
+                    ? const _EmptySentencePrompt()
                     : ListView.separated(
                       scrollDirection: Axis.horizontal,
                       padding: const EdgeInsets.symmetric(vertical: 10),
@@ -335,27 +368,36 @@ class _SentenceStrip extends StatelessWidget {
                       itemBuilder: (context, index) {
                         final cell = sentence[index];
                         return Chip(
-                          avatar: Text(cell.symbol),
+                          avatar: Text(
+                            cell.symbol,
+                            style: const TextStyle(fontSize: 20),
+                          ),
                           label: Text(
                             cell.label,
-                            style: const TextStyle(fontWeight: FontWeight.w800),
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w900,
+                            ),
                           ),
-                          backgroundColor: cell.color.withValues(alpha: 0.18),
-                          side: BorderSide(color: cell.color),
+                          backgroundColor: cell.color.withValues(alpha: 0.20),
+                          side: BorderSide(color: cell.color, width: 2),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                         );
                       },
                     ),
           ),
-          SizedBox(
-            width: 56,
-            child: IconButton(
+          Padding(
+            padding: const EdgeInsets.only(right: 6),
+            child: IconButton.filledTonal(
               tooltip: 'Remove last word',
               onPressed: onRemoveLast,
               icon: const Icon(Icons.backspace_outlined),
             ),
           ),
-          SizedBox(
-            width: 56,
+          Padding(
+            padding: const EdgeInsets.only(right: 8),
             child: IconButton(
               tooltip: 'Clear sentence',
               onPressed: sentence.isEmpty ? null : onClear,
@@ -364,6 +406,28 @@ class _SentenceStrip extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _EmptySentencePrompt extends StatelessWidget {
+  const _EmptySentencePrompt();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Row(
+      children: <Widget>[
+        Icon(Icons.touch_app_rounded, color: Color(0xFF1E8E89), size: 34),
+        SizedBox(width: 10),
+        Text(
+          'Choose words',
+          style: TextStyle(
+            color: Color(0xFF364A5C),
+            fontSize: 24,
+            fontWeight: FontWeight.w900,
+          ),
+        ),
+      ],
     );
   }
 }
@@ -377,6 +441,7 @@ class _BoardToolbar extends StatelessWidget {
     required this.voices,
     required this.selectedVoice,
     required this.onBack,
+    required this.onHome,
     required this.onEditModeChanged,
     required this.onVoiceChanged,
   });
@@ -388,90 +453,119 @@ class _BoardToolbar extends StatelessWidget {
   final List<TtsVoice> voices;
   final TtsVoice? selectedVoice;
   final VoidCallback onBack;
+  final VoidCallback? onHome;
   final ValueChanged<bool> onEditModeChanged;
   final ValueChanged<TtsVoice?> onVoiceChanged;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Text(
-                title,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              Text(
-                'Level $depth of $maxFolderDepth',
-                style: const TextStyle(
-                  color: Color(0xFF5E6B7A),
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ],
-          ),
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: editMode ? const Color(0xFFFFF2CC) : Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: editMode ? const Color(0xFFF0B429) : const Color(0xFFE0E7EE),
+          width: 2,
         ),
-        SizedBox(
-          width: 280,
-          child: DropdownButtonFormField<TtsVoice>(
-            isExpanded: true,
-            value: selectedVoice,
-            decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.record_voice_over_rounded),
-              labelText: 'System voice',
-              border: OutlineInputBorder(),
-              isDense: true,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Row(
+          children: <Widget>[
+            IconButton.filledTonal(
+              tooltip: 'Back',
+              onPressed: canGoBack ? onBack : null,
+              icon: const Icon(Icons.arrow_back_rounded, size: 30),
             ),
-            items:
-                voices
-                    .map(
-                      (voice) => DropdownMenuItem<TtsVoice>(
-                        value: voice,
-                        child: Text(
-                          voice.label,
-                          overflow: TextOverflow.ellipsis,
+            const SizedBox(width: 8),
+            IconButton.filledTonal(
+              tooltip: 'Home board',
+              onPressed: onHome,
+              icon: const Icon(Icons.home_rounded, size: 30),
+            ),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Text(
+                    title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  Row(
+                    children: List<Widget>.generate(maxFolderDepth, (index) {
+                      final active = index < depth;
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 5, top: 5),
+                        child: Container(
+                          width: 22,
+                          height: 8,
+                          decoration: BoxDecoration(
+                            color:
+                                active
+                                    ? const Color(0xFF1E8E89)
+                                    : const Color(0xFFD5DEE8),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                         ),
-                      ),
-                    )
-                    .toList(),
-            hint: const Text('Default voice'),
-            onChanged: voices.isEmpty ? null : onVoiceChanged,
-          ),
-        ),
-        const SizedBox(width: 12),
-        SegmentedButton<bool>(
-          segments: const <ButtonSegment<bool>>[
-            ButtonSegment<bool>(
-              value: false,
-              icon: Icon(Icons.touch_app_rounded),
-              label: Text('Use'),
+                      );
+                    }),
+                  ),
+                ],
+              ),
             ),
-            ButtonSegment<bool>(
-              value: true,
-              icon: Icon(Icons.edit_rounded),
-              label: Text('Edit'),
+            SizedBox(
+              width: 230,
+              child: DropdownButtonFormField<TtsVoice>(
+                isExpanded: true,
+                value: selectedVoice,
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.record_voice_over_rounded),
+                  labelText: 'Voice',
+                  border: OutlineInputBorder(),
+                  isDense: true,
+                ),
+                items:
+                    voices
+                        .map(
+                          (voice) => DropdownMenuItem<TtsVoice>(
+                            value: voice,
+                            child: Text(
+                              voice.label,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        )
+                        .toList(),
+                hint: const Text('Default voice'),
+                onChanged: voices.isEmpty ? null : onVoiceChanged,
+              ),
+            ),
+            const SizedBox(width: 12),
+            SegmentedButton<bool>(
+              segments: const <ButtonSegment<bool>>[
+                ButtonSegment<bool>(
+                  value: false,
+                  icon: Icon(Icons.touch_app_rounded),
+                  label: Text('Use'),
+                ),
+                ButtonSegment<bool>(
+                  value: true,
+                  icon: Icon(Icons.edit_rounded),
+                  label: Text('Edit'),
+                ),
+              ],
+              selected: <bool>{editMode},
+              onSelectionChanged: (selection) {
+                onEditModeChanged(selection.first);
+              },
             ),
           ],
-          selected: <bool>{editMode},
-          onSelectionChanged: (selection) {
-            onEditModeChanged(selection.first);
-          },
         ),
-        const SizedBox(width: 12),
-        SizedBox.square(
-          dimension: 56,
-          child: IconButton.filledTonal(
-            tooltip: 'Back',
-            onPressed: canGoBack ? onBack : null,
-            icon: const Icon(Icons.arrow_back_rounded),
-          ),
-        ),
-      ],
+      ),
     );
   }
 }
@@ -527,86 +621,197 @@ class _AacTile extends StatelessWidget {
         cell.color.computeLuminance() > 0.45
             ? const Color(0xFF17202A)
             : Colors.white;
+    final tileColor =
+        cell.isBlank && !editMode ? const Color(0xFFF4F7FA) : cell.color;
+    final borderColor =
+        editMode
+            ? const Color(0xFF17202A)
+            : cell.isFolder
+            ? const Color(0xFF17202A).withValues(alpha: 0.42)
+            : Colors.transparent;
 
     return Semantics(
       button: true,
-      label: cell.isBlank ? 'Empty AAC cell' : cell.label,
+      label:
+          cell.isFolder
+              ? 'Open ${cell.label}'
+              : cell.isBlank
+              ? 'Empty AAC cell'
+              : 'Say ${cell.label}',
       child: Material(
-        color: cell.isBlank ? Colors.white : cell.color,
+        color: tileColor,
         borderRadius: BorderRadius.circular(8),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
           onTap: onTap,
+          splashColor: Colors.white.withValues(alpha: 0.35),
+          highlightColor: Colors.black.withValues(alpha: 0.08),
           child: DecoratedBox(
             decoration: BoxDecoration(
               border: Border.all(
-                color: editMode ? const Color(0xFF17202A) : Colors.transparent,
-                width: editMode ? 3 : 0,
+                color: borderColor,
+                width: editMode || cell.isFolder ? 3 : 0,
               ),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Stack(
               children: <Widget>[
+                if (cell.isBlank && !editMode)
+                  const Positioned.fill(
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: Color(0xFFF4F7FA),
+                        backgroundBlendMode: BlendMode.srcOver,
+                      ),
+                    ),
+                  ),
                 LayoutBuilder(
                   builder: (context, constraints) {
                     final compact = constraints.maxHeight < 112;
-                    final symbolSize =
-                        compact ? constraints.maxHeight * 0.34 : 46.0;
+                    final showContent = !cell.isBlank || editMode;
+                    final symbolBoxHeight =
+                        compact ? constraints.maxHeight * 0.40 : 56.0;
                     final labelSize =
-                        compact ? constraints.maxHeight * 0.16 : 20.0;
+                        compact ? constraints.maxHeight * 0.17 : 21.0;
 
                     return Center(
                       child: Padding(
-                        padding: EdgeInsets.all(compact ? 6 : 10),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            Text(
-                              cell.symbol,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: symbolSize),
-                            ),
-                            SizedBox(height: compact ? 3 : 8),
-                            Text(
-                              cell.label,
-                              maxLines: compact ? 1 : 2,
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color:
-                                    cell.isBlank
-                                        ? const Color(0xFF5E6B7A)
-                                        : foreground,
-                                fontSize: labelSize.clamp(13, 20),
-                                fontWeight: FontWeight.w900,
-                              ),
-                            ),
-                          ],
+                        padding: EdgeInsets.fromLTRB(
+                          compact ? 6 : 10,
+                          compact ? 6 : 10,
+                          cell.isFolder ? 32 : (compact ? 6 : 10),
+                          compact ? 6 : 10,
                         ),
+                        child:
+                            showContent
+                                ? Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    SizedBox(
+                                      height: symbolBoxHeight,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          Flexible(
+                                            child: FittedBox(
+                                              fit: BoxFit.contain,
+                                              child: Text(
+                                                cell.symbol,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ),
+                                          if (!cell.isFolder &&
+                                              !cell.isBlank &&
+                                              !editMode) ...<Widget>[
+                                            const SizedBox(width: 4),
+                                            _InlineTileCue(
+                                              foreground: foreground,
+                                            ),
+                                          ],
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(height: compact ? 2 : 8),
+                                    Flexible(
+                                      child: Text(
+                                        cell.label,
+                                        maxLines: compact ? 1 : 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color:
+                                              cell.isBlank
+                                                  ? const Color(0xFF5E6B7A)
+                                                  : foreground,
+                                          fontSize: labelSize.clamp(13, 20),
+                                          fontWeight: FontWeight.w900,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                                : const SizedBox.expand(),
                       ),
                     );
                   },
                 ),
                 if (cell.isFolder)
                   Positioned(
-                    right: 8,
-                    top: 8,
-                    child: Icon(
-                      Icons.folder_rounded,
-                      color: foreground.withValues(alpha: 0.92),
+                    right: 0,
+                    top: 0,
+                    bottom: 0,
+                    child: Container(
+                      width: 28,
+                      decoration: BoxDecoration(
+                        color: foreground.withValues(alpha: 0.16),
+                        borderRadius: const BorderRadius.horizontal(
+                          left: Radius.circular(8),
+                        ),
+                      ),
+                      child: Icon(
+                        Icons.chevron_right_rounded,
+                        color: foreground,
+                        size: 30,
+                      ),
                     ),
                   ),
                 if (editMode)
-                  const Positioned(
+                  Positioned(
                     left: 8,
                     top: 8,
-                    child: Icon(Icons.edit_rounded, size: 20),
+                    child: _TileCue(
+                      icon:
+                          cell.isBlank ? Icons.add_rounded : Icons.edit_rounded,
+                      foreground: foreground,
+                    ),
                   ),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class _InlineTileCue extends StatelessWidget {
+  const _InlineTileCue({required this.foreground});
+
+  final Color foreground;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 26,
+      height: 26,
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.78),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Icon(Icons.volume_up_rounded, color: foreground, size: 18),
+    );
+  }
+}
+
+class _TileCue extends StatelessWidget {
+  const _TileCue({required this.icon, required this.foreground});
+
+  final IconData icon;
+  final Color foreground;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 30,
+      height: 30,
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.78),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Icon(icon, color: foreground, size: 20),
     );
   }
 }
