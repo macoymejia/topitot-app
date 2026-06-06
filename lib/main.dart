@@ -352,6 +352,21 @@ class _SentenceStrip extends StatelessWidget {
           Container(width: 2, height: 58, color: AppColors.neutral200),
           const SizedBox(width: AppSpacing.xl),
           Expanded(
+            child: Semantics(
+              button: sentence.isNotEmpty,
+              enabled: sentence.isNotEmpty,
+              label: 'Speak selected words',
+              child: GestureDetector(
+                key: const ValueKey<String>('sentence-word-area'),
+                behavior: HitTestBehavior.opaque,
+                onTap: sentence.isEmpty ? null : onSpeak,
+                child:
+                    sentence.isEmpty
+                        ? const _EmptySentencePrompt()
+                        : ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          padding: const EdgeInsets.symmetric(
+                            vertical: AppSpacing.md,
             child:
                 sentence.isEmpty
                     ? const _EmptySentencePrompt()
@@ -389,9 +404,35 @@ class _SentenceStrip extends StatelessWidget {
                           shape: const RoundedRectangleBorder(
                             borderRadius: AppRadius.mediumBorder,
                           ),
-                        );
-                      },
-                    ),
+                          itemCount: sentence.length,
+                          separatorBuilder:
+                              (_, __) => const SizedBox(width: AppSpacing.sm),
+                          itemBuilder: (context, index) {
+                            final cell = sentence[index];
+                            return Chip(
+                              avatar: Text(
+                                cell.symbol,
+                                style: const TextStyle(fontSize: 20),
+                              ),
+                              label: Text(
+                                cell.label,
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                              backgroundColor: cell.color.withValues(
+                                alpha: 0.20,
+                              ),
+                              side: BorderSide(color: cell.color, width: 2),
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: AppRadius.mediumBorder,
+                              ),
+                            );
+                          },
+                        ),
+              ),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(right: AppSpacing.sm),
