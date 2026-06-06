@@ -367,42 +367,6 @@ class _SentenceStrip extends StatelessWidget {
                           scrollDirection: Axis.horizontal,
                           padding: const EdgeInsets.symmetric(
                             vertical: AppSpacing.md,
-            child:
-                sentence.isEmpty
-                    ? const _EmptySentencePrompt()
-                    : ListView.separated(
-                      scrollDirection: Axis.horizontal,
-                      padding: const EdgeInsets.symmetric(
-                        vertical: AppSpacing.md,
-                      ),
-                      itemCount: sentence.length,
-                      separatorBuilder:
-                          (_, __) => const SizedBox(width: AppSpacing.sm),
-                      itemBuilder: (context, index) {
-                        final cell = sentence[index];
-                        return Chip(
-                          avatar: SizedBox.square(
-                            dimension: 28,
-                            child: _CellVisual(
-                              cell: cell,
-                              fit: BoxFit.cover,
-                              borderRadius: BorderRadius.circular(
-                                AppRadius.medium,
-                              ),
-                              textStyle: const TextStyle(fontSize: 20),
-                            ),
-                          ),
-                          label: Text(
-                            cell.label,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w900,
-                            ),
-                          ),
-                          backgroundColor: cell.color.withValues(alpha: 0.20),
-                          side: BorderSide(color: cell.color, width: 2),
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: AppRadius.mediumBorder,
                           ),
                           itemCount: sentence.length,
                           separatorBuilder:
@@ -410,9 +374,16 @@ class _SentenceStrip extends StatelessWidget {
                           itemBuilder: (context, index) {
                             final cell = sentence[index];
                             return Chip(
-                              avatar: Text(
-                                cell.symbol,
-                                style: const TextStyle(fontSize: 20),
+                              avatar: SizedBox.square(
+                                dimension: 28,
+                                child: _CellVisual(
+                                  cell: cell,
+                                  fit: BoxFit.cover,
+                                  borderRadius: BorderRadius.circular(
+                                    AppRadius.medium,
+                                  ),
+                                  textStyle: const TextStyle(fontSize: 20),
+                                ),
                               ),
                               label: Text(
                                 cell.label,
@@ -421,9 +392,7 @@ class _SentenceStrip extends StatelessWidget {
                                   fontWeight: FontWeight.w900,
                                 ),
                               ),
-                              backgroundColor: cell.color.withValues(
-                                alpha: 0.20,
-                              ),
+                              backgroundColor: cell.color.withValues(alpha: 0.20),
                               side: BorderSide(color: cell.color, width: 2),
                               shape: const RoundedRectangleBorder(
                                 borderRadius: AppRadius.mediumBorder,
