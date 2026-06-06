@@ -1,8 +1,11 @@
 import 'dart:convert';
+import 'dart:io';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'theme/app_colors.dart';
@@ -18,6 +21,7 @@ const int boardRows = 5;
 const int boardColumns = 5;
 const int cellsPerPage = boardRows * boardColumns;
 const int maxFolderDepth = 4;
+const int maxCellPhotoBytes = 3 * 1024 * 1024;
 
 class TopitotApp extends StatelessWidget {
   const TopitotApp({super.key});
@@ -363,6 +367,42 @@ class _SentenceStrip extends StatelessWidget {
                           scrollDirection: Axis.horizontal,
                           padding: const EdgeInsets.symmetric(
                             vertical: AppSpacing.md,
+            child:
+                sentence.isEmpty
+                    ? const _EmptySentencePrompt()
+                    : ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      padding: const EdgeInsets.symmetric(
+                        vertical: AppSpacing.md,
+                      ),
+                      itemCount: sentence.length,
+                      separatorBuilder:
+                          (_, __) => const SizedBox(width: AppSpacing.sm),
+                      itemBuilder: (context, index) {
+                        final cell = sentence[index];
+                        return Chip(
+                          avatar: SizedBox.square(
+                            dimension: 28,
+                            child: _CellVisual(
+                              cell: cell,
+                              fit: BoxFit.cover,
+                              borderRadius: BorderRadius.circular(
+                                AppRadius.medium,
+                              ),
+                              textStyle: const TextStyle(fontSize: 20),
+                            ),
+                          ),
+                          label: Text(
+                            cell.label,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                          backgroundColor: cell.color.withValues(alpha: 0.20),
+                          side: BorderSide(color: cell.color, width: 2),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: AppRadius.mediumBorder,
                           ),
                           itemCount: sentence.length,
                           separatorBuilder:
@@ -797,6 +837,8 @@ class _GridNavigationTile extends StatelessWidget {
             child: LayoutBuilder(
               builder: (context, constraints) {
                 final compact = constraints.maxHeight < 112;
+                final ultraCompact =
+                    constraints.maxHeight < 56 || constraints.maxWidth < 72;
                 final iconSize =
                     constraints.maxHeight * (compact ? 0.34 : 0.38);
                 final labelSize =
@@ -807,30 +849,38 @@ class _GridNavigationTile extends StatelessWidget {
                     padding: EdgeInsets.all(
                       compact ? AppSpacing.xs : AppSpacing.sm,
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Icon(
-                          icon,
-                          color: foreground,
-                          size: iconSize.clamp(24, 54),
-                        ),
-                        SizedBox(
-                          height: compact ? AppSpacing.xxs : AppSpacing.xs,
-                        ),
-                        Text(
-                          label,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: foreground,
-                            fontSize: labelSize.clamp(11, 20),
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
-                      ],
-                    ),
+                    child:
+                        ultraCompact
+                            ? Icon(
+                              icon,
+                              color: foreground,
+                              size: iconSize.clamp(18, 30),
+                            )
+                            : Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Icon(
+                                  icon,
+                                  color: foreground,
+                                  size: iconSize.clamp(24, 54),
+                                ),
+                                SizedBox(
+                                  height:
+                                      compact ? AppSpacing.xxs : AppSpacing.xs,
+                                ),
+                                Text(
+                                  label,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: foreground,
+                                    fontSize: labelSize.clamp(11, 20),
+                                    fontWeight: FontWeight.w900,
+                                  ),
+                                ),
+                              ],
+                            ),
                   ),
                 );
               },
@@ -934,15 +984,15 @@ class _AacTile extends StatelessWidget {
                                   children: <Widget>[
                                     SizedBox(
                                       height: symbolBoxHeight,
-                                      width: double.infinity,
-                                      child: FittedBox(
-                                        fit: BoxFit.contain,
-                                        child: Text(
-                                          cell.symbol,
-                                          textAlign: TextAlign.center,
-                                          style: const TextStyle(
-                                            fontWeight: FontWeight.w900,
-                                          ),
+                                      width: symbolBoxHeight,
+                                      child: _CellVisual(
+                                        cell: cell,
+                                        fit: BoxFit.cover,
+                                        borderRadius: BorderRadius.circular(
+                                          AppRadius.large,
+                                        ),
+                                        textStyle: const TextStyle(
+                                          fontWeight: FontWeight.w900,
                                         ),
                                       ),
                                     ),
@@ -1031,6 +1081,46 @@ class _TileCue extends StatelessWidget {
   }
 }
 
+class _CellVisual extends StatelessWidget {
+  const _CellVisual({
+    required this.cell,
+    required this.fit,
+    required this.borderRadius,
+    required this.textStyle,
+  });
+
+  final AacCell cell;
+  final BoxFit fit;
+  final BorderRadius borderRadius;
+  final TextStyle textStyle;
+
+  @override
+  Widget build(BuildContext context) {
+    if (cell.hasPhoto) {
+      return ClipRRect(
+        borderRadius: borderRadius,
+        child: Image.file(
+          File(cell.photoPath!),
+          fit: fit,
+          alignment: Alignment.center,
+          errorBuilder:
+              (_, __, ___) => const Center(
+                child: Icon(
+                  Icons.image_not_supported_rounded,
+                  color: AppColors.neutral500,
+                ),
+              ),
+        ),
+      );
+    }
+
+    return FittedBox(
+      fit: BoxFit.contain,
+      child: Text(cell.symbol, textAlign: TextAlign.center, style: textStyle),
+    );
+  }
+}
+
 class CellEditorDialog extends StatefulWidget {
   const CellEditorDialog({super.key, required this.cell, required this.depth});
 
@@ -1047,6 +1137,9 @@ class _CellEditorDialogState extends State<CellEditorDialog> {
   late final TextEditingController _symbolController;
   late Color _color;
   late bool _isFolder;
+  late CellVisualType _visualType;
+  String? _photoPath;
+  String? _photoError;
 
   static const List<Color> _swatches = AppColors.cellSwatches;
 
@@ -1058,6 +1151,8 @@ class _CellEditorDialogState extends State<CellEditorDialog> {
     _symbolController = TextEditingController(text: widget.cell.symbol);
     _color = widget.cell.color;
     _isFolder = widget.cell.isFolder;
+    _visualType = widget.cell.visualType;
+    _photoPath = widget.cell.photoPath;
   }
 
   @override
@@ -1066,6 +1161,114 @@ class _CellEditorDialogState extends State<CellEditorDialog> {
     _spokenTextController.dispose();
     _symbolController.dispose();
     super.dispose();
+  }
+
+  Future<void> _pickPhoto() async {
+    setState(() => _photoError = null);
+
+    final result = await FilePicker.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: const <String>['jpg', 'jpeg', 'png'],
+      allowMultiple: false,
+      withData: true,
+    );
+
+    if (result == null || result.files.isEmpty) {
+      return;
+    }
+
+    final file = result.files.single;
+    final extension = _normalizedPhotoExtension(file.name);
+    if (extension == null) {
+      setState(() => _photoError = 'Please choose a JPG or PNG photo.');
+      return;
+    }
+
+    final bytes = file.bytes;
+    if (file.size > maxCellPhotoBytes ||
+        (bytes != null && bytes.lengthInBytes > maxCellPhotoBytes)) {
+      setState(() => _photoError = 'Photo must be 3 MB or smaller.');
+      return;
+    }
+
+    if (bytes == null) {
+      final path = file.path;
+      if (path == null) {
+        setState(() => _photoError = 'Could not read that photo.');
+        return;
+      }
+      final pickedFile = File(path);
+      final length = await pickedFile.length();
+      if (length > maxCellPhotoBytes) {
+        setState(() => _photoError = 'Photo must be 3 MB or smaller.');
+        return;
+      }
+      final pickedBytes = await pickedFile.readAsBytes();
+      if (!_matchesPhotoFormat(pickedBytes, extension)) {
+        setState(() => _photoError = 'Please choose a real JPG or PNG photo.');
+        return;
+      }
+      await _savePhotoBytes(pickedBytes, extension);
+      return;
+    }
+
+    if (!_matchesPhotoFormat(bytes, extension)) {
+      setState(() => _photoError = 'Please choose a real JPG or PNG photo.');
+      return;
+    }
+
+    await _savePhotoBytes(bytes, extension);
+  }
+
+  Future<void> _savePhotoBytes(Uint8List bytes, String extension) async {
+    final appDirectory = await getApplicationSupportDirectory();
+    final photoDirectory = Directory('${appDirectory.path}/aac_photos');
+    if (!await photoDirectory.exists()) {
+      await photoDirectory.create(recursive: true);
+    }
+
+    final fileName =
+        'cell_photo_${DateTime.now().microsecondsSinceEpoch}.$extension';
+    final savedFile = File('${photoDirectory.path}/$fileName');
+    await savedFile.writeAsBytes(bytes, flush: true);
+
+    if (!mounted) {
+      return;
+    }
+
+    setState(() {
+      _visualType = CellVisualType.photo;
+      _photoPath = savedFile.path;
+      _photoError = null;
+    });
+  }
+
+  String? _normalizedPhotoExtension(String name) {
+    final lowerName = name.toLowerCase();
+    if (lowerName.endsWith('.jpg') || lowerName.endsWith('.jpeg')) {
+      return 'jpg';
+    }
+    if (lowerName.endsWith('.png')) {
+      return 'png';
+    }
+    return null;
+  }
+
+  bool _matchesPhotoFormat(Uint8List bytes, String extension) {
+    if (extension == 'jpg') {
+      return bytes.lengthInBytes >= 3 && bytes[0] == 0xFF && bytes[1] == 0xD8;
+    }
+
+    const pngSignature = <int>[0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A];
+    if (bytes.lengthInBytes < pngSignature.length) {
+      return false;
+    }
+    for (var index = 0; index < pngSignature.length; index += 1) {
+      if (bytes[index] != pngSignature[index]) {
+        return false;
+      }
+    }
+    return true;
   }
 
   @override
@@ -1098,11 +1301,32 @@ class _CellEditorDialogState extends State<CellEditorDialog> {
               const SizedBox(height: AppSpacing.lg),
               TextField(
                 controller: _symbolController,
+                enabled: _visualType == CellVisualType.symbol,
                 decoration: const InputDecoration(
                   labelText: 'Picture, icon, or visual symbol',
                   helperText: 'Use an emoji, short text, or icon-like symbol.',
                   border: OutlineInputBorder(),
                 ),
+              ),
+              const SizedBox(height: AppSpacing.lg),
+              _PhotoPickerPanel(
+                photoPath: _photoPath,
+                photoError: _photoError,
+                usingPhoto: _visualType == CellVisualType.photo,
+                onPickPhoto: _pickPhoto,
+                onUseSymbol:
+                    () => setState(() {
+                      _visualType = CellVisualType.symbol;
+                      _photoError = null;
+                    }),
+                onClearPhoto:
+                    _photoPath == null
+                        ? null
+                        : () => setState(() {
+                          _visualType = CellVisualType.symbol;
+                          _photoPath = null;
+                          _photoError = null;
+                        }),
               ),
               const SizedBox(height: AppSpacing.xxl),
               SwitchListTile(
@@ -1180,6 +1404,9 @@ class _CellEditorDialogState extends State<CellEditorDialog> {
                       _symbolController.text.trim().isEmpty
                           ? '...'
                           : _symbolController.text.trim()
+                  ..visualType = _visualType
+                  ..photoPath =
+                      _visualType == CellVisualType.photo ? _photoPath : null
                   ..color = _color
                   ..kind = _isFolder ? CellKind.folder : CellKind.speak;
 
@@ -1200,7 +1427,137 @@ class _CellEditorDialogState extends State<CellEditorDialog> {
   }
 }
 
+class _PhotoPickerPanel extends StatelessWidget {
+  const _PhotoPickerPanel({
+    required this.photoPath,
+    required this.photoError,
+    required this.usingPhoto,
+    required this.onPickPhoto,
+    required this.onUseSymbol,
+    required this.onClearPhoto,
+  });
+
+  final String? photoPath;
+  final String? photoError;
+  final bool usingPhoto;
+  final VoidCallback onPickPhoto;
+  final VoidCallback onUseSymbol;
+  final VoidCallback? onClearPhoto;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: AppColors.selectedSurface,
+        borderRadius: AppRadius.largeBorder,
+        border: Border.all(color: AppColors.neutral200, width: 2),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(AppSpacing.lg),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                _PhotoPreview(photoPath: photoPath, selected: usingPhoto),
+                const SizedBox(width: AppSpacing.lg),
+                Expanded(
+                  child: Wrap(
+                    spacing: AppSpacing.sm,
+                    runSpacing: AppSpacing.sm,
+                    children: <Widget>[
+                      FilledButton.icon(
+                        onPressed: onPickPhoto,
+                        icon: const Icon(Icons.add_photo_alternate_rounded),
+                        label: Text(
+                          photoPath == null ? 'Choose photo' : 'Change',
+                        ),
+                      ),
+                      OutlinedButton.icon(
+                        onPressed: onUseSymbol,
+                        icon: const Icon(Icons.text_fields_rounded),
+                        label: const Text('Use symbol'),
+                      ),
+                      if (photoPath != null)
+                        IconButton.filledTonal(
+                          tooltip: 'Remove photo',
+                          onPressed: onClearPhoto,
+                          icon: const Icon(Icons.delete_outline_rounded),
+                        ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: AppSpacing.sm),
+            Text(
+              'JPG or PNG only. 3 MB max. PNG transparency is kept.',
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: AppColors.neutral700,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            if (photoError != null) ...<Widget>[
+              const SizedBox(height: AppSpacing.xs),
+              Text(
+                photoError!,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: AppColors.accent,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _PhotoPreview extends StatelessWidget {
+  const _PhotoPreview({required this.photoPath, required this.selected});
+
+  final String? photoPath;
+  final bool selected;
+
+  @override
+  Widget build(BuildContext context) {
+    final path = photoPath;
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: AppColors.surface,
+        borderRadius: AppRadius.largeBorder,
+        border: Border.all(
+          color: selected ? AppColors.primary : AppColors.neutral200,
+          width: 3,
+        ),
+      ),
+      child: SizedBox.square(
+        dimension: 86,
+        child:
+            path == null
+                ? const Icon(
+                  Icons.photo_size_select_actual_rounded,
+                  color: AppColors.neutral500,
+                  size: 40,
+                )
+                : ClipRRect(
+                  borderRadius: AppRadius.mediumBorder,
+                  child: Image.file(
+                    File(path),
+                    fit: BoxFit.cover,
+                    alignment: Alignment.center,
+                  ),
+                ),
+      ),
+    );
+  }
+}
+
 enum CellKind { speak, folder }
+
+enum CellVisualType { symbol, photo }
 
 class BoardLevel {
   BoardLevel({required this.title, required this.cells});
@@ -1342,26 +1699,35 @@ class AacCell {
     required this.label,
     required this.spokenText,
     required this.symbol,
+    required this.visualType,
     required this.color,
     required this.kind,
     this.children,
+    this.photoPath,
   });
 
   String label;
   String spokenText;
   String symbol;
+  CellVisualType visualType;
+  String? photoPath;
   Color color;
   CellKind kind;
   BoardLevel? children;
 
   bool get isFolder => kind == CellKind.folder;
   bool get isBlank => label == 'Empty';
+  bool get hasPhoto =>
+      visualType == CellVisualType.photo &&
+      photoPath != null &&
+      photoPath!.isNotEmpty;
 
   factory AacCell.blank(int index) {
     return AacCell(
       label: 'Empty',
       spokenText: '',
       symbol: '+',
+      visualType: CellVisualType.symbol,
       color: AppColors.emptyCell,
       kind: CellKind.speak,
     );
@@ -1377,6 +1743,7 @@ class AacCell {
       label: label,
       spokenText: spokenText,
       symbol: symbol,
+      visualType: CellVisualType.symbol,
       color: color,
       kind: CellKind.speak,
     );
@@ -1393,6 +1760,7 @@ class AacCell {
       label: label,
       spokenText: spokenText,
       symbol: symbol,
+      visualType: CellVisualType.symbol,
       color: color,
       kind: CellKind.folder,
       children: children,
@@ -1404,6 +1772,12 @@ class AacCell {
       label: '${json['label'] ?? 'Empty'}',
       spokenText: '${json['spokenText'] ?? ''}',
       symbol: '${json['symbol'] ?? '+'}',
+      visualType:
+          json['visualType'] == 'photo'
+              ? CellVisualType.photo
+              : CellVisualType.symbol,
+      photoPath:
+          json['photoPath'] is String ? json['photoPath'] as String : null,
       color: Color(
         json['color'] is int ? json['color'] as int : AppColors.emptyCellArgb,
       ),
@@ -1420,6 +1794,8 @@ class AacCell {
       label: label,
       spokenText: spokenText,
       symbol: symbol,
+      visualType: visualType,
+      photoPath: photoPath,
       color: color,
       kind: kind,
       children: children,
@@ -1430,6 +1806,8 @@ class AacCell {
     label = other.label;
     spokenText = other.spokenText;
     symbol = other.symbol;
+    visualType = other.visualType;
+    photoPath = other.photoPath;
     color = other.color;
     kind = other.kind;
     children = other.children;
@@ -1440,6 +1818,8 @@ class AacCell {
       'label': label,
       'spokenText': spokenText,
       'symbol': symbol,
+      'visualType': visualType.name,
+      'photoPath': photoPath,
       'color': color.toARGB32(),
       'kind': kind.name,
       'children': children?.toJson(),
