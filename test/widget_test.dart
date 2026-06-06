@@ -5,12 +5,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:topitot_app/main.dart';
 
 void main() {
-  void mockTts() {
+  void mockTts({List<MethodCall>? calls}) {
     SharedPreferences.setMockInitialValues(<String, Object>{});
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(const MethodChannel('flutter_tts'), (
           methodCall,
         ) async {
+          calls?.add(methodCall);
           if (methodCall.method == 'getVoices') {
             return <Map<String, String>>[
               <String, String>{'name': 'Test Voice', 'locale': 'en-US'},
@@ -127,6 +128,26 @@ void main() {
 
     expect(find.byType(Chip), findsNothing);
     expect(find.text('Choose words'), findsOneWidget);
+  });
+
+  testWidgets('sentence word area speaks selected words', (tester) async {
+    final ttsCalls = <MethodCall>[];
+    mockTts(calls: ttsCalls);
+
+    await tester.pumpWidget(const TopitotApp());
+    await tester.pump(const Duration(milliseconds: 250));
+
+    await tester.tap(find.text('want'));
+    await tester.tap(find.text('eat'));
+    await tester.pump();
+
+    ttsCalls.clear();
+    await tester.tap(find.byKey(const ValueKey<String>('sentence-word-area')));
+    await tester.pump();
+
+    final speakCalls = ttsCalls.where((call) => call.method == 'speak');
+    expect(speakCalls, isNotEmpty);
+    expect(speakCalls.last.arguments, 'want eat');
   });
 
   testWidgets('sentence undo button deletes one word or clears all words', (
