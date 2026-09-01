@@ -1,10 +1,98 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:topitot_app/main.dart';
+import 'package:topitot_app/aac/constants/aac_constants.dart';
+import 'package:topitot_app/aac/models/board_models.dart';
+import 'package:topitot_app/app/topitot_app.dart';
+import 'package:topitot_app/theme/app_colors.dart';
 
 void main() {
+  test('Android keyboard pans instead of resizing the AAC screen', () {
+    final manifest =
+        File('android/app/src/main/AndroidManifest.xml').readAsStringSync();
+
+    expect(manifest, contains('android:windowSoftInputMode="adjustPan"'));
+    expect(
+      manifest,
+      isNot(contains('android:windowSoftInputMode="adjustResize"')),
+    );
+  });
+
+  test(
+    'starter board uses action phrase labels for root and Actions cells',
+    () {
+      final board = BoardLevel.starter();
+
+      expect(board.cells[4].label, 'help');
+      expect(board.cells[4].spokenText, 'help');
+      expect(board.cells[5].label, 'to eat');
+      expect(board.cells[5].spokenText, 'to eat');
+      expect(board.cells[5].symbol, '🍽️');
+      expect(board.cells[5].color, AppColors.greenSoft);
+      expect(board.cells[2].symbol, '➕');
+      expect(board.cells[3].symbol, '👉');
+      expect(board.cells[17].label, 'to play');
+      expect(board.cells[17].spokenText, 'to play');
+      expect(board.cells[18].symbol, '❓');
+      expect(board.cells[22].label, 'to sleep');
+      expect(board.cells[22].spokenText, 'to sleep');
+
+      final actions = board.cells.singleWhere(
+        (cell) => cell.label == 'Actions',
+      );
+      final people = board.cells.singleWhere((cell) => cell.label == 'People');
+      final places = board.cells.singleWhere((cell) => cell.label == 'Places');
+      final actionCells = actions.children!.cells.where(
+        (cell) => !cell.isBlank,
+      );
+
+      expect(people.symbol, '👫');
+      expect(places.symbol, '🏘️');
+
+      expect(actionCells.map((cell) => cell.label), <String>[
+        'to go',
+        'stop',
+        'to play',
+        'to sleep',
+        'to eat',
+        'to drink',
+        'help',
+        'look',
+        'to listen',
+        'to wash',
+        'to hug',
+        'open',
+        'close',
+        'to run',
+        'to jump',
+        'to sing',
+      ]);
+      expect(
+        actionCells.firstWhere((cell) => cell.label == 'to eat').symbol,
+        '🍽️',
+      );
+      expect(
+        actionCells.firstWhere((cell) => cell.label == 'to play').symbol,
+        '⛹️',
+      );
+      expect(
+        actionCells.firstWhere((cell) => cell.label == 'open').symbol,
+        '📖',
+      );
+      expect(
+        actionCells.firstWhere((cell) => cell.label == 'close').color,
+        AppColors.pinkSoft,
+      );
+      expect(
+        actionCells.firstWhere((cell) => cell.label == 'close').symbol,
+        '📕',
+      );
+    },
+  );
+
   void mockTts({List<MethodCall>? calls}) {
     SharedPreferences.setMockInitialValues(<String, Object>{});
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
@@ -20,6 +108,19 @@ void main() {
           return null;
         });
   }
+
+  testWidgets('AAC screen does not resize when keyboard appears', (
+    tester,
+  ) async {
+    mockTts();
+
+    await tester.pumpWidget(const TopitotApp());
+    await tester.pump(const Duration(milliseconds: 250));
+
+    final scaffold = tester.widget<Scaffold>(find.byType(Scaffold));
+
+    expect(scaffold.resizeToAvoidBottomInset, isFalse);
+  });
 
   testWidgets('AAC board shows sentence strip and 5 by 5 grid', (tester) async {
     mockTts();
@@ -79,7 +180,7 @@ void main() {
     expect(find.text('Food'), findsOneWidget);
   });
 
-  testWidgets('board toolbar expands and collapses into use mode', (
+  testWidgets('board toolbar uses action labels for mode switching', (
     tester,
   ) async {
     mockTts();
@@ -88,42 +189,62 @@ void main() {
     await tester.pump(const Duration(milliseconds: 250));
 
     expect(find.byTooltip('Expand toolbar'), findsOneWidget);
-    expect(find.text('Voice'), findsNothing);
-    expect(find.text('Use'), findsNothing);
-    expect(find.text('Edit'), findsNothing);
+    expect(find.text('Edit Board'), findsNothing);
+    expect(find.text('Done Editing'), findsNothing);
 
     await tester.tap(find.byTooltip('Expand toolbar'));
     await tester.pump();
 
     expect(find.byTooltip('Collapse toolbar'), findsOneWidget);
-    expect(find.text('Voice'), findsOneWidget);
-    expect(find.text('Use'), findsOneWidget);
+    expect(find.text('Edit Board'), findsOneWidget);
 
-    await tester.tap(find.text('Use'));
+    await tester.tap(find.text('Edit Board'));
     await tester.pump();
 
-    expect(find.text('Edit'), findsOneWidget);
+    expect(find.text('Done Editing'), findsOneWidget);
 
     await tester.tap(find.byTooltip('Collapse toolbar'));
     await tester.pump();
 
     expect(find.byTooltip('Expand toolbar'), findsOneWidget);
-    expect(find.text('Edit'), findsNothing);
-    expect(find.text('Voice'), findsNothing);
+    expect(find.text('Done Editing'), findsNothing);
 
     await tester.tap(find.byTooltip('Expand toolbar'));
     await tester.pump();
 
-    expect(find.text('Use'), findsOneWidget);
+    expect(find.text('Edit Board'), findsOneWidget);
   });
 
-  testWidgets('empty cells do not add words in use mode', (tester) async {
+  testWidgets('board toolbar edit action fits phone width', (tester) async {
+    mockTts();
+    tester.view.physicalSize = const Size(430, 932);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    await tester.pumpWidget(const TopitotApp());
+    await tester.pump(const Duration(milliseconds: 250));
+
+    await tester.tap(find.byTooltip('Expand toolbar'));
+    await tester.pump();
+    await tester.tap(find.byTooltip('Switch to edit mode'));
+    await tester.pump();
+
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('empty folder cells do not add words in use mode', (
+    tester,
+  ) async {
     mockTts();
 
     await tester.pumpWidget(const TopitotApp());
     await tester.pump(const Duration(milliseconds: 250));
 
-    await tester.tap(find.byKey(const ValueKey<String>('aac-cell-20')));
+    await tester.tap(find.text('People'));
+    await tester.pump();
+
+    await tester.tap(find.byKey(const ValueKey<String>('aac-cell-12')));
     await tester.pump();
 
     expect(find.byType(Chip), findsNothing);
@@ -138,7 +259,7 @@ void main() {
     await tester.pump(const Duration(milliseconds: 250));
 
     await tester.tap(find.text('want'));
-    await tester.tap(find.text('eat'));
+    await tester.tap(find.text('more'));
     await tester.pump();
 
     ttsCalls.clear();
@@ -147,7 +268,7 @@ void main() {
 
     final speakCalls = ttsCalls.where((call) => call.method == 'speak');
     expect(speakCalls, isNotEmpty);
-    expect(speakCalls.last.arguments, 'want eat');
+    expect(speakCalls.last.arguments, 'want more');
   });
 
   testWidgets('sentence undo button deletes one word or clears all words', (
@@ -159,7 +280,7 @@ void main() {
     await tester.pump(const Duration(milliseconds: 250));
 
     await tester.tap(find.text('want'));
-    await tester.tap(find.text('eat'));
+    await tester.tap(find.text('more'));
     await tester.pump();
 
     expect(find.byType(Chip), findsNWidgets(2));
@@ -174,7 +295,7 @@ void main() {
     expect(find.byType(Chip), findsOneWidget);
     expect(find.text('want'), findsWidgets);
 
-    await tester.tap(find.text('eat'));
+    await tester.tap(find.text('more'));
     await tester.pump();
 
     expect(find.byType(Chip), findsNWidgets(2));
@@ -188,9 +309,9 @@ void main() {
     expect(find.text('Choose words'), findsOneWidget);
   });
 
-  testWidgets('AAC board fits an iPad landscape viewport', (tester) async {
+  testWidgets('AAC board fits an iPad portrait viewport', (tester) async {
     mockTts();
-    tester.view.physicalSize = const Size(1024, 768);
+    tester.view.physicalSize = const Size(768, 1024);
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
