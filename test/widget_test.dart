@@ -124,6 +124,18 @@ void main() {
     expect(find.byType(AacHomePage), findsOneWidget);
   });
 
+  testWidgets('launch splash keeps the AAC home screen underneath', (
+    tester,
+  ) async {
+    mockTts();
+
+    await tester.pumpWidget(const TopitotApp());
+    await tester.pump();
+
+    expect(find.byType(AacHomePage), findsOneWidget);
+    expect(find.text('Choose words'), findsOneWidget);
+  });
+
   testWidgets('AAC screen does not resize when keyboard appears', (
     tester,
   ) async {
