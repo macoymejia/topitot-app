@@ -159,7 +159,6 @@ class _AacHomePageState extends State<AacHomePage> {
           child: Column(
             children: <Widget>[
               BoardToolbar(
-                title: _currentBoard.title,
                 depth: _path.length + 1,
                 editMode: _editMode,
                 expanded: _toolbarExpanded,

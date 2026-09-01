@@ -8,7 +8,6 @@ import '../constants/aac_constants.dart';
 class BoardToolbar extends StatelessWidget {
   const BoardToolbar({
     super.key,
-    required this.title,
     required this.depth,
     required this.editMode,
     required this.expanded,
@@ -17,7 +16,6 @@ class BoardToolbar extends StatelessWidget {
     this.onReset,
   });
 
-  final String title;
   final int depth;
   final bool editMode;
   final bool expanded;
@@ -53,7 +51,7 @@ class BoardToolbar extends StatelessWidget {
               return expanded
                   ? Row(
                     children: <Widget>[
-                      Expanded(child: _ToolbarIdentity(title: title)),
+                      const Expanded(child: _ToolbarIdentity()),
                       SizedBox(
                         width: compactActions ? AppSpacing.sm : AppSpacing.lg,
                       ),
@@ -114,7 +112,7 @@ class BoardToolbar extends StatelessWidget {
                   )
                   : Row(
                     children: <Widget>[
-                      Expanded(child: _ToolbarIdentity(title: title)),
+                      const Expanded(child: _ToolbarIdentity()),
                       const SizedBox(width: AppSpacing.lg),
                       _LevelDots(depth: depth),
                       const Spacer(),
@@ -137,26 +135,36 @@ class BoardToolbar extends StatelessWidget {
 }
 
 class _ToolbarIdentity extends StatelessWidget {
-  const _ToolbarIdentity({required this.title});
-
-  final String title;
+  const _ToolbarIdentity();
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        const _AppIconMark(size: 36),
+        ClipRRect(
+          borderRadius: AppRadius.mediumBorder,
+          child: Image.asset(
+            'assets/images/speech-relay-by-topitot-logo-1000x1000.png',
+            key: const ValueKey<String>('toolbar-app-icon'),
+            width: 36,
+            height: 36,
+            fit: BoxFit.cover,
+          ),
+        ),
         const SizedBox(width: 8),
         Flexible(
-          child: Text(
-            title,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
-              color: AppColors.neutral700,
-              fontSize: 20,
-              fontWeight: FontWeight.w900,
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: Text(
+              'Speech Relay',
+              maxLines: 1,
+              style: const TextStyle(
+                color: AppColors.neutral700,
+                fontSize: 18,
+                fontWeight: FontWeight.w900,
+              ),
             ),
           ),
         ),
@@ -187,30 +195,6 @@ class _LevelDots extends StatelessWidget {
           ),
         );
       }),
-    );
-  }
-}
-
-class _AppIconMark extends StatelessWidget {
-  const _AppIconMark({required this.size});
-
-  final double size;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: size,
-      height: size,
-      decoration: BoxDecoration(
-        color: AppColors.selectedSurface,
-        borderRadius: AppRadius.mediumBorder,
-        border: Border.all(color: AppColors.primary, width: 2),
-      ),
-      child: Icon(
-        Icons.record_voice_over_rounded,
-        color: AppColors.primary,
-        size: size * 0.58,
-      ),
     );
   }
 }

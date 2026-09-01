@@ -156,7 +156,7 @@ void main() {
     await tester.pump(const Duration(milliseconds: 250));
 
     expect(find.text('Choose words'), findsOneWidget);
-    expect(find.text('Topitot'), findsOneWidget);
+    expect(find.text('Speech Relay'), findsOneWidget);
     expect(find.text('Topitot AAC'), findsNothing);
     expect(find.byType(GridView), findsOneWidget);
     expect(boardRows, 5);
@@ -195,7 +195,7 @@ void main() {
     await tester.tap(find.byKey(const ValueKey<String>('grid-back-cell')));
     await tester.pump();
 
-    expect(find.text('Topitot'), findsOneWidget);
+    expect(find.text('Speech Relay'), findsOneWidget);
     expect(find.text('Food'), findsOneWidget);
 
     await tester.tap(find.byKey(const ValueKey<String>('aac-cell-8')));
@@ -203,7 +203,7 @@ void main() {
     await tester.tap(find.byKey(const ValueKey<String>('grid-home-cell')));
     await tester.pump();
 
-    expect(find.text('Topitot'), findsOneWidget);
+    expect(find.text('Speech Relay'), findsOneWidget);
     expect(find.text('Food'), findsOneWidget);
   });
 
@@ -215,6 +215,11 @@ void main() {
     await tester.pumpWidget(const TopitotApp());
     await tester.pump(const Duration(milliseconds: 250));
 
+    expect(find.text('Speech Relay'), findsOneWidget);
+    expect(
+      find.byKey(const ValueKey<String>('toolbar-app-icon')),
+      findsOneWidget,
+    );
     expect(find.byTooltip('Expand toolbar'), findsOneWidget);
     expect(find.text('Edit Board'), findsNothing);
     expect(find.text('Done Editing'), findsNothing);

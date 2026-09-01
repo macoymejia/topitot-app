@@ -64,6 +64,7 @@ flutter:
 
   assets:
     - assets/images/launch/speech_relay_launch.png
+    - assets/images/speech-relay-by-topitot-logo-1000x1000.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
