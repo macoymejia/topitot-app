@@ -75,6 +75,11 @@ for normal use. Speech playback depends on the text-to-speech support installed
 on the device. The app currently uses the platform default voice instead of
 exposing a child-facing voice selector.
 
+## Privacy Policy
+
+Speech Relay by Topitot uses a local-only privacy model. Read the policy in
+[`docs/legal/privacy-policy.md`](docs/legal/privacy-policy.md).
+
 ## Next Iteration Notes
 
 - Keep the main AAC board simple and portrait-first unless a specific classroom
