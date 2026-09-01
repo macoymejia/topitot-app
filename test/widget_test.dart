@@ -3,10 +3,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:topitot_app/aac/aac_home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:topitot_app/aac/constants/aac_constants.dart';
 import 'package:topitot_app/aac/models/board_models.dart';
 import 'package:topitot_app/app/topitot_app.dart';
+import 'package:topitot_app/app/widgets/launch_splash_overlay.dart';
 import 'package:topitot_app/theme/app_colors.dart';
 
 void main() {
@@ -108,6 +110,19 @@ void main() {
           return null;
         });
   }
+
+  testWidgets('launch splash disappears after 3 seconds', (tester) async {
+    mockTts();
+
+    await tester.pumpWidget(const TopitotApp());
+    expect(find.byType(LaunchSplashOverlay), findsOneWidget);
+
+    await tester.pump(const Duration(seconds: 3));
+    await tester.pump();
+
+    expect(find.byType(LaunchSplashOverlay), findsNothing);
+    expect(find.byType(AacHomePage), findsOneWidget);
+  });
 
   testWidgets('AAC screen does not resize when keyboard appears', (
     tester,

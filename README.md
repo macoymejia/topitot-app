@@ -1,6 +1,6 @@
-# Topitot AAC
+# Speech Relay by Topitot
 
-Topitot AAC is a Flutter-based augmentative and alternative communication app
+Speech Relay by Topitot is a Flutter-based augmentative and alternative communication app
 prepared for portrait tablet and phone use. It helps children and people with
 speech difficulties build a sentence by tapping visual communication cells, then
 play the selected words using the device text-to-speech engine.
