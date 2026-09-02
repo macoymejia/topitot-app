@@ -26,7 +26,7 @@ val keystoreProperties = Properties().apply {
 }
 
 android {
-    namespace = "com.topitot.speechrelay"
+    namespace = "com.speechrelay.topitot.app"
     compileSdk = 36
     ndkVersion = "27.0.12077973"
 
@@ -40,7 +40,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.topitot.speechrelay"
+        applicationId = "com.speechrelay.topitot.app"
         minSdk = 24
         targetSdk = 36
         versionCode = flutter.versionCode

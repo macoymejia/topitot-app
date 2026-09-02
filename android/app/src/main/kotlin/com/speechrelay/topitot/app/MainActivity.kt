@@ -1,4 +1,4 @@
-package com.topitot.speechrelay
+package com.speechrelay.topitot.app
 
 import io.flutter.embedding.android.FlutterActivity
 

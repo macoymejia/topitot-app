@@ -61,3 +61,7 @@ firebase_options.dart
 /android/app/profile
 /android/app/release
 .vscode
+*.jpg
+*.jpeg
+*.png
+*.gif
