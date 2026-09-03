@@ -4,6 +4,7 @@
 *.pyc
 *.swp
 .DS_Store
+**/.DS_Store
 .atom/
 .build/
 .buildlog/
@@ -33,6 +34,11 @@ migrate_working_dir/
 .pub/
 /build/
 
+# Generated tool output
+.opencode/
+.superpowers/
+graphify-out/
+
 # Symbolication related
 app.*.symbols
 
@@ -61,7 +67,3 @@ firebase_options.dart
 /android/app/profile
 /android/app/release
 .vscode
-*.jpg
-*.jpeg
-*.png
-*.gif

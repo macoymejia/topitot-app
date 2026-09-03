@@ -18,6 +18,7 @@ play the selected words using the device text-to-speech engine.
   folder/speech behavior.
 - Custom photos for cells with JPG/PNG validation and local copied storage.
 - Sentence strip at the top with speak, remove-last, and clear controls.
+- First-use caregiver walkthrough that explains Speak, the grid, and Edit Board.
 - Reset action to restore the optimized starter board.
 - Local board persistence through `shared_preferences`.
 
@@ -74,6 +75,9 @@ The app stores board customization locally and does not require internet access
 for normal use. Speech playback depends on the text-to-speech support installed
 on the device. The app currently uses the platform default voice instead of
 exposing a child-facing voice selector.
+
+The first-run walkthrough is also stored locally, so it appears once for a new
+device or profile and stays dismissed after Skip or Get started.
 
 ## Privacy Policy
 

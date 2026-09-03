@@ -53,6 +53,7 @@
 - Tablet: 16:9 aspect ratio (1920x1200 or similar)
 - Required screenshots:
   - Main AAC board with grid cells
+  - Optional: first-use walkthrough overlay if you want to showcase onboarding
   - Edit dialog with text fields
   - Folder navigation
   - Sentence strip with selected words

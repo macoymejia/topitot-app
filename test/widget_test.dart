@@ -7,6 +7,7 @@ import 'package:topitot_app/aac/aac_home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:topitot_app/aac/constants/aac_constants.dart';
 import 'package:topitot_app/aac/models/board_models.dart';
+import 'package:topitot_app/aac/widgets/walkthrough_overlay.dart';
 import 'package:topitot_app/app/topitot_app.dart';
 import 'package:topitot_app/app/widgets/launch_splash_overlay.dart';
 import 'package:topitot_app/theme/app_colors.dart';
@@ -95,8 +96,25 @@ void main() {
     },
   );
 
-  void mockTts({List<MethodCall>? calls}) {
-    SharedPreferences.setMockInitialValues(<String, Object>{});
+  test('walkthrough target rect shifts out safe-area padding', () {
+    final rect = const Rect.fromLTWH(32, 180, 280, 96);
+
+    expect(
+      insetWalkthroughTargetRect(
+        rect,
+        const EdgeInsets.only(top: 24, left: 0, right: 0, bottom: 0),
+      ),
+      const Rect.fromLTWH(32, 156, 280, 96),
+    );
+  });
+
+  void mockTts({
+    List<MethodCall>? calls,
+    Map<String, Object> prefs = const <String, Object>{
+      'walkthrough_seen': true,
+    },
+  }) {
+    SharedPreferences.setMockInitialValues(prefs);
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(const MethodChannel('flutter_tts'), (
           methodCall,
@@ -134,6 +152,66 @@ void main() {
 
     expect(find.byType(AacHomePage), findsOneWidget);
     expect(find.text('Choose words'), findsOneWidget);
+  });
+
+  testWidgets('first-use walkthrough appears after the launch splash', (
+    tester,
+  ) async {
+    mockTts(prefs: <String, Object>{});
+
+    await tester.pumpWidget(const TopitotApp());
+    await tester.pump(const Duration(seconds: 3));
+    await tester.pump();
+
+    expect(find.byKey(const ValueKey<String>('walkthrough-overlay')), findsOneWidget);
+    expect(find.text('Welcome'), findsOneWidget);
+    expect(find.text('Tap Speak to hear the words in your sentence.'), findsOneWidget);
+  });
+
+  testWidgets('walkthrough skip hides it and keeps it dismissed', (
+    tester,
+  ) async {
+    mockTts(prefs: <String, Object>{});
+
+    await tester.pumpWidget(const TopitotApp());
+    await tester.pump(const Duration(seconds: 3));
+    await tester.pump();
+
+    await tester.tap(find.text('Skip'));
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const ValueKey<String>('walkthrough-overlay')), findsNothing);
+
+    await tester.pumpWidget(const TopitotApp());
+    await tester.pump(const Duration(seconds: 3));
+    await tester.pump();
+
+    expect(find.byKey(const ValueKey<String>('walkthrough-overlay')), findsNothing);
+  });
+
+  testWidgets('walkthrough completion hides it and keeps it dismissed', (
+    tester,
+  ) async {
+    mockTts(prefs: <String, Object>{});
+
+    await tester.pumpWidget(const TopitotApp());
+    await tester.pump(const Duration(seconds: 3));
+    await tester.pump();
+
+    await tester.tap(find.text('Next'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Next'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Get started'));
+    await tester.pumpAndSettle();
+
+    expect(find.byKey(const ValueKey<String>('walkthrough-overlay')), findsNothing);
+
+    await tester.pumpWidget(const TopitotApp());
+    await tester.pump(const Duration(seconds: 3));
+    await tester.pump();
+
+    expect(find.byKey(const ValueKey<String>('walkthrough-overlay')), findsNothing);
   });
 
   testWidgets('AAC screen does not resize when keyboard appears', (

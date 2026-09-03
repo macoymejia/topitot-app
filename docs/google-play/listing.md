@@ -8,10 +8,13 @@ Speech Relay by Topitot helps children and people with speech difficulties commu
 
 Build sentences word by word using a simple 5x5 grid of core vocabulary words, food, people, actions, feelings, and places. When ready, tap speak and hear the device say your words out loud.
 
+On first launch, a short caregiver walkthrough explains the Speak button, the board grid, and Edit Board. It can be skipped at any time and only appears once.
+
 Features:
 - Offline-first communication board that works anywhere without internet
 - Portrait-first design built for phones and tablets
 - 5x5 grid of large, easy-to-tap communication cells
+- First-use caregiver walkthrough for the main AAC screen
 - Folder navigation up to 4 levels deep for organizing vocabulary
 - Customizable cells with your own words, symbols, colors, and photos
 - Sentence strip at the top with speak, undo, and clear controls
