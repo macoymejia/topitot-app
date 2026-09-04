@@ -1,12 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../theme/app_colors.dart';
 import '../theme/app_spacing.dart';
+import 'controllers/aac_controller.dart';
 import 'models/aac_cell.dart';
-import 'models/board_level.dart';
-import 'services/board_storage_service.dart';
-import 'services/walkthrough_storage_service.dart';
-import 'services/tts_service.dart';
 import 'widgets/aac_grid.dart';
 import 'widgets/board_toolbar.dart';
 import 'widgets/cell_editor_dialog.dart';
@@ -21,102 +20,42 @@ class AacHomePage extends StatefulWidget {
 }
 
 class _AacHomePageState extends State<AacHomePage> {
-  final BoardStorageService _boardStorage = BoardStorageService();
-  final WalkthroughStorageService _walkthroughStorage =
-      WalkthroughStorageService();
-  final TtsService _ttsService = TtsService();
-  final List<AacCell> _sentence = <AacCell>[];
-  final List<BoardLevel> _path = <BoardLevel>[];
+  late final AacController _controller;
+
   final GlobalKey _sentenceStripKey = GlobalKey();
   final GlobalKey _gridKey = GlobalKey();
   final GlobalKey _toolbarKey = GlobalKey();
-  late BoardLevel _root;
-
-  bool _isLoading = true;
-  bool _editMode = false;
-  bool _toolbarExpanded = false;
-  bool _showWalkthrough = false;
-  int _walkthroughStepIndex = 0;
-  Rect? _walkthroughTargetRect;
-
-  BoardLevel get _currentBoard => _path.isEmpty ? _root : _path.last;
 
   @override
   void initState() {
     super.initState();
-    _loadApp();
+    _controller = AacController();
+    _controller.addListener(_onControllerChanged);
+    _initApp();
   }
 
-  Future<void> _loadApp() async {
-    _root = await _boardStorage.loadBoard();
-
-    await _ttsService.setup();
-    final hasSeenWalkthrough = await _walkthroughStorage.hasSeenWalkthrough();
-
-    if (mounted) {
-      setState(() {
-        _showWalkthrough = !hasSeenWalkthrough;
-        _isLoading = false;
-      });
-      if (_showWalkthrough) {
-        _scheduleWalkthroughTargetUpdate();
-      }
+  Future<void> _initApp() async {
+    await _controller.loadApp();
+    if (mounted && _controller.showWalkthrough) {
+      _scheduleWalkthroughTargetUpdate();
     }
   }
 
-  Future<void> _saveBoard() async {
-    await _boardStorage.saveBoard(_root);
+  @override
+  void dispose() {
+    _controller.removeListener(_onControllerChanged);
+    _controller.dispose();
+    super.dispose();
   }
 
-  Future<void> _speak(String text) async {
-    await _ttsService.speak(text);
-  }
-
-  void _handleCellTap(AacCell cell) {
-    if (_editMode) {
-      _openCellEditor(cell);
-      return;
+  void _onControllerChanged() {
+    if (mounted && _controller.showWalkthrough) {
+      _scheduleWalkthroughTargetUpdate();
     }
-
-    if (cell.isBlank) {
-      return;
-    }
-
-    if (cell.isFolder) {
-      cell.children ??= BoardLevel.blank('${cell.label} board');
-      setState(() => _path.add(cell.children!));
-      return;
-    }
-
-    setState(() => _sentence.add(cell));
-    _speak(cell.spokenText);
-  }
-
-  void _goBack() {
-    if (_path.isEmpty) {
-      return;
-    }
-
-    setState(() => _path.removeLast());
-  }
-
-  Future<void> _openCellEditor(AacCell cell) async {
-    final updated = await showDialog<AacCell>(
-      context: context,
-      builder:
-          (context) => CellEditorDialog(cell: cell, depth: _path.length + 1),
-    );
-
-    if (updated == null) {
-      return;
-    }
-
-    setState(() => cell.copyFrom(updated));
-    await _saveBoard();
   }
 
   GlobalKey? get _currentWalkthroughTargetKey {
-    switch (_walkthroughStepIndex) {
+    switch (_controller.walkthroughStepIndex) {
       case 0:
         return _sentenceStripKey;
       case 1:
@@ -127,7 +66,7 @@ class _AacHomePageState extends State<AacHomePage> {
   }
 
   String get _walkthroughTitle {
-    switch (_walkthroughStepIndex) {
+    switch (_controller.walkthroughStepIndex) {
       case 0:
         return 'Welcome';
       case 1:
@@ -138,7 +77,7 @@ class _AacHomePageState extends State<AacHomePage> {
   }
 
   String get _walkthroughBody {
-    switch (_walkthroughStepIndex) {
+    switch (_controller.walkthroughStepIndex) {
       case 0:
         return 'Tap Speak to hear the words in your sentence.';
       case 1:
@@ -148,22 +87,20 @@ class _AacHomePageState extends State<AacHomePage> {
     }
   }
 
-  bool get _isFinalWalkthroughStep => _walkthroughStepIndex == 2;
+  bool get _isFinalWalkthroughStep => _controller.walkthroughStepIndex == 2;
 
   String get _walkthroughPrimaryLabel =>
       _isFinalWalkthroughStep ? 'Get started' : 'Next';
 
   void _scheduleWalkthroughTargetUpdate() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted || !_showWalkthrough) {
+      if (!mounted || !_controller.showWalkthrough) {
         return;
       }
 
       final targetKey = _currentWalkthroughTargetKey;
       final targetRect = targetKey == null ? null : _rectForKey(targetKey);
-      if (targetRect != _walkthroughTargetRect) {
-        setState(() => _walkthroughTargetRect = targetRect);
-      }
+      _controller.setWalkthroughTargetRect(targetRect);
     });
   }
 
@@ -182,33 +119,30 @@ class _AacHomePageState extends State<AacHomePage> {
     return topLeft & renderObject.size;
   }
 
-  Future<void> _dismissWalkthrough() async {
-    if (!mounted) {
+  Future<void> _handleCellTap(AacCell cell) async {
+    if (_controller.editMode && !cell.label.startsWith('Back') && cell.label != 'Back' && cell.label != 'Home') {
+      await _openCellEditor(cell);
+      return;
+    }
+    _controller.handleCellTap(cell);
+  }
+
+  Future<void> _openCellEditor(AacCell cell) async {
+    final updated = await showDialog<AacCell>(
+      context: context,
+      builder:
+          (context) => CellEditorDialog(
+            cell: cell,
+            depth: _controller.pathDepth,
+          ),
+    );
+
+    if (updated == null || !mounted) {
       return;
     }
 
-    setState(() {
-      _showWalkthrough = false;
-      _walkthroughTargetRect = null;
-    });
-    await _walkthroughStorage.markWalkthroughSeen();
-  }
-
-  Future<void> _advanceWalkthrough() async {
-    if (_isFinalWalkthroughStep) {
-      await _dismissWalkthrough();
-      return;
-    }
-
-    setState(() {
-      _walkthroughStepIndex += 1;
-      _walkthroughTargetRect = null;
-    });
-    _scheduleWalkthroughTargetUpdate();
-  }
-
-  void _clearSentence() {
-    setState(_sentence.clear);
+    cell.copyFrom(updated);
+    await _controller.saveBoard();
   }
 
   Future<void> _handleReset() async {
@@ -218,7 +152,7 @@ class _AacHomePageState extends State<AacHomePage> {
           (context) => AlertDialog(
             title: const Text('Reset Board?'),
             content: const Text(
-              'This will restore the default speech-delayed optimized starting words and colors. Your custom edits will be replaced.',
+              'This will restore the default starting words and colors. Your custom edits will be replaced.',
             ),
             actions: <Widget>[
               TextButton(
@@ -236,98 +170,84 @@ class _AacHomePageState extends State<AacHomePage> {
           ),
     );
 
-    if (confirm == true) {
-      setState(() {
-        _root = BoardLevel.starter();
-        _path.clear();
-        _editMode = false;
-        _toolbarExpanded = false;
-      });
-      await _saveBoard();
+    if (confirm == true && mounted) {
+      await _controller.resetBoard();
     }
-  }
-
-  String _sentenceText() {
-    return _sentence.map((cell) => cell.spokenText).join(' ');
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_isLoading) {
-      return const Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Center(child: CircularProgressIndicator()),
-      );
-    }
+    return ListenableBuilder(
+      listenable: _controller,
+      builder: (context, _) {
+        if (_controller.isLoading) {
+          return const Scaffold(
+            resizeToAvoidBottomInset: false,
+            body: Center(child: CircularProgressIndicator()),
+          );
+        }
 
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Stack(
-        children: <Widget>[
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(AppSpacing.xxl),
-              child: Column(
-                children: <Widget>[
-                  BoardToolbar(
-                    key: _toolbarKey,
-                    depth: _path.length + 1,
-                    editMode: _editMode,
-                    expanded: _toolbarExpanded,
-                    onExpandedChanged:
-                        (value) => setState(() {
-                          _toolbarExpanded = value;
-                          if (!value) {
-                            _editMode = false;
-                          }
-                        }),
-                    onEditModeChanged: (value) => setState(() => _editMode = value),
-                    onReset: _handleReset,
+        return Scaffold(
+          resizeToAvoidBottomInset: false,
+          body: Stack(
+            children: <Widget>[
+              SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.all(AppSpacing.xxl),
+                  child: Column(
+                    children: <Widget>[
+                      BoardToolbar(
+                        key: _toolbarKey,
+                        depth: _controller.pathDepth,
+                        editMode: _controller.editMode,
+                        expanded: _controller.toolbarExpanded,
+                        onExpandedChanged: _controller.setToolbarExpanded,
+                        onEditModeChanged: _controller.setEditMode,
+                        onReset: _handleReset,
+                      ),
+                      const SizedBox(height: AppSpacing.sm),
+                      SentenceStrip(
+                        key: _sentenceStripKey,
+                        sentence: _controller.sentence,
+                        onSpeak: () => _controller.speak(_controller.sentenceText),
+                        onClear: _controller.clearSentence,
+                        onRemoveLast:
+                            _controller.sentence.isEmpty
+                                ? null
+                                : _controller.removeLastSentenceWord,
+                      ),
+                      const SizedBox(height: AppSpacing.lg),
+                      Expanded(
+                        child: AacGrid(
+                          key: _gridKey,
+                          cells: _controller.currentBoard.cells,
+                          editMode: _controller.editMode,
+                          canGoBack: _controller.canGoBack,
+                          onHome:
+                              _controller.canGoBack ? _controller.goHome : null,
+                          onCellTap: _handleCellTap,
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: AppSpacing.sm),
-                  SentenceStrip(
-                    key: _sentenceStripKey,
-                    sentence: _sentence,
-                    onSpeak: () => _speak(_sentenceText()),
-                    onClear: _clearSentence,
-                    onRemoveLast:
-                        _sentence.isEmpty
-                            ? null
-                            : () => setState(() => _sentence.removeLast()),
-                  ),
-                  const SizedBox(height: AppSpacing.lg),
-                  Expanded(
-                    child: AacGrid(
-                      key: _gridKey,
-                      cells: _currentBoard.cells,
-                      editMode: _editMode,
-                      canGoBack: _path.isNotEmpty,
-                      onBack: _goBack,
-                      onHome:
-                          _path.isEmpty
-                              ? null
-                              : () => setState(() => _path.clear()),
-                      onCellTap: _handleCellTap,
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
+              if (_controller.showWalkthrough)
+                Positioned.fill(
+                  child: WalkthroughOverlay(
+                    key: const ValueKey<String>('walkthrough-overlay'),
+                    targetRect: _controller.walkthroughTargetRect,
+                    title: _walkthroughTitle,
+                    body: _walkthroughBody,
+                    primaryLabel: _walkthroughPrimaryLabel,
+                    onPrimary: _controller.advanceWalkthrough,
+                    onSkip: _controller.dismissWalkthrough,
+                  ),
+                ),
+            ],
           ),
-          if (_showWalkthrough)
-            Positioned.fill(
-              child: WalkthroughOverlay(
-                key: const ValueKey<String>('walkthrough-overlay'),
-                targetRect: _walkthroughTargetRect,
-                title: _walkthroughTitle,
-                body: _walkthroughBody,
-                primaryLabel: _walkthroughPrimaryLabel,
-                onPrimary: _advanceWalkthrough,
-                onSkip: _dismissWalkthrough,
-              ),
-            ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

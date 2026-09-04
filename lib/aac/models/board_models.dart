@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../theme/app_colors.dart';
 import '../constants/aac_constants.dart';
+import '../services/photo_storage_service.dart';
 
 enum CellKind { speak, folder }
 
@@ -14,27 +15,98 @@ class BoardLevel {
   List<AacCell> cells;
 
   factory BoardLevel.blank(String title) {
-    return BoardLevel(
-      title: title,
-      cells: List<AacCell>.generate(
-        cellsPerPage,
-        (index) => AacCell.blank(index),
-      ),
-    );
+    return BoardLevel(title: title, cells: _withFixedRow(<AacCell>[]));
   }
 
   factory BoardLevel.starter() {
     final board = BoardLevel.blank('Topitot');
-    board.cells = <AacCell>[
-      // Row 1: Back (taken by navigation), Home (taken by navigation), I, want, more
-      AacCell.speak('I', 'I', '🧒', AppColors.yellowSoft),
-      AacCell.speak('want', 'want', '🤲', AppColors.greenSoft),
-      AacCell.speak('more', 'more', '➕', AppColors.lavender),
-
-      // Row 2: you, help, to eat, Food (folder), please
-      AacCell.speak('you', 'you', '👉', AppColors.yellowSoft),
+    board.cells = _withFixedRow(<AacCell>[
+      AacCell.speak('I love', 'I love', '❤️', AppColors.blueSoft),
+      AacCell.speak('to sleep', 'to sleep', '😴', AppColors.greenSoft),
       AacCell.speak('help', 'help', '🤝', AppColors.greenSoft),
       AacCell.speak('to eat', 'to eat', '🍽️', AppColors.greenSoft),
+      AacCell.speak('to play', 'to play', '⛹️', AppColors.greenSoft),
+      AacCell.folder(
+        'People',
+        'People',
+        '👫',
+        AppColors.yellowSoft,
+        BoardLevel(
+          title: 'People',
+          cells: _withFixedRow(<AacCell>[
+            AacCell.speak('mom', 'mom', '👩', AppColors.yellowSoft),
+            AacCell.speak('dad', 'dad', '👨', AppColors.yellowSoft),
+            AacCell.speak('me', 'me', '🙋', AppColors.yellowSoft),
+            AacCell.speak('brother', 'brother', '👦', AppColors.yellowSoft),
+            AacCell.speak('sister', 'sister', '👧', AppColors.yellowSoft),
+            AacCell.speak('baby', 'baby', '👶', AppColors.yellowSoft),
+            AacCell.speak('grandma', 'grandma', '👵', AppColors.yellowSoft),
+            AacCell.speak('grandpa', 'grandpa', '👴', AppColors.yellowSoft),
+            AacCell.speak('teacher', 'teacher', '👩‍🏫', AppColors.yellowSoft),
+            AacCell.speak('friend', 'friend', '🧒', AppColors.yellowSoft),
+            ...List<AacCell>.generate(
+              cellsPerPage - 10,
+              (index) => AacCell.blank(index + 10),
+            ),
+          ]),
+        ),
+      ),
+      AacCell.folder(
+        'Actions',
+        'Actions',
+        '🏃',
+        AppColors.greenSoft,
+        BoardLevel(
+          title: 'Actions',
+          cells: _withFixedRow(<AacCell>[
+            AacCell.speak('to go', 'to go', '🚶', AppColors.greenSoft),
+            AacCell.speak('stop', 'stop', '✋', AppColors.pinkSoft),
+            AacCell.speak('to play', 'to play', '⛹️', AppColors.greenSoft),
+            AacCell.speak('to eat', 'to eat', '🍽️', AppColors.greenSoft),
+            AacCell.speak('to drink', 'to drink', '🥤', AppColors.greenSoft),
+            AacCell.speak('look', 'look', '👀', AppColors.greenSoft),
+            AacCell.speak('to listen', 'to listen', '👂', AppColors.greenSoft),
+            AacCell.speak('to wash', 'to wash', '🧼', AppColors.greenSoft),
+            AacCell.speak('to hug', 'to hug', '🫂', AppColors.greenSoft),
+            AacCell.speak('open', 'open', '📖', AppColors.greenSoft),
+            AacCell.speak('close', 'close', '📕', AppColors.pinkSoft),
+            AacCell.speak('to run', 'to run', '🏃', AppColors.greenSoft),
+            AacCell.speak('to jump', 'to jump', '🦘', AppColors.greenSoft),
+            AacCell.speak('to sing', 'to sing', '🎤', AppColors.greenSoft),
+            ...List<AacCell>.generate(
+              cellsPerPage - 14,
+              (index) => AacCell.blank(index + 14),
+            ),
+          ]),
+        ),
+      ),
+      AacCell.folder(
+        'Feelings',
+        'Feelings',
+        '😊',
+        AppColors.blueSoft,
+        BoardLevel(
+          title: 'Feelings',
+          cells: _withFixedRow(<AacCell>[
+            AacCell.speak('happy', 'happy', '😊', AppColors.blueSoft),
+            AacCell.speak('sad', 'sad', '😢', AppColors.blueSoft),
+            AacCell.speak('angry', 'angry', '😠', AppColors.blueSoft),
+            AacCell.speak('tired', 'tired', '😴', AppColors.blueSoft),
+            AacCell.speak('hurt', 'hurt', '🤕', AppColors.blueSoft),
+            AacCell.speak('scared', 'scared', '😟', AppColors.blueSoft),
+            AacCell.speak('hot', 'hot', '🥵', AppColors.blueSoft),
+            AacCell.speak('cold', 'cold', '🥶', AppColors.blueSoft),
+            AacCell.speak('hungry', 'hungry', '😋', AppColors.blueSoft),
+            AacCell.speak('thirsty', 'thirsty', '🥤', AppColors.blueSoft),
+            AacCell.speak('excited', 'excited', '🤩', AppColors.blueSoft),
+            AacCell.speak('bored', 'bored', '🥱', AppColors.blueSoft),
+            ...List<AacCell>.generate(
+              cellsPerPage - 12,
+              (index) => AacCell.blank(index + 12),
+            ),
+          ]),
+        ),
+      ),
       AacCell.folder(
         'Food',
         'Food',
@@ -42,7 +114,7 @@ class BoardLevel {
         AppColors.coralSoft,
         BoardLevel(
           title: 'Food',
-          cells: <AacCell>[
+          cells: _withFixedRow(<AacCell>[
             AacCell.speak('rice', 'rice', '🍚', AppColors.coralSoft),
             AacCell.speak('bread', 'bread', '🍞', AppColors.coralSoft),
             AacCell.speak('banana', 'banana', '🍌', AppColors.coralSoft),
@@ -60,98 +132,37 @@ class BoardLevel {
             AacCell.speak('soup', 'soup', '🥣', AppColors.coralSoft),
             AacCell.speak('cheese', 'cheese', '🧀', AppColors.coralSoft),
             ...List<AacCell>.generate(
-              cellsPerPage - 16,
+              (cellsPerPage - 5) - 16,
               (index) => AacCell.blank(index + 16),
             ),
-          ],
-        ),
-      ),
-      AacCell.speak('please', 'please', '🙏', AppColors.lavender),
-
-      // Row 3: People (folder), Actions (folder), Feelings (folder), Places (folder), thank you
-      AacCell.folder(
-        'People',
-        'People',
-        '👫',
-        AppColors.yellowSoft,
-        BoardLevel(
-          title: 'People',
-          cells: <AacCell>[
-            AacCell.speak('mom', 'mom', '👩', AppColors.yellowSoft),
-            AacCell.speak('dad', 'dad', '👨', AppColors.yellowSoft),
-            AacCell.speak('me', 'me', '🙋', AppColors.yellowSoft),
-            AacCell.speak('brother', 'brother', '👦', AppColors.yellowSoft),
-            AacCell.speak('sister', 'sister', '👧', AppColors.yellowSoft),
-            AacCell.speak('baby', 'baby', '👶', AppColors.yellowSoft),
-            AacCell.speak('grandma', 'grandma', '👵', AppColors.yellowSoft),
-            AacCell.speak('grandpa', 'grandpa', '👴', AppColors.yellowSoft),
-            AacCell.speak('teacher', 'teacher', '👩‍🏫', AppColors.yellowSoft),
-            AacCell.speak('friend', 'friend', '🧒', AppColors.yellowSoft),
-            ...List<AacCell>.generate(
-              cellsPerPage - 10,
-              (index) => AacCell.blank(index + 10),
-            ),
-          ],
+          ]),
         ),
       ),
       AacCell.folder(
-        'Actions',
-        'Actions',
-        '🏃',
-        AppColors.greenSoft,
+        'toy',
+        'toy',
+        '🧸',
+        AppColors.coralSoft,
         BoardLevel(
-          title: 'Actions',
-          cells: <AacCell>[
-            AacCell.speak('to go', 'to go', '🚶', AppColors.greenSoft),
-            AacCell.speak('stop', 'stop', '✋', AppColors.pinkSoft),
-            AacCell.speak('to play', 'to play', '⛹️', AppColors.greenSoft),
-            AacCell.speak('to sleep', 'to sleep', '😴', AppColors.greenSoft),
-            AacCell.speak('to eat', 'to eat', '🍽️', AppColors.greenSoft),
-            AacCell.speak('to drink', 'to drink', '🥤', AppColors.greenSoft),
-            AacCell.speak('help', 'help', '🤝', AppColors.greenSoft),
-            AacCell.speak('look', 'look', '👀', AppColors.greenSoft),
-            AacCell.speak('to listen', 'to listen', '👂', AppColors.greenSoft),
-            AacCell.speak('to wash', 'to wash', '🧼', AppColors.greenSoft),
-            AacCell.speak('to hug', 'to hug', '🫂', AppColors.greenSoft),
-            AacCell.speak('open', 'open', '📖', AppColors.greenSoft),
-            AacCell.speak('close', 'close', '📕', AppColors.pinkSoft),
-            AacCell.speak('to run', 'to run', '🏃', AppColors.greenSoft),
-            AacCell.speak('to jump', 'to jump', '🦘', AppColors.greenSoft),
-            AacCell.speak('to sing', 'to sing', '🎤', AppColors.greenSoft),
-            ...List<AacCell>.generate(
-              cellsPerPage - 16,
-              (index) => AacCell.blank(index + 16),
+          title: 'Toy',
+          cells: _withFixedRow(<AacCell>[
+            AacCell.speak('cellphone', 'cellphone', '📱', AppColors.coralSoft),
+            AacCell.speak('car', 'car', '🚗', AppColors.coralSoft),
+            AacCell.speak('ball', 'ball', '⚽', AppColors.coralSoft),
+            AacCell.speak(
+              'teddy bear',
+              'teddy bear',
+              '🧸',
+              AppColors.coralSoft,
             ),
-          ],
+            AacCell.speak('blocks', 'blocks', '🧱', AppColors.coralSoft),
+            AacCell.speak('doll', 'doll', '🪆', AppColors.coralSoft),
+          ]),
         ),
       ),
-      AacCell.folder(
-        'Feelings',
-        'Feelings',
-        '😊',
-        AppColors.blueSoft,
-        BoardLevel(
-          title: 'Feelings',
-          cells: <AacCell>[
-            AacCell.speak('happy', 'happy', '😊', AppColors.blueSoft),
-            AacCell.speak('sad', 'sad', '😢', AppColors.blueSoft),
-            AacCell.speak('angry', 'angry', '😠', AppColors.blueSoft),
-            AacCell.speak('tired', 'tired', '😴', AppColors.blueSoft),
-            AacCell.speak('hurt', 'hurt', '🤕', AppColors.blueSoft),
-            AacCell.speak('scared', 'scared', '😟', AppColors.blueSoft),
-            AacCell.speak('hot', 'hot', '🥵', AppColors.blueSoft),
-            AacCell.speak('cold', 'cold', '🥶', AppColors.blueSoft),
-            AacCell.speak('hungry', 'hungry', '😋', AppColors.blueSoft),
-            AacCell.speak('thirsty', 'thirsty', '🥤', AppColors.blueSoft),
-            AacCell.speak('excited', 'excited', '🤩', AppColors.blueSoft),
-            AacCell.speak('bored', 'bored', '🥱', AppColors.blueSoft),
-            ...List<AacCell>.generate(
-              cellsPerPage - 12,
-              (index) => AacCell.blank(index + 12),
-            ),
-          ],
-        ),
-      ),
+      AacCell.speak('open', 'open', '📖', AppColors.greenSoft),
+      AacCell.speak('go', 'go', '🚶', AppColors.greenSoft),
+      AacCell.speak('yes', 'yes', '👍', AppColors.greenSoft),
       AacCell.folder(
         'Places',
         'Places',
@@ -159,7 +170,7 @@ class BoardLevel {
         AppColors.coralSoft,
         BoardLevel(
           title: 'Places',
-          cells: <AacCell>[
+          cells: _withFixedRow(<AacCell>[
             AacCell.speak('home', 'home', '🏠', AppColors.coralSoft),
             AacCell.speak('school', 'school', '🏫', AppColors.coralSoft),
             AacCell.speak('park', 'park', '🛝', AppColors.coralSoft),
@@ -174,29 +185,21 @@ class BoardLevel {
               cellsPerPage - 10,
               (index) => AacCell.blank(index + 10),
             ),
-          ],
+          ]),
         ),
       ),
-      AacCell.speak('thank you', 'thank you', '💖', AppColors.lavender),
-
-      // Row 4: me, go, yes, bathroom, to play
-      AacCell.speak('me', 'me', '🙋', AppColors.yellowSoft),
-      AacCell.speak('go', 'go', '🚶', AppColors.greenSoft),
-      AacCell.speak('yes', 'yes', '👍', AppColors.greenSoft),
-      AacCell.speak('bathroom', 'bathroom', '🚽', AppColors.coralSoft),
-      AacCell.speak('to play', 'to play', '⛹️', AppColors.greenSoft),
-
-      // Row 5: who, stop, no, toy, to sleep
-      AacCell.speak('who', 'who', '❓', AppColors.lavender),
+      AacCell.speak('More', 'more', '➕', AppColors.lavender),
+      AacCell.speak('close', 'close', '📕', AppColors.pinkSoft),
       AacCell.speak('stop', 'stop', '✋', AppColors.pinkSoft),
       AacCell.speak('no', 'no', '👎', AppColors.pinkSoft),
-      AacCell.speak('toy', 'toy', '🧸', AppColors.coralSoft),
-      AacCell.speak('to sleep', 'to sleep', '😴', AppColors.greenSoft),
-
-      // Blank slots (23 and 24) since AacGrid displays up to cells[22]
-      AacCell.blank(23),
-      AacCell.blank(24),
-    ];
+      AacCell.speak('bathroom', 'bathroom', '🚽', AppColors.coralSoft),
+      AacCell.speak('please', 'please', '🙏', AppColors.lavender),
+      AacCell.speak('left', 'left', '◀️', AppColors.greenSoft),
+      AacCell.speak('up', 'up', '🔼', AppColors.greenSoft),
+      AacCell.speak('down', 'down', '🔽', AppColors.greenSoft),
+      AacCell.speak('right', 'right', '▶️', AppColors.greenSoft),
+      AacCell.speak('thank you', 'thank you', '💖', AppColors.lavender),
+    ]);
     return board;
   }
 
@@ -209,6 +212,15 @@ class BoardLevel {
                 .map(AacCell.fromJson)
                 .toList()
             : <AacCell>[];
+
+    if (_looksLikeLegacyBoard(parsedCells)) {
+      return BoardLevel(
+        title: '${json['title'] ?? 'AAC board'}',
+        cells: _withFixedRow(
+          parsedCells.skip(5).take(cellsPerPage - 5).toList(),
+        ),
+      );
+    }
 
     return BoardLevel(
       title: '${json['title'] ?? 'AAC board'}',
@@ -229,6 +241,32 @@ class BoardLevel {
       normalized.add(AacCell.blank(normalized.length));
     }
     return normalized;
+  }
+
+  static bool _looksLikeLegacyBoard(List<AacCell> cells) {
+    if (cells.length < cellsPerPage) {
+      return false;
+    }
+
+    return cells.first.label != 'Back';
+  }
+
+  static List<AacCell> _withFixedRow(List<AacCell> contentCells) {
+    final normalizedContent = List<AacCell>.from(
+      contentCells.take(cellsPerPage - 5),
+    );
+    while (normalizedContent.length < cellsPerPage - 5) {
+      normalizedContent.add(AacCell.blank(normalizedContent.length + 5));
+    }
+
+    return <AacCell>[
+      AacCell.speak('Back', 'back', '↩', AppColors.slateSoft),
+      AacCell.speak('Home', 'home', '🏠', AppColors.slateSoft),
+      AacCell.speak('I', 'I', '🧒', AppColors.yellowSoft),
+      AacCell.speak('Me', 'me', '🙋', AppColors.yellowSoft),
+      AacCell.speak('I want', 'I want', '🤲', AppColors.greenSoft),
+      ...normalizedContent,
+    ];
   }
 }
 
@@ -306,16 +344,20 @@ class AacCell {
   }
 
   factory AacCell.fromJson(Map<String, dynamic> json) {
+    final rawPhotoPath =
+        json['photoPath'] is String ? json['photoPath'] as String : null;
+    final isSafePhoto = PhotoStorageService.isSafePhotoPath(rawPhotoPath);
+    final rawVisualType = json['visualType'];
+
     return AacCell(
       label: '${json['label'] ?? 'Empty'}',
       spokenText: '${json['spokenText'] ?? ''}',
       symbol: '${json['symbol'] ?? '+'}',
       visualType:
-          json['visualType'] == 'photo'
+          (rawVisualType == 'photo' && isSafePhoto)
               ? CellVisualType.photo
               : CellVisualType.symbol,
-      photoPath:
-          json['photoPath'] is String ? json['photoPath'] as String : null,
+      photoPath: isSafePhoto ? rawPhotoPath : null,
       color: Color(
         json['color'] is int ? json['color'] as int : AppColors.emptyCellArgb,
       ),

@@ -27,6 +27,8 @@ class CellVisual extends StatelessWidget {
         child: Image.file(
           File(cell.photoPath!),
           fit: fit,
+          cacheWidth: 300,
+          cacheHeight: 300,
           alignment: Alignment.center,
           errorBuilder:
               (_, __, ___) => const Center(

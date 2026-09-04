@@ -361,6 +361,8 @@ class _PhotoPreview extends StatelessWidget {
                   child: Image.file(
                     File(path),
                     fit: BoxFit.cover,
+                    cacheWidth: 200,
+                    cacheHeight: 200,
                     alignment: Alignment.center,
                   ),
                 ),

@@ -17,7 +17,10 @@ class LaunchSplashOverlay extends StatelessWidget {
           color: Colors.transparent,
           child: Center(
             child: Image(
-              image: AssetImage('assets/images/launch/speech_relay_launch.png'),
+              image: ResizeImage(
+                AssetImage('assets/images/launch/speech_relay_launch.png'),
+                width: 600,
+              ),
             ),
           ),
         ),
