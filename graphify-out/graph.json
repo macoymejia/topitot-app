@@ -349,8 +349,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_aac_aac_home_page_aachomepage",
-      "community": 1,
-      "community_name": "aac_home_page.dart",
+      "community": 66,
+      "community_name": "State",
       "norm_label": "aachomepage"
     },
     {
@@ -360,8 +360,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "statefulwidget",
-      "community": 1,
-      "community_name": "aac_home_page.dart",
+      "community": 66,
+      "community_name": "State",
       "norm_label": "statefulwidget"
     },
     {
@@ -371,8 +371,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_aac_aac_home_page_aachomepagestate",
-      "community": 1,
-      "community_name": "aac_home_page.dart",
+      "community": 66,
+      "community_name": "State",
       "norm_label": "_aachomepagestate"
     },
     {
@@ -382,75 +382,20 @@
       "source_location": null,
       "_origin": "ast",
       "id": "state",
-      "community": 3,
-      "community_name": "cell_editor_dialog.dart",
+      "community": 66,
+      "community_name": "State",
       "norm_label": "state"
     },
     {
-      "label": "_boardStorage",
+      "label": "_controller",
       "file_type": "code",
       "source_file": "lib/aac/aac_home_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_aac_aac_home_page_boardstorage",
+      "id": "lib_aac_aac_home_page_controller",
       "community": 1,
       "community_name": "aac_home_page.dart",
-      "norm_label": "_boardstorage"
-    },
-    {
-      "label": "_walkthroughStorage",
-      "file_type": "code",
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_aac_aac_home_page_walkthroughstorage",
-      "community": 1,
-      "community_name": "aac_home_page.dart",
-      "norm_label": "_walkthroughstorage"
-    },
-    {
-      "label": "_ttsService",
-      "file_type": "code",
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_aac_aac_home_page_ttsservice",
-      "community": 1,
-      "community_name": "aac_home_page.dart",
-      "norm_label": "_ttsservice"
-    },
-    {
-      "label": "_sentence",
-      "file_type": "code",
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_aac_aac_home_page_sentence",
-      "community": 1,
-      "community_name": "aac_home_page.dart",
-      "norm_label": "_sentence"
-    },
-    {
-      "label": "List",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "list",
-      "community": 13,
-      "community_name": "sentence_strip.dart",
-      "norm_label": "list"
-    },
-    {
-      "label": "_path",
-      "file_type": "code",
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_aac_aac_home_page_path",
-      "community": 1,
-      "community_name": "aac_home_page.dart",
-      "norm_label": "_path"
+      "norm_label": "_controller"
     },
     {
       "label": "_sentenceStripKey",
@@ -495,116 +440,6 @@
       "community": 1,
       "community_name": "aac_home_page.dart",
       "norm_label": "_toolbarkey"
-    },
-    {
-      "label": "_root",
-      "file_type": "code",
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_aac_aac_home_page_root",
-      "community": 1,
-      "community_name": "aac_home_page.dart",
-      "norm_label": "_root"
-    },
-    {
-      "label": "_isLoading",
-      "file_type": "code",
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_aac_aac_home_page_isloading",
-      "community": 1,
-      "community_name": "aac_home_page.dart",
-      "norm_label": "_isloading"
-    },
-    {
-      "label": "_editMode",
-      "file_type": "code",
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_aac_aac_home_page_editmode",
-      "community": 1,
-      "community_name": "aac_home_page.dart",
-      "norm_label": "_editmode"
-    },
-    {
-      "label": "_toolbarExpanded",
-      "file_type": "code",
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_aac_aac_home_page_toolbarexpanded",
-      "community": 1,
-      "community_name": "aac_home_page.dart",
-      "norm_label": "_toolbarexpanded"
-    },
-    {
-      "label": "_showWalkthrough",
-      "file_type": "code",
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_aac_aac_home_page_showwalkthrough",
-      "community": 1,
-      "community_name": "aac_home_page.dart",
-      "norm_label": "_showwalkthrough"
-    },
-    {
-      "label": "_walkthroughStepIndex",
-      "file_type": "code",
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_aac_aac_home_page_walkthroughstepindex",
-      "community": 1,
-      "community_name": "aac_home_page.dart",
-      "norm_label": "_walkthroughstepindex"
-    },
-    {
-      "label": "_walkthroughTargetRect",
-      "file_type": "code",
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_aac_aac_home_page_walkthroughtargetrect",
-      "community": 1,
-      "community_name": "aac_home_page.dart",
-      "norm_label": "_walkthroughtargetrect"
-    },
-    {
-      "label": "Rect?",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "rect",
-      "community": 6,
-      "community_name": "walkthrough_overlay.dart",
-      "norm_label": "rect?"
-    },
-    {
-      "label": "_currentBoard",
-      "file_type": "code",
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_aac_aac_home_page_currentboard",
-      "community": 1,
-      "community_name": "aac_home_page.dart",
-      "norm_label": "_currentboard"
-    },
-    {
-      "label": "BoardLevel get",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "boardlevel_get",
-      "community": 1,
-      "community_name": "aac_home_page.dart",
-      "norm_label": "boardlevel get"
     },
     {
       "label": "_isFinalWalkthroughStep",
@@ -673,70 +508,37 @@
       "norm_label": "initstate"
     },
     {
-      "label": "_loadApp",
+      "label": "_initApp",
       "file_type": "code",
       "source_file": "lib/aac/aac_home_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_aac_aac_home_page_loadapp",
+      "id": "lib_aac_aac_home_page_initapp",
       "community": 1,
       "community_name": "aac_home_page.dart",
-      "norm_label": "_loadapp"
+      "norm_label": "_initapp"
     },
     {
-      "label": "_saveBoard",
+      "label": "dispose",
       "file_type": "code",
       "source_file": "lib/aac/aac_home_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_aac_aac_home_page_saveboard",
+      "id": "lib_aac_aac_home_page_dispose",
       "community": 1,
       "community_name": "aac_home_page.dart",
-      "norm_label": "_saveboard"
+      "norm_label": "dispose"
     },
     {
-      "label": "_speak",
+      "label": "_onControllerChanged",
       "file_type": "code",
       "source_file": "lib/aac/aac_home_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_aac_aac_home_page_speak",
+      "id": "lib_aac_aac_home_page_oncontrollerchanged",
       "community": 1,
       "community_name": "aac_home_page.dart",
-      "norm_label": "_speak"
-    },
-    {
-      "label": "_handleCellTap",
-      "file_type": "code",
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_aac_aac_home_page_handlecelltap",
-      "community": 1,
-      "community_name": "aac_home_page.dart",
-      "norm_label": "_handlecelltap"
-    },
-    {
-      "label": "_goBack",
-      "file_type": "code",
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_aac_aac_home_page_goback",
-      "community": 1,
-      "community_name": "aac_home_page.dart",
-      "norm_label": "_goback"
-    },
-    {
-      "label": "_openCellEditor",
-      "file_type": "code",
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_aac_aac_home_page_opencelleditor",
-      "community": 1,
-      "community_name": "aac_home_page.dart",
-      "norm_label": "_opencelleditor"
+      "norm_label": "_oncontrollerchanged"
     },
     {
       "label": "_scheduleWalkthroughTargetUpdate",
@@ -761,37 +563,26 @@
       "norm_label": "_rectforkey"
     },
     {
-      "label": "_dismissWalkthrough",
+      "label": "_handleCellTap",
       "file_type": "code",
       "source_file": "lib/aac/aac_home_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_aac_aac_home_page_dismisswalkthrough",
+      "id": "lib_aac_aac_home_page_handlecelltap",
       "community": 1,
       "community_name": "aac_home_page.dart",
-      "norm_label": "_dismisswalkthrough"
+      "norm_label": "_handlecelltap"
     },
     {
-      "label": "_advanceWalkthrough",
+      "label": "_openCellEditor",
       "file_type": "code",
       "source_file": "lib/aac/aac_home_page.dart",
       "source_location": null,
       "_origin": "ast",
-      "id": "lib_aac_aac_home_page_advancewalkthrough",
+      "id": "lib_aac_aac_home_page_opencelleditor",
       "community": 1,
       "community_name": "aac_home_page.dart",
-      "norm_label": "_advancewalkthrough"
-    },
-    {
-      "label": "_clearSentence",
-      "file_type": "code",
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_aac_aac_home_page_clearsentence",
-      "community": 1,
-      "community_name": "aac_home_page.dart",
-      "norm_label": "_clearsentence"
+      "norm_label": "_opencelleditor"
     },
     {
       "label": "_handleReset",
@@ -805,17 +596,6 @@
       "norm_label": "_handlereset"
     },
     {
-      "label": "_sentenceText",
-      "file_type": "code",
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_aac_aac_home_page_sentencetext",
-      "community": 1,
-      "community_name": "aac_home_page.dart",
-      "norm_label": "_sentencetext"
-    },
-    {
       "label": "build",
       "file_type": "code",
       "source_file": "lib/aac/aac_home_page.dart",
@@ -827,13 +607,24 @@
       "norm_label": "build"
     },
     {
+      "label": "dart:async",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "dart_async",
+      "community": 45,
+      "community_name": "topitot_app.dart",
+      "norm_label": "dart:async"
+    },
+    {
       "label": "package:flutter/material.dart",
       "file_type": "code",
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
       "id": "package_flutter_material_dart",
-      "community": 0,
+      "community": 11,
       "community_name": "package:flutter/material.dart",
       "norm_label": "package:flutter/material.dart"
     },
@@ -844,8 +635,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "theme_app_colors_dart",
-      "community": 11,
-      "community_name": "cell_visual.dart",
+      "community": 9,
+      "community_name": "board_toolbar.dart",
       "norm_label": "../../theme/app_colors.dart"
     },
     {
@@ -855,9 +646,20 @@
       "source_location": null,
       "_origin": "ast",
       "id": "theme_app_spacing_dart",
-      "community": 13,
-      "community_name": "sentence_strip.dart",
+      "community": 9,
+      "community_name": "board_toolbar.dart",
       "norm_label": "../../theme/app_spacing.dart"
+    },
+    {
+      "label": "controllers/aac_controller.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "controllers_aac_controller_dart",
+      "community": 1,
+      "community_name": "aac_home_page.dart",
+      "norm_label": "controllers/aac_controller.dart"
     },
     {
       "label": "../models/aac_cell.dart",
@@ -867,52 +669,8 @@
       "_origin": "ast",
       "id": "models_aac_cell_dart",
       "community": 11,
-      "community_name": "cell_visual.dart",
+      "community_name": "package:flutter/material.dart",
       "norm_label": "../models/aac_cell.dart"
-    },
-    {
-      "label": "../models/board_level.dart",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "models_board_level_dart",
-      "community": 7,
-      "community_name": "board_storage_service.dart",
-      "norm_label": "../models/board_level.dart"
-    },
-    {
-      "label": "services/board_storage_service.dart",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "services_board_storage_service_dart",
-      "community": 1,
-      "community_name": "aac_home_page.dart",
-      "norm_label": "services/board_storage_service.dart"
-    },
-    {
-      "label": "services/walkthrough_storage_service.dart",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "services_walkthrough_storage_service_dart",
-      "community": 1,
-      "community_name": "aac_home_page.dart",
-      "norm_label": "services/walkthrough_storage_service.dart"
-    },
-    {
-      "label": "services/tts_service.dart",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "services_tts_service_dart",
-      "community": 1,
-      "community_name": "aac_home_page.dart",
-      "norm_label": "services/tts_service.dart"
     },
     {
       "label": "widgets/aac_grid.dart",
@@ -1036,6 +794,512 @@
       "norm_label": "maxcellphotobytes"
     },
     {
+      "label": "maxSentenceWords",
+      "file_type": "code",
+      "source_file": "lib/aac/constants/aac_constants.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_constants_aac_constants_maxsentencewords",
+      "community": 16,
+      "community_name": "aac_constants.dart",
+      "norm_label": "maxsentencewords"
+    },
+    {
+      "label": "aac_controller.dart",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "aac_controller.dart"
+    },
+    {
+      "label": "AacController",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_aaccontroller",
+      "community": 67,
+      "community_name": "AacController",
+      "norm_label": "aaccontroller"
+    },
+    {
+      "label": "ChangeNotifier",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "changenotifier",
+      "community": 67,
+      "community_name": "AacController",
+      "norm_label": "changenotifier"
+    },
+    {
+      "label": "_boardStorage",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_boardstorage",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "_boardstorage"
+    },
+    {
+      "label": "_walkthroughStorage",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_walkthroughstorage",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "_walkthroughstorage"
+    },
+    {
+      "label": "_ttsService",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_ttsservice",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "_ttsservice"
+    },
+    {
+      "label": "_sentence",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_sentence",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "_sentence"
+    },
+    {
+      "label": "List",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "list",
+      "community": 4,
+      "community_name": "board_models.dart",
+      "norm_label": "list"
+    },
+    {
+      "label": "_path",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_path",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "_path"
+    },
+    {
+      "label": "_root",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_root",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "_root"
+    },
+    {
+      "label": "_isLoading",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_isloading",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "_isloading"
+    },
+    {
+      "label": "_editMode",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_editmode",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "_editmode"
+    },
+    {
+      "label": "_toolbarExpanded",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_toolbarexpanded",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "_toolbarexpanded"
+    },
+    {
+      "label": "_showWalkthrough",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_showwalkthrough",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "_showwalkthrough"
+    },
+    {
+      "label": "_walkthroughStepIndex",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_walkthroughstepindex",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "_walkthroughstepindex"
+    },
+    {
+      "label": "_walkthroughTargetRect",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_walkthroughtargetrect",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "_walkthroughtargetrect"
+    },
+    {
+      "label": "Rect?",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "rect",
+      "community": 6,
+      "community_name": "walkthrough_overlay.dart",
+      "norm_label": "rect?"
+    },
+    {
+      "label": "currentBoard",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_currentboard",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "currentboard"
+    },
+    {
+      "label": "BoardLevel get",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "boardlevel_get",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "boardlevel get"
+    },
+    {
+      "label": "pathDepth",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_pathdepth",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "pathdepth"
+    },
+    {
+      "label": "int get",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "int_get",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "int get"
+    },
+    {
+      "label": "canGoBack",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_cangoback",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "cangoback"
+    },
+    {
+      "label": "Rect? get",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "rect_get",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "rect? get"
+    },
+    {
+      "label": "sentenceText",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_sentencetext",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "sentencetext"
+    },
+    {
+      "label": "loadApp",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_loadapp",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "loadapp"
+    },
+    {
+      "label": "saveBoard",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_saveboard",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "saveboard"
+    },
+    {
+      "label": "speak",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_speak",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "speak"
+    },
+    {
+      "label": "playLimitBeep",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_playlimitbeep",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "playlimitbeep"
+    },
+    {
+      "label": "handleCellTap",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_handlecelltap",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "handlecelltap"
+    },
+    {
+      "label": "goBack",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_goback",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "goback"
+    },
+    {
+      "label": "goHome",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_gohome",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "gohome"
+    },
+    {
+      "label": "clearSentence",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_clearsentence",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "clearsentence"
+    },
+    {
+      "label": "removeLastSentenceWord",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_removelastsentenceword",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "removelastsentenceword"
+    },
+    {
+      "label": "setToolbarExpanded",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_settoolbarexpanded",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "settoolbarexpanded"
+    },
+    {
+      "label": "setEditMode",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_seteditmode",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "seteditmode"
+    },
+    {
+      "label": "setWalkthroughTargetRect",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_setwalkthroughtargetrect",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "setwalkthroughtargetrect"
+    },
+    {
+      "label": "advanceWalkthrough",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_advancewalkthrough",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "advancewalkthrough"
+    },
+    {
+      "label": "dismissWalkthrough",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_dismisswalkthrough",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "dismisswalkthrough"
+    },
+    {
+      "label": "resetBoard",
+      "file_type": "code",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_controllers_aac_controller_resetboard",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "resetboard"
+    },
+    {
+      "label": "package:flutter/services.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "package_flutter_services_dart",
+      "community": 0,
+      "community_name": "widget_test.dart",
+      "norm_label": "package:flutter/services.dart"
+    },
+    {
+      "label": "../constants/aac_constants.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "constants_aac_constants_dart",
+      "community": 4,
+      "community_name": "board_models.dart",
+      "norm_label": "../constants/aac_constants.dart"
+    },
+    {
+      "label": "../models/board_level.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "models_board_level_dart",
+      "community": 7,
+      "community_name": "board_storage_service.dart",
+      "norm_label": "../models/board_level.dart"
+    },
+    {
+      "label": "../services/board_storage_service.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "services_board_storage_service_dart",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "../services/board_storage_service.dart"
+    },
+    {
+      "label": "../services/tts_service.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "services_tts_service_dart",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "../services/tts_service.dart"
+    },
+    {
+      "label": "../services/walkthrough_storage_service.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "services_walkthrough_storage_service_dart",
+      "community": 10,
+      "community_name": "aac_controller.dart",
+      "norm_label": "../services/walkthrough_storage_service.dart"
+    },
+    {
       "label": "aac_cell.dart",
       "file_type": "code",
       "source_file": "lib/aac/models/aac_cell.dart",
@@ -1120,7 +1384,7 @@
       "_origin": "ast",
       "id": "lib_aac_models_board_models_aaccell",
       "community": 11,
-      "community_name": "cell_visual.dart",
+      "community_name": "package:flutter/material.dart",
       "norm_label": "aaccell"
     },
     {
@@ -1344,6 +1608,28 @@
       "norm_label": "_normalizecells"
     },
     {
+      "label": "_looksLikeLegacyBoard",
+      "file_type": "code",
+      "source_file": "lib/aac/models/board_models.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_models_board_models_lookslikelegacyboard",
+      "community": 4,
+      "community_name": "board_models.dart",
+      "norm_label": "_lookslikelegacyboard"
+    },
+    {
+      "label": "_withFixedRow",
+      "file_type": "code",
+      "source_file": "lib/aac/models/board_models.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_models_board_models_withfixedrow",
+      "community": 4,
+      "community_name": "board_models.dart",
+      "norm_label": "_withfixedrow"
+    },
+    {
       "label": "speak",
       "file_type": "code",
       "source_file": "lib/aac/models/board_models.dart",
@@ -1388,15 +1674,15 @@
       "norm_label": "copyfrom"
     },
     {
-      "label": "../constants/aac_constants.dart",
+      "label": "../services/photo_storage_service.dart",
       "file_type": "code",
       "source_file": null,
       "source_location": null,
       "_origin": "ast",
-      "id": "constants_aac_constants_dart",
-      "community": 9,
-      "community_name": "board_toolbar.dart",
-      "norm_label": "../constants/aac_constants.dart"
+      "id": "services_photo_storage_service_dart",
+      "community": 4,
+      "community_name": "board_models.dart",
+      "norm_label": "../services/photo_storage_service.dart"
     },
     {
       "label": "board_storage_service.dart",
@@ -1438,8 +1724,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "static_const_string",
-      "community": 7,
-      "community_name": "board_storage_service.dart",
+      "community": 64,
+      "community_name": "app_typography.dart",
       "norm_label": "static const string"
     },
     {
@@ -1482,8 +1768,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "package_shared_preferences_shared_preferences_dart",
-      "community": 7,
-      "community_name": "board_storage_service.dart",
+      "community": 65,
+      "community_name": "walkthrough_storage_service.dart",
       "norm_label": "package:shared_preferences/shared_preferences.dart"
     },
     {
@@ -1619,6 +1905,17 @@
       "norm_label": "savephotobytes"
     },
     {
+      "label": "isSafePhotoPath",
+      "file_type": "code",
+      "source_file": "lib/aac/services/photo_storage_service.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_services_photo_storage_service_issafephotopath",
+      "community": 3,
+      "community_name": "cell_editor_dialog.dart",
+      "norm_label": "issafephotopath"
+    },
+    {
       "label": "dart:io",
       "file_type": "code",
       "source_file": null,
@@ -1626,7 +1923,7 @@
       "_origin": "ast",
       "id": "dart_io",
       "community": 0,
-      "community_name": "package:flutter/material.dart",
+      "community_name": "widget_test.dart",
       "norm_label": "dart:io"
     },
     {
@@ -1670,7 +1967,7 @@
       "_origin": "ast",
       "id": "lib_aac_services_tts_service",
       "community": 0,
-      "community_name": "package:flutter/material.dart",
+      "community_name": "widget_test.dart",
       "norm_label": "tts_service.dart"
     },
     {
@@ -1681,7 +1978,7 @@
       "_origin": "ast",
       "id": "lib_aac_services_tts_service_ttsservice",
       "community": 0,
-      "community_name": "package:flutter/material.dart",
+      "community_name": "widget_test.dart",
       "norm_label": "ttsservice"
     },
     {
@@ -1692,7 +1989,7 @@
       "_origin": "ast",
       "id": "lib_aac_services_tts_service_tts",
       "community": 0,
-      "community_name": "package:flutter/material.dart",
+      "community_name": "widget_test.dart",
       "norm_label": "_tts"
     },
     {
@@ -1703,7 +2000,7 @@
       "_origin": "ast",
       "id": "fluttertts",
       "community": 0,
-      "community_name": "package:flutter/material.dart",
+      "community_name": "widget_test.dart",
       "norm_label": "fluttertts"
     },
     {
@@ -1714,7 +2011,7 @@
       "_origin": "ast",
       "id": "lib_aac_services_tts_service_setup",
       "community": 0,
-      "community_name": "package:flutter/material.dart",
+      "community_name": "widget_test.dart",
       "norm_label": "setup"
     },
     {
@@ -1725,7 +2022,7 @@
       "_origin": "ast",
       "id": "lib_aac_services_tts_service_speak",
       "community": 0,
-      "community_name": "package:flutter/material.dart",
+      "community_name": "widget_test.dart",
       "norm_label": "speak"
     },
     {
@@ -1736,19 +2033,8 @@
       "_origin": "ast",
       "id": "package_flutter_foundation_dart",
       "community": 0,
-      "community_name": "package:flutter/material.dart",
+      "community_name": "widget_test.dart",
       "norm_label": "package:flutter/foundation.dart"
-    },
-    {
-      "label": "package:flutter/services.dart",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "package_flutter_services_dart",
-      "community": 0,
-      "community_name": "package:flutter/material.dart",
-      "norm_label": "package:flutter/services.dart"
     },
     {
       "label": "package:flutter_tts/flutter_tts.dart",
@@ -1758,7 +2044,7 @@
       "_origin": "ast",
       "id": "package_flutter_tts_flutter_tts_dart",
       "community": 0,
-      "community_name": "package:flutter/material.dart",
+      "community_name": "widget_test.dart",
       "norm_label": "package:flutter_tts/flutter_tts.dart"
     },
     {
@@ -1768,8 +2054,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_aac_services_walkthrough_storage_service",
-      "community": 7,
-      "community_name": "board_storage_service.dart",
+      "community": 65,
+      "community_name": "walkthrough_storage_service.dart",
       "norm_label": "walkthrough_storage_service.dart"
     },
     {
@@ -1779,8 +2065,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_aac_services_walkthrough_storage_service_walkthroughstorageservice",
-      "community": 7,
-      "community_name": "board_storage_service.dart",
+      "community": 65,
+      "community_name": "walkthrough_storage_service.dart",
       "norm_label": "walkthroughstorageservice"
     },
     {
@@ -1790,8 +2076,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_aac_services_walkthrough_storage_service_walkthroughseenkey",
-      "community": 7,
-      "community_name": "board_storage_service.dart",
+      "community": 65,
+      "community_name": "walkthrough_storage_service.dart",
       "norm_label": "walkthroughseenkey"
     },
     {
@@ -1801,8 +2087,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_aac_services_walkthrough_storage_service_hasseenwalkthrough",
-      "community": 7,
-      "community_name": "board_storage_service.dart",
+      "community": 65,
+      "community_name": "walkthrough_storage_service.dart",
       "norm_label": "hasseenwalkthrough"
     },
     {
@@ -1812,8 +2098,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_aac_services_walkthrough_storage_service_markwalkthroughseen",
-      "community": 7,
-      "community_name": "board_storage_service.dart",
+      "community": 65,
+      "community_name": "walkthrough_storage_service.dart",
       "norm_label": "markwalkthroughseen"
     },
     {
@@ -1823,8 +2109,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_aac_widgets_aac_grid",
-      "community": 10,
-      "community_name": "aac_grid.dart",
+      "community": 4,
+      "community_name": "board_models.dart",
       "norm_label": "aac_grid.dart"
     },
     {
@@ -1850,25 +2136,14 @@
       "norm_label": "statelesswidget"
     },
     {
-      "label": "_GridNavigationTile",
-      "file_type": "code",
-      "source_file": "lib/aac/widgets/aac_grid.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_aac_widgets_aac_grid_gridnavigationtile",
-      "community": 12,
-      "community_name": "StatelessWidget",
-      "norm_label": "_gridnavigationtile"
-    },
-    {
       "label": "cells",
       "file_type": "code",
       "source_file": "lib/aac/widgets/aac_grid.dart",
       "source_location": null,
       "_origin": "ast",
       "id": "lib_aac_widgets_aac_grid_cells",
-      "community": 10,
-      "community_name": "aac_grid.dart",
+      "community": 4,
+      "community_name": "board_models.dart",
       "norm_label": "cells"
     },
     {
@@ -1878,8 +2153,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_aac_widgets_aac_grid_editmode",
-      "community": 10,
-      "community_name": "aac_grid.dart",
+      "community": 4,
+      "community_name": "board_models.dart",
       "norm_label": "editmode"
     },
     {
@@ -1889,31 +2164,9 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_aac_widgets_aac_grid_cangoback",
-      "community": 10,
-      "community_name": "aac_grid.dart",
+      "community": 4,
+      "community_name": "board_models.dart",
       "norm_label": "cangoback"
-    },
-    {
-      "label": "onBack",
-      "file_type": "code",
-      "source_file": "lib/aac/widgets/aac_grid.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_aac_widgets_aac_grid_onback",
-      "community": 10,
-      "community_name": "aac_grid.dart",
-      "norm_label": "onback"
-    },
-    {
-      "label": "VoidCallback",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "voidcallback",
-      "community": 9,
-      "community_name": "board_toolbar.dart",
-      "norm_label": "voidcallback"
     },
     {
       "label": "onHome",
@@ -1922,9 +2175,20 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_aac_widgets_aac_grid_onhome",
-      "community": 10,
-      "community_name": "aac_grid.dart",
+      "community": 4,
+      "community_name": "board_models.dart",
       "norm_label": "onhome"
+    },
+    {
+      "label": "VoidCallback",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "voidcallback",
+      "community": 14,
+      "community_name": "aac_tile.dart",
+      "norm_label": "voidcallback"
     },
     {
       "label": "onCellTap",
@@ -1933,8 +2197,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_aac_widgets_aac_grid_oncelltap",
-      "community": 10,
-      "community_name": "aac_grid.dart",
+      "community": 4,
+      "community_name": "board_models.dart",
       "norm_label": "oncelltap"
     },
     {
@@ -1944,64 +2208,9 @@
       "source_location": null,
       "_origin": "ast",
       "id": "valuechanged",
-      "community": 9,
-      "community_name": "board_toolbar.dart",
+      "community": 4,
+      "community_name": "board_models.dart",
       "norm_label": "valuechanged"
-    },
-    {
-      "label": "label",
-      "file_type": "code",
-      "source_file": "lib/aac/widgets/aac_grid.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_aac_widgets_aac_grid_label",
-      "community": 10,
-      "community_name": "aac_grid.dart",
-      "norm_label": "label"
-    },
-    {
-      "label": "icon",
-      "file_type": "code",
-      "source_file": "lib/aac/widgets/aac_grid.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_aac_widgets_aac_grid_icon",
-      "community": 10,
-      "community_name": "aac_grid.dart",
-      "norm_label": "icon"
-    },
-    {
-      "label": "IconData",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "icondata",
-      "community": 14,
-      "community_name": "aac_tile.dart",
-      "norm_label": "icondata"
-    },
-    {
-      "label": "enabled",
-      "file_type": "code",
-      "source_file": "lib/aac/widgets/aac_grid.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_aac_widgets_aac_grid_enabled",
-      "community": 10,
-      "community_name": "aac_grid.dart",
-      "norm_label": "enabled"
-    },
-    {
-      "label": "onTap",
-      "file_type": "code",
-      "source_file": "lib/aac/widgets/aac_grid.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_aac_widgets_aac_grid_ontap",
-      "community": 10,
-      "community_name": "aac_grid.dart",
-      "norm_label": "ontap"
     },
     {
       "label": "build",
@@ -2010,20 +2219,9 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_aac_widgets_aac_grid_build",
-      "community": 10,
-      "community_name": "aac_grid.dart",
+      "community": 4,
+      "community_name": "board_models.dart",
       "norm_label": "build"
-    },
-    {
-      "label": "../../theme/app_radius.dart",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "theme_app_radius_dart",
-      "community": 14,
-      "community_name": "aac_tile.dart",
-      "norm_label": "../../theme/app_radius.dart"
     },
     {
       "label": "aac_tile.dart",
@@ -2032,8 +2230,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "aac_tile_dart",
-      "community": 10,
-      "community_name": "aac_grid.dart",
+      "community": 4,
+      "community_name": "board_models.dart",
       "norm_label": "aac_tile.dart"
     },
     {
@@ -2092,6 +2290,17 @@
       "norm_label": "editmode"
     },
     {
+      "label": "enabled",
+      "file_type": "code",
+      "source_file": "lib/aac/widgets/aac_tile.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_widgets_aac_tile_enabled",
+      "community": 14,
+      "community_name": "aac_tile.dart",
+      "norm_label": "enabled"
+    },
+    {
       "label": "onTap",
       "file_type": "code",
       "source_file": "lib/aac/widgets/aac_tile.dart",
@@ -2114,6 +2323,17 @@
       "norm_label": "icon"
     },
     {
+      "label": "IconData",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "icondata",
+      "community": 14,
+      "community_name": "aac_tile.dart",
+      "norm_label": "icondata"
+    },
+    {
       "label": "foreground",
       "file_type": "code",
       "source_file": "lib/aac/widgets/aac_tile.dart",
@@ -2134,6 +2354,17 @@
       "community": 14,
       "community_name": "aac_tile.dart",
       "norm_label": "build"
+    },
+    {
+      "label": "../../theme/app_radius.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "theme_app_radius_dart",
+      "community": 9,
+      "community_name": "board_toolbar.dart",
+      "norm_label": "../../theme/app_radius.dart"
     },
     {
       "label": "cell_visual.dart",
@@ -2178,17 +2409,6 @@
       "community": 12,
       "community_name": "StatelessWidget",
       "norm_label": "_toolbaridentity"
-    },
-    {
-      "label": "_LevelDots",
-      "file_type": "code",
-      "source_file": "lib/aac/widgets/board_toolbar.dart",
-      "source_location": null,
-      "_origin": "ast",
-      "id": "lib_aac_widgets_board_toolbar_leveldots",
-      "community": 12,
-      "community_name": "StatelessWidget",
-      "norm_label": "_leveldots"
     },
     {
       "label": "depth",
@@ -2257,6 +2477,17 @@
       "norm_label": "onreset"
     },
     {
+      "label": "showLabel",
+      "file_type": "code",
+      "source_file": "lib/aac/widgets/board_toolbar.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_widgets_board_toolbar_showlabel",
+      "community": 9,
+      "community_name": "board_toolbar.dart",
+      "norm_label": "showlabel"
+    },
+    {
       "label": "build",
       "file_type": "code",
       "source_file": "lib/aac/widgets/board_toolbar.dart",
@@ -2285,8 +2516,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_aac_widgets_cell_editor_dialog_celleditordialog",
-      "community": 3,
-      "community_name": "cell_editor_dialog.dart",
+      "community": 66,
+      "community_name": "State",
       "norm_label": "celleditordialog"
     },
     {
@@ -2296,8 +2527,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_aac_widgets_cell_editor_dialog_celleditordialogstate",
-      "community": 3,
-      "community_name": "cell_editor_dialog.dart",
+      "community": 66,
+      "community_name": "State",
       "norm_label": "_celleditordialogstate"
     },
     {
@@ -2587,17 +2818,6 @@
       "norm_label": "build"
     },
     {
-      "label": "../services/photo_storage_service.dart",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "services_photo_storage_service_dart",
-      "community": 3,
-      "community_name": "cell_editor_dialog.dart",
-      "norm_label": "../services/photo_storage_service.dart"
-    },
-    {
       "label": "cell_visual.dart",
       "file_type": "code",
       "source_file": "lib/aac/widgets/cell_visual.dart",
@@ -2605,7 +2825,7 @@
       "_origin": "ast",
       "id": "lib_aac_widgets_cell_visual",
       "community": 11,
-      "community_name": "cell_visual.dart",
+      "community_name": "package:flutter/material.dart",
       "norm_label": "cell_visual.dart"
     },
     {
@@ -2615,8 +2835,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_aac_widgets_cell_visual_cellvisual",
-      "community": 11,
-      "community_name": "cell_visual.dart",
+      "community": 12,
+      "community_name": "StatelessWidget",
       "norm_label": "cellvisual"
     },
     {
@@ -2627,7 +2847,7 @@
       "_origin": "ast",
       "id": "lib_aac_widgets_cell_visual_cell",
       "community": 11,
-      "community_name": "cell_visual.dart",
+      "community_name": "package:flutter/material.dart",
       "norm_label": "cell"
     },
     {
@@ -2638,7 +2858,7 @@
       "_origin": "ast",
       "id": "lib_aac_widgets_cell_visual_fit",
       "community": 11,
-      "community_name": "cell_visual.dart",
+      "community_name": "package:flutter/material.dart",
       "norm_label": "fit"
     },
     {
@@ -2649,7 +2869,7 @@
       "_origin": "ast",
       "id": "boxfit",
       "community": 11,
-      "community_name": "cell_visual.dart",
+      "community_name": "package:flutter/material.dart",
       "norm_label": "boxfit"
     },
     {
@@ -2660,7 +2880,7 @@
       "_origin": "ast",
       "id": "lib_aac_widgets_cell_visual_borderradius",
       "community": 11,
-      "community_name": "cell_visual.dart",
+      "community_name": "package:flutter/material.dart",
       "norm_label": "borderradius"
     },
     {
@@ -2671,7 +2891,7 @@
       "_origin": "ast",
       "id": "borderradius",
       "community": 11,
-      "community_name": "cell_visual.dart",
+      "community_name": "package:flutter/material.dart",
       "norm_label": "borderradius"
     },
     {
@@ -2682,7 +2902,7 @@
       "_origin": "ast",
       "id": "lib_aac_widgets_cell_visual_textstyle",
       "community": 11,
-      "community_name": "cell_visual.dart",
+      "community_name": "package:flutter/material.dart",
       "norm_label": "textstyle"
     },
     {
@@ -2693,7 +2913,7 @@
       "_origin": "ast",
       "id": "textstyle",
       "community": 11,
-      "community_name": "cell_visual.dart",
+      "community_name": "package:flutter/material.dart",
       "norm_label": "textstyle"
     },
     {
@@ -2704,7 +2924,7 @@
       "_origin": "ast",
       "id": "lib_aac_widgets_cell_visual_build",
       "community": 11,
-      "community_name": "cell_visual.dart",
+      "community_name": "package:flutter/material.dart",
       "norm_label": "build"
     },
     {
@@ -2725,9 +2945,20 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_aac_widgets_sentence_strip_sentencestrip",
-      "community": 13,
-      "community_name": "sentence_strip.dart",
+      "community": 66,
+      "community_name": "State",
       "norm_label": "sentencestrip"
+    },
+    {
+      "label": "_SentenceStripState",
+      "file_type": "code",
+      "source_file": "lib/aac/widgets/sentence_strip.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_widgets_sentence_strip_sentencestripstate",
+      "community": 66,
+      "community_name": "State",
+      "norm_label": "_sentencestripstate"
     },
     {
       "label": "_SentenceUndoButton",
@@ -2736,8 +2967,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_aac_widgets_sentence_strip_sentenceundobutton",
-      "community": 13,
-      "community_name": "sentence_strip.dart",
+      "community": 12,
+      "community_name": "StatelessWidget",
       "norm_label": "_sentenceundobutton"
     },
     {
@@ -2796,6 +3027,50 @@
       "norm_label": "onremovelast"
     },
     {
+      "label": "_stripHeight",
+      "file_type": "code",
+      "source_file": "lib/aac/widgets/sentence_strip.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_widgets_sentence_strip_stripheight",
+      "community": 13,
+      "community_name": "sentence_strip.dart",
+      "norm_label": "_stripheight"
+    },
+    {
+      "label": "static const double",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "static_const_double",
+      "community": 5,
+      "community_name": "app_spacing.dart",
+      "norm_label": "static const double"
+    },
+    {
+      "label": "_scrollController",
+      "file_type": "code",
+      "source_file": "lib/aac/widgets/sentence_strip.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_widgets_sentence_strip_scrollcontroller",
+      "community": 13,
+      "community_name": "sentence_strip.dart",
+      "norm_label": "_scrollcontroller"
+    },
+    {
+      "label": "ScrollController",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "scrollcontroller",
+      "community": 13,
+      "community_name": "sentence_strip.dart",
+      "norm_label": "scrollcontroller"
+    },
+    {
       "label": "enabled",
       "file_type": "code",
       "source_file": "lib/aac/widgets/sentence_strip.dart",
@@ -2805,6 +3080,61 @@
       "community": 13,
       "community_name": "sentence_strip.dart",
       "norm_label": "enabled"
+    },
+    {
+      "label": "createState",
+      "file_type": "code",
+      "source_file": "lib/aac/widgets/sentence_strip.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_widgets_sentence_strip_createstate",
+      "community": 13,
+      "community_name": "sentence_strip.dart",
+      "norm_label": "createstate"
+    },
+    {
+      "label": "initState",
+      "file_type": "code",
+      "source_file": "lib/aac/widgets/sentence_strip.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_widgets_sentence_strip_initstate",
+      "community": 13,
+      "community_name": "sentence_strip.dart",
+      "norm_label": "initstate"
+    },
+    {
+      "label": "dispose",
+      "file_type": "code",
+      "source_file": "lib/aac/widgets/sentence_strip.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_widgets_sentence_strip_dispose",
+      "community": 13,
+      "community_name": "sentence_strip.dart",
+      "norm_label": "dispose"
+    },
+    {
+      "label": "_scrollAndFocusLatest",
+      "file_type": "code",
+      "source_file": "lib/aac/widgets/sentence_strip.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_widgets_sentence_strip_scrollandfocuslatest",
+      "community": 13,
+      "community_name": "sentence_strip.dart",
+      "norm_label": "_scrollandfocuslatest"
+    },
+    {
+      "label": "didUpdateWidget",
+      "file_type": "code",
+      "source_file": "lib/aac/widgets/sentence_strip.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_aac_widgets_sentence_strip_didupdatewidget",
+      "community": 13,
+      "community_name": "sentence_strip.dart",
+      "norm_label": "didupdatewidget"
     },
     {
       "label": "build",
@@ -2835,8 +3165,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_aac_widgets_walkthrough_overlay_walkthroughoverlay",
-      "community": 6,
-      "community_name": "walkthrough_overlay.dart",
+      "community": 12,
+      "community_name": "StatelessWidget",
       "norm_label": "walkthroughoverlay"
     },
     {
@@ -3000,8 +3330,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_app_topitot_app_topitotapp",
-      "community": 45,
-      "community_name": "topitot_app.dart",
+      "community": 66,
+      "community_name": "State",
       "norm_label": "topitotapp"
     },
     {
@@ -3011,8 +3341,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_app_topitot_app_topitotappstate",
-      "community": 45,
-      "community_name": "topitot_app.dart",
+      "community": 66,
+      "community_name": "State",
       "norm_label": "_topitotappstate"
     },
     {
@@ -3115,17 +3445,6 @@
       "norm_label": "build"
     },
     {
-      "label": "dart:async",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "dart_async",
-      "community": 45,
-      "community_name": "topitot_app.dart",
-      "norm_label": "dart:async"
-    },
-    {
       "label": "../aac/aac_home_page.dart",
       "file_type": "code",
       "source_file": null,
@@ -3165,7 +3484,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_app_widgets_launch_splash_overlay",
-      "community": 0,
+      "community": 11,
       "community_name": "package:flutter/material.dart",
       "norm_label": "launch_splash_overlay.dart"
     },
@@ -3176,7 +3495,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_app_widgets_launch_splash_overlay_launchsplashoverlay",
-      "community": 0,
+      "community": 11,
       "community_name": "package:flutter/material.dart",
       "norm_label": "launchsplashoverlay"
     },
@@ -3187,7 +3506,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_app_widgets_launch_splash_overlay_visible",
-      "community": 0,
+      "community": 11,
       "community_name": "package:flutter/material.dart",
       "norm_label": "visible"
     },
@@ -3198,7 +3517,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_app_widgets_launch_splash_overlay_build",
-      "community": 0,
+      "community": 11,
       "community_name": "package:flutter/material.dart",
       "norm_label": "build"
     },
@@ -3210,7 +3529,7 @@
       "_origin": "ast",
       "id": "lib_main",
       "community": 0,
-      "community_name": "package:flutter/material.dart",
+      "community_name": "widget_test.dart",
       "norm_label": "main.dart"
     },
     {
@@ -3221,7 +3540,7 @@
       "_origin": "ast",
       "id": "lib_main_main",
       "community": 0,
-      "community_name": "package:flutter/material.dart",
+      "community_name": "widget_test.dart",
       "norm_label": "main"
     },
     {
@@ -3232,8 +3551,19 @@
       "_origin": "ast",
       "id": "lib_main_setpreferredorientations",
       "community": 0,
-      "community_name": "package:flutter/material.dart",
+      "community_name": "widget_test.dart",
       "norm_label": "setpreferredorientations"
+    },
+    {
+      "label": "setEnabledSystemUIMode",
+      "file_type": "code",
+      "source_file": "lib/main.dart",
+      "source_location": null,
+      "_origin": "ast",
+      "id": "lib_main_setenabledsystemuimode",
+      "community": 0,
+      "community_name": "widget_test.dart",
+      "norm_label": "setenabledsystemuimode"
     },
     {
       "label": "app/topitot_app.dart",
@@ -3243,7 +3573,7 @@
       "_origin": "ast",
       "id": "app_topitot_app_dart",
       "community": 0,
-      "community_name": "package:flutter/material.dart",
+      "community_name": "widget_test.dart",
       "norm_label": "app/topitot_app.dart"
     },
     {
@@ -3610,17 +3940,6 @@
       "norm_label": "medium"
     },
     {
-      "label": "static const double",
-      "file_type": "code",
-      "source_file": null,
-      "source_location": null,
-      "_origin": "ast",
-      "id": "static_const_double",
-      "community": 5,
-      "community_name": "app_spacing.dart",
-      "norm_label": "static const double"
-    },
-    {
       "label": "large",
       "file_type": "code",
       "source_file": "lib/theme/app_radius.dart",
@@ -3847,8 +4166,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_theme_app_typography",
-      "community": 7,
-      "community_name": "board_storage_service.dart",
+      "community": 64,
+      "community_name": "app_typography.dart",
       "norm_label": "app_typography.dart"
     },
     {
@@ -3858,8 +4177,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_theme_app_typography_apptypography",
-      "community": 7,
-      "community_name": "board_storage_service.dart",
+      "community": 64,
+      "community_name": "app_typography.dart",
       "norm_label": "apptypography"
     },
     {
@@ -3869,8 +4188,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_theme_app_typography_headingfont",
-      "community": 7,
-      "community_name": "board_storage_service.dart",
+      "community": 64,
+      "community_name": "app_typography.dart",
       "norm_label": "headingfont"
     },
     {
@@ -3880,8 +4199,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_theme_app_typography_bodyfont",
-      "community": 7,
-      "community_name": "board_storage_service.dart",
+      "community": 64,
+      "community_name": "app_typography.dart",
       "norm_label": "bodyfont"
     },
     {
@@ -3891,8 +4210,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_theme_app_typography_texttheme",
-      "community": 7,
-      "community_name": "board_storage_service.dart",
+      "community": 64,
+      "community_name": "app_typography.dart",
       "norm_label": "texttheme"
     },
     {
@@ -3902,8 +4221,8 @@
       "source_location": null,
       "_origin": "ast",
       "id": "static_const_texttheme",
-      "community": 7,
-      "community_name": "board_storage_service.dart",
+      "community": 64,
+      "community_name": "app_typography.dart",
       "norm_label": "static const texttheme"
     },
     {
@@ -3913,7 +4232,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_theme_topitot_theme",
-      "community": 0,
+      "community": 11,
       "community_name": "package:flutter/material.dart",
       "norm_label": "topitot_theme.dart"
     },
@@ -3924,7 +4243,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "lib_theme_topitot_theme_topitottheme",
-      "community": 0,
+      "community": 11,
       "community_name": "package:flutter/material.dart",
       "norm_label": "topitottheme"
     },
@@ -3935,7 +4254,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "app_colors_dart",
-      "community": 0,
+      "community": 11,
       "community_name": "package:flutter/material.dart",
       "norm_label": "app_colors.dart"
     },
@@ -3946,7 +4265,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "app_radius_dart",
-      "community": 0,
+      "community": 11,
       "community_name": "package:flutter/material.dart",
       "norm_label": "app_radius.dart"
     },
@@ -3957,7 +4276,7 @@
       "source_location": null,
       "_origin": "ast",
       "id": "app_typography_dart",
-      "community": 0,
+      "community": 11,
       "community_name": "package:flutter/material.dart",
       "norm_label": "app_typography.dart"
     },
@@ -3969,7 +4288,7 @@
       "_origin": "ast",
       "id": "test_widget_test",
       "community": 0,
-      "community_name": "package:flutter/material.dart",
+      "community_name": "widget_test.dart",
       "norm_label": "widget_test.dart"
     },
     {
@@ -3980,7 +4299,7 @@
       "_origin": "ast",
       "id": "test_widget_test_main",
       "community": 0,
-      "community_name": "package:flutter/material.dart",
+      "community_name": "widget_test.dart",
       "norm_label": "main"
     },
     {
@@ -3991,7 +4310,7 @@
       "_origin": "ast",
       "id": "test_widget_test_mocktts",
       "community": 0,
-      "community_name": "package:flutter/material.dart",
+      "community_name": "widget_test.dart",
       "norm_label": "mocktts"
     },
     {
@@ -4002,7 +4321,7 @@
       "_origin": "ast",
       "id": "package_flutter_test_flutter_test_dart",
       "community": 0,
-      "community_name": "package:flutter/material.dart",
+      "community_name": "widget_test.dart",
       "norm_label": "package:flutter_test/flutter_test.dart"
     },
     {
@@ -4013,7 +4332,7 @@
       "_origin": "ast",
       "id": "package_topitot_app_aac_aac_home_page_dart",
       "community": 0,
-      "community_name": "package:flutter/material.dart",
+      "community_name": "widget_test.dart",
       "norm_label": "package:topitot_app/aac/aac_home_page.dart"
     },
     {
@@ -4024,7 +4343,7 @@
       "_origin": "ast",
       "id": "package_topitot_app_aac_constants_aac_constants_dart",
       "community": 0,
-      "community_name": "package:flutter/material.dart",
+      "community_name": "widget_test.dart",
       "norm_label": "package:topitot_app/aac/constants/aac_constants.dart"
     },
     {
@@ -4035,8 +4354,19 @@
       "_origin": "ast",
       "id": "package_topitot_app_aac_models_board_models_dart",
       "community": 0,
-      "community_name": "package:flutter/material.dart",
+      "community_name": "widget_test.dart",
       "norm_label": "package:topitot_app/aac/models/board_models.dart"
+    },
+    {
+      "label": "package:topitot_app/aac/widgets/sentence_strip.dart",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
+      "_origin": "ast",
+      "id": "package_topitot_app_aac_widgets_sentence_strip_dart",
+      "community": 0,
+      "community_name": "widget_test.dart",
+      "norm_label": "package:topitot_app/aac/widgets/sentence_strip.dart"
     },
     {
       "label": "package:topitot_app/aac/widgets/walkthrough_overlay.dart",
@@ -4046,7 +4376,7 @@
       "_origin": "ast",
       "id": "package_topitot_app_aac_widgets_walkthrough_overlay_dart",
       "community": 0,
-      "community_name": "package:flutter/material.dart",
+      "community_name": "widget_test.dart",
       "norm_label": "package:topitot_app/aac/widgets/walkthrough_overlay.dart"
     },
     {
@@ -4057,7 +4387,7 @@
       "_origin": "ast",
       "id": "package_topitot_app_app_topitot_app_dart",
       "community": 0,
-      "community_name": "package:flutter/material.dart",
+      "community_name": "widget_test.dart",
       "norm_label": "package:topitot_app/app/topitot_app.dart"
     },
     {
@@ -4068,7 +4398,7 @@
       "_origin": "ast",
       "id": "package_topitot_app_app_widgets_launch_splash_overlay_dart",
       "community": 0,
-      "community_name": "package:flutter/material.dart",
+      "community_name": "widget_test.dart",
       "norm_label": "package:topitot_app/app/widgets/launch_splash_overlay.dart"
     },
     {
@@ -4079,7 +4409,7 @@
       "_origin": "ast",
       "id": "package_topitot_app_theme_app_colors_dart",
       "community": 0,
-      "community_name": "package:flutter/material.dart",
+      "community_name": "widget_test.dart",
       "norm_label": "package:topitot_app/theme/app_colors.dart"
     },
     {
@@ -4090,30 +4420,19 @@
       "_origin": "ast",
       "id": "scaffold",
       "community": 0,
-      "community_name": "package:flutter/material.dart",
+      "community_name": "widget_test.dart",
       "norm_label": "scaffold"
     },
     {
-      "label": "google-play-build.md",
-      "file_type": "document",
-      "source_file": ".opencode/agent/google-play-build.md",
-      "source_location": "L1",
+      "label": "Text",
+      "file_type": "code",
+      "source_file": null,
+      "source_location": null,
       "_origin": "ast",
-      "id": "opencode_agent_google_play_build",
-      "community": 60,
-      "community_name": "google-play-build.md",
-      "norm_label": "google-play-build.md"
-    },
-    {
-      "label": "prepare-google-play-build.md",
-      "file_type": "document",
-      "source_file": ".opencode/command/prepare-google-play-build.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "opencode_command_prepare_google_play_build",
-      "community": 61,
-      "community_name": "prepare-google-play-build.md",
-      "norm_label": "prepare-google-play-build.md"
+      "id": "text",
+      "community": 0,
+      "community_name": "widget_test.dart",
+      "norm_label": "text"
     },
     {
       "label": "listing.md",
@@ -4163,7 +4482,7 @@
       "label": "Privacy Policy URL",
       "file_type": "document",
       "source_file": "docs/google-play/listing.md",
-      "source_location": "L30",
+      "source_location": "L33",
       "_origin": "ast",
       "id": "docs_google_play_listing_privacy_policy_url",
       "community": 49,
@@ -4174,7 +4493,7 @@
       "label": "Data Safety",
       "file_type": "document",
       "source_file": "docs/google-play/listing.md",
-      "source_location": "L33",
+      "source_location": "L36",
       "_origin": "ast",
       "id": "docs_google_play_listing_data_safety",
       "community": 49,
@@ -4185,7 +4504,7 @@
       "label": "Is data collected?",
       "file_type": "document",
       "source_file": "docs/google-play/listing.md",
-      "source_location": "L35",
+      "source_location": "L38",
       "_origin": "ast",
       "id": "docs_google_play_listing_is_data_collected",
       "community": 49,
@@ -4196,7 +4515,7 @@
       "label": "Is data shared?",
       "file_type": "document",
       "source_file": "docs/google-play/listing.md",
-      "source_location": "L38",
+      "source_location": "L41",
       "_origin": "ast",
       "id": "docs_google_play_listing_is_data_shared",
       "community": 49,
@@ -4207,7 +4526,7 @@
       "label": "Is data encrypted in transit?",
       "file_type": "document",
       "source_file": "docs/google-play/listing.md",
-      "source_location": "L41",
+      "source_location": "L44",
       "_origin": "ast",
       "id": "docs_google_play_listing_is_data_encrypted_in_transit",
       "community": 49,
@@ -4218,7 +4537,7 @@
       "label": "Can users request data deletion?",
       "file_type": "document",
       "source_file": "docs/google-play/listing.md",
-      "source_location": "L44",
+      "source_location": "L47",
       "_origin": "ast",
       "id": "docs_google_play_listing_can_users_request_data_deletion",
       "community": 49,
@@ -4229,7 +4548,7 @@
       "label": "Permissions requested:",
       "file_type": "document",
       "source_file": "docs/google-play/listing.md",
-      "source_location": "L47",
+      "source_location": "L50",
       "_origin": "ast",
       "id": "docs_google_play_listing_permissions_requested",
       "community": 49,
@@ -4240,7 +4559,7 @@
       "label": "Data safety form answers:",
       "file_type": "document",
       "source_file": "docs/google-play/listing.md",
-      "source_location": "L54",
+      "source_location": "L57",
       "_origin": "ast",
       "id": "docs_google_play_listing_data_safety_form_answers",
       "community": 49,
@@ -4251,7 +4570,7 @@
       "label": "Content Rating",
       "file_type": "document",
       "source_file": "docs/google-play/listing.md",
-      "source_location": "L62",
+      "source_location": "L65",
       "_origin": "ast",
       "id": "docs_google_play_listing_content_rating",
       "community": 49,
@@ -5788,6 +6107,28 @@
       "norm_label": "acceptance criteria"
     },
     {
+      "label": "google-play-build.md",
+      "file_type": "document",
+      "source_file": ".opencode/agent/google-play-build.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 60,
+      "community_name": "google-play-build.md",
+      "norm_label": "google-play-build.md",
+      "id": "opencode_agent_google_play_build"
+    },
+    {
+      "label": "prepare-google-play-build.md",
+      "file_type": "document",
+      "source_file": ".opencode/command/prepare-google-play-build.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 61,
+      "community_name": "prepare-google-play-build.md",
+      "norm_label": "prepare-google-play-build.md",
+      "id": "opencode_command_prepare_google_play_build"
+    },
+    {
       "label": "Topitot App",
       "file_type": "document",
       "source_file": "AGENTS.md",
@@ -6733,19 +7074,29 @@
       "context": "variable_type",
       "_origin": "ast",
       "source": "lib_aac_aac_home_page",
-      "target": "boardlevel_get"
+      "target": "bool_get"
     },
     {
-      "relation": "references",
+      "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "lib/aac/aac_home_page.dart",
       "source_location": null,
       "weight": 1.0,
-      "context": "variable_type",
       "_origin": "ast",
       "source": "lib_aac_aac_home_page",
-      "target": "bool_get"
+      "target": "controllers_aac_controller_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/aac_home_page.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_aac_home_page",
+      "target": "dart_async"
     },
     {
       "relation": "references",
@@ -6790,28 +7141,6 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_aac_aac_home_page",
-      "target": "lib_aac_aac_home_page_advancewalkthrough"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
-      "target": "lib_aac_aac_home_page_boardstorage"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
       "target": "lib_aac_aac_home_page_build"
     },
     {
@@ -6823,7 +7152,7 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_aac_aac_home_page",
-      "target": "lib_aac_aac_home_page_clearsentence"
+      "target": "lib_aac_aac_home_page_controller"
     },
     {
       "relation": "defines",
@@ -6845,40 +7174,7 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_aac_aac_home_page",
-      "target": "lib_aac_aac_home_page_currentboard"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
-      "target": "lib_aac_aac_home_page_dismisswalkthrough"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
-      "target": "lib_aac_aac_home_page_editmode"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
-      "target": "lib_aac_aac_home_page_goback"
+      "target": "lib_aac_aac_home_page_dispose"
     },
     {
       "relation": "defines",
@@ -6922,6 +7218,17 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_aac_aac_home_page",
+      "target": "lib_aac_aac_home_page_initapp"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/aac_home_page.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_aac_home_page",
       "target": "lib_aac_aac_home_page_initstate"
     },
     {
@@ -6944,18 +7251,7 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_aac_aac_home_page",
-      "target": "lib_aac_aac_home_page_isloading"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
-      "target": "lib_aac_aac_home_page_loadapp"
+      "target": "lib_aac_aac_home_page_oncontrollerchanged"
     },
     {
       "relation": "defines",
@@ -6977,40 +7273,7 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_aac_aac_home_page",
-      "target": "lib_aac_aac_home_page_path"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
       "target": "lib_aac_aac_home_page_rectforkey"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
-      "target": "lib_aac_aac_home_page_root"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
-      "target": "lib_aac_aac_home_page_saveboard"
     },
     {
       "relation": "defines",
@@ -7032,62 +7295,7 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_aac_aac_home_page",
-      "target": "lib_aac_aac_home_page_sentence"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
       "target": "lib_aac_aac_home_page_sentencestripkey"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
-      "target": "lib_aac_aac_home_page_sentencetext"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
-      "target": "lib_aac_aac_home_page_showwalkthrough"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
-      "target": "lib_aac_aac_home_page_speak"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
-      "target": "lib_aac_aac_home_page_toolbarexpanded"
     },
     {
       "relation": "defines",
@@ -7109,51 +7317,19 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_aac_aac_home_page",
-      "target": "lib_aac_aac_home_page_ttsservice"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
       "target": "lib_aac_aac_home_page_walkthroughprimarylabel"
     },
     {
-      "relation": "defines",
+      "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "lib/aac/aac_home_page.dart",
       "source_location": null,
       "weight": 1.0,
+      "context": "variable_type",
       "_origin": "ast",
       "source": "lib_aac_aac_home_page",
-      "target": "lib_aac_aac_home_page_walkthroughstepindex"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
-      "target": "lib_aac_aac_home_page_walkthroughstorage"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
-      "target": "lib_aac_aac_home_page_walkthroughtargetrect"
+      "target": "lib_aac_controllers_aac_controller_aaccontroller"
     },
     {
       "relation": "references",
@@ -7166,66 +7342,6 @@
       "_origin": "ast",
       "source": "lib_aac_aac_home_page",
       "target": "lib_aac_models_board_models_aaccell"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "context": "variable_type",
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
-      "target": "lib_aac_models_board_models_boardlevel"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "context": "variable_type",
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
-      "target": "lib_aac_services_board_storage_service_boardstorageservice"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "context": "variable_type",
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
-      "target": "lib_aac_services_tts_service_ttsservice"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "context": "variable_type",
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
-      "target": "lib_aac_services_walkthrough_storage_service_walkthroughstorageservice"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "context": "variable_type",
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
-      "target": "list"
     },
     {
       "relation": "imports",
@@ -7247,63 +7363,7 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_aac_aac_home_page",
-      "target": "models_board_level_dart"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
       "target": "package_flutter_material_dart"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "context": "variable_type",
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
-      "target": "rect"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
-      "target": "services_board_storage_service_dart"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
-      "target": "services_tts_service_dart"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/aac_home_page.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_aac_home_page",
-      "target": "services_walkthrough_storage_service_dart"
     },
     {
       "relation": "references",
@@ -7431,6 +7491,17 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/sentence_strip.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_widgets_sentence_strip_sentencestrip",
+      "target": "statefulwidget"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "lib/app/topitot_app.dart",
       "source_location": null,
       "weight": 1.0,
@@ -7464,6 +7535,17 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/sentence_strip.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_widgets_sentence_strip_sentencestripstate",
+      "target": "state"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "lib/app/topitot_app.dart",
       "source_location": null,
       "weight": 1.0,
@@ -7475,49 +7557,13 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "lib/aac/models/board_models.dart",
+      "source_file": "lib/aac/controllers/aac_controller.dart",
       "source_location": null,
       "weight": 1.0,
       "context": "variable_type",
       "_origin": "ast",
-      "source": "lib_aac_models_board_models",
-      "target": "list"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/aac_grid.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "context": "variable_type",
-      "_origin": "ast",
-      "source": "lib_aac_widgets_aac_grid",
-      "target": "list"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/sentence_strip.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "context": "variable_type",
-      "_origin": "ast",
-      "source": "lib_aac_widgets_sentence_strip",
-      "target": "list"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/walkthrough_overlay.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "context": "variable_type",
-      "_origin": "ast",
-      "source": "lib_aac_widgets_walkthrough_overlay",
-      "target": "rect"
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "bool_get"
     },
     {
       "relation": "references",
@@ -7542,6 +7588,51 @@
       "_origin": "ast",
       "source": "lib_aac_services_photo_storage_service",
       "target": "bool_get"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "string_get"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "dart_async"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/app/topitot_app.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_app_topitot_app",
+      "target": "dart_async"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "package_flutter_material_dart"
     },
     {
       "relation": "imports",
@@ -7734,17 +7825,6 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/aac_grid.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_widgets_aac_grid",
-      "target": "theme_app_colors_dart"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
       "source_file": "lib/aac/widgets/aac_tile.dart",
       "source_location": null,
       "weight": 1.0,
@@ -7877,6 +7957,17 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "models_aac_cell_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "lib/aac/widgets/aac_grid.dart",
       "source_location": null,
       "weight": 1.0,
@@ -7927,28 +8018,6 @@
       "_origin": "ast",
       "source": "lib_aac_widgets_sentence_strip",
       "target": "models_aac_cell_dart"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/services/board_storage_service.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_services_board_storage_service",
-      "target": "models_board_level_dart"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/cell_editor_dialog.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_widgets_cell_editor_dialog",
-      "target": "models_board_level_dart"
     },
     {
       "relation": "defines",
@@ -8006,6 +8075,701 @@
       "target": "lib_aac_constants_aac_constants_maxfolderdepth"
     },
     {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/constants/aac_constants.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_constants_aac_constants",
+      "target": "lib_aac_constants_aac_constants_maxsentencewords"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "boardlevel_get"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "constants_aac_constants_dart"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "int_get"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_aaccontroller"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_advancewalkthrough"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_boardstorage"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_cangoback"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_clearsentence"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_currentboard"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_dismisswalkthrough"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_editmode"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_goback"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_gohome"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_handlecelltap"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_isloading"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_loadapp"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_path"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_pathdepth"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_playlimitbeep"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_removelastsentenceword"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_resetboard"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_root"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_saveboard"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_sentence"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_sentencetext"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_seteditmode"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_settoolbarexpanded"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_setwalkthroughtargetrect"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_showwalkthrough"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_speak"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_toolbarexpanded"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_ttsservice"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_walkthroughstepindex"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_walkthroughstorage"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_controllers_aac_controller_walkthroughtargetrect"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_models_board_models_boardlevel"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_services_board_storage_service_boardstorageservice"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_services_tts_service_ttsservice"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "lib_aac_services_walkthrough_storage_service_walkthroughstorageservice"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "list"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "models_board_level_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "package_flutter_services_dart"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "rect"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "rect_get"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "services_board_storage_service_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "services_tts_service_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller",
+      "target": "services_walkthrough_storage_service_dart"
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/controllers/aac_controller.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_controllers_aac_controller_aaccontroller",
+      "target": "changenotifier"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/models/board_models.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "_origin": "ast",
+      "source": "lib_aac_models_board_models",
+      "target": "list"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/aac_grid.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "_origin": "ast",
+      "source": "lib_aac_widgets_aac_grid",
+      "target": "list"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/sentence_strip.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "_origin": "ast",
+      "source": "lib_aac_widgets_sentence_strip",
+      "target": "list"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/walkthrough_overlay.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "_origin": "ast",
+      "source": "lib_aac_widgets_walkthrough_overlay",
+      "target": "rect"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/services/tts_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_services_tts_service",
+      "target": "package_flutter_services_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/main.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_main",
+      "target": "package_flutter_services_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/widget_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "test_widget_test",
+      "target": "package_flutter_services_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/models/board_models.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_models_board_models",
+      "target": "constants_aac_constants_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/services/photo_storage_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_services_photo_storage_service",
+      "target": "constants_aac_constants_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/aac_grid.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_widgets_aac_grid",
+      "target": "constants_aac_constants_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/cell_editor_dialog.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_widgets_cell_editor_dialog",
+      "target": "constants_aac_constants_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/services/board_storage_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_services_board_storage_service",
+      "target": "models_board_level_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/cell_editor_dialog.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_widgets_cell_editor_dialog",
+      "target": "models_board_level_dart"
+    },
+    {
       "relation": "exports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -8038,17 +8802,6 @@
       "_origin": "ast",
       "source": "lib_aac_models_board_models",
       "target": "color"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/models/board_models.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_models_board_models",
-      "target": "constants_aac_constants_dart"
     },
     {
       "relation": "defines",
@@ -8249,6 +9002,17 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_aac_models_board_models",
+      "target": "lib_aac_models_board_models_lookslikelegacyboard"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/models/board_models.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_models_board_models",
       "target": "lib_aac_models_board_models_normalizecells"
     },
     {
@@ -8338,6 +9102,28 @@
       "_origin": "ast",
       "source": "lib_aac_models_board_models",
       "target": "lib_aac_models_board_models_visualtype"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/models/board_models.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_models_board_models",
+      "target": "lib_aac_models_board_models_withfixedrow"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/models/board_models.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_models_board_models",
+      "target": "services_photo_storage_service_dart"
     },
     {
       "relation": "references",
@@ -8451,45 +9237,12 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "lib/aac/services/photo_storage_service.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_services_photo_storage_service",
-      "target": "constants_aac_constants_dart"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/aac_grid.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_widgets_aac_grid",
-      "target": "constants_aac_constants_dart"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/board_toolbar.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_widgets_board_toolbar",
-      "target": "constants_aac_constants_dart"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
       "source_file": "lib/aac/widgets/cell_editor_dialog.dart",
       "source_location": null,
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_aac_widgets_cell_editor_dialog",
-      "target": "constants_aac_constants_dart"
+      "target": "services_photo_storage_service_dart"
     },
     {
       "relation": "imports",
@@ -8669,6 +9422,17 @@
       "_origin": "ast",
       "source": "lib_aac_services_photo_storage_service",
       "target": "lib_aac_services_photo_storage_service_failed"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/services/photo_storage_service.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_services_photo_storage_service",
+      "target": "lib_aac_services_photo_storage_service_issafephotopath"
     },
     {
       "relation": "defines",
@@ -8923,40 +9687,7 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_aac_services_tts_service",
-      "target": "package_flutter_services_dart"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/services/tts_service.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_services_tts_service",
       "target": "package_flutter_tts_flutter_tts_dart"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/main.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_main",
-      "target": "package_flutter_services_dart"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "test/widget_test.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "test_widget_test",
-      "target": "package_flutter_services_dart"
     },
     {
       "relation": "defines",
@@ -9012,18 +9743,6 @@
       "_origin": "ast",
       "source": "lib_aac_widgets_aac_grid",
       "target": "aac_tile_dart"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/aac_grid.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "context": "variable_type",
-      "_origin": "ast",
-      "source": "lib_aac_widgets_aac_grid",
-      "target": "icondata"
     },
     {
       "relation": "defines",
@@ -9089,61 +9808,6 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_aac_widgets_aac_grid",
-      "target": "lib_aac_widgets_aac_grid_enabled"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/aac_grid.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_widgets_aac_grid",
-      "target": "lib_aac_widgets_aac_grid_gridnavigationtile"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/aac_grid.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_widgets_aac_grid",
-      "target": "lib_aac_widgets_aac_grid_icon"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/aac_grid.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_widgets_aac_grid",
-      "target": "lib_aac_widgets_aac_grid_label"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/aac_grid.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_widgets_aac_grid",
-      "target": "lib_aac_widgets_aac_grid_onback"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/aac_grid.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_widgets_aac_grid",
       "target": "lib_aac_widgets_aac_grid_oncelltap"
     },
     {
@@ -9156,28 +9820,6 @@
       "_origin": "ast",
       "source": "lib_aac_widgets_aac_grid",
       "target": "lib_aac_widgets_aac_grid_onhome"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/aac_grid.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_widgets_aac_grid",
-      "target": "lib_aac_widgets_aac_grid_ontap"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/aac_grid.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_widgets_aac_grid",
-      "target": "theme_app_radius_dart"
     },
     {
       "relation": "references",
@@ -9218,17 +9860,6 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/aac_grid.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_widgets_aac_grid_gridnavigationtile",
-      "target": "statelesswidget"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
       "source_file": "lib/aac/widgets/aac_tile.dart",
       "source_location": null,
       "weight": 1.0,
@@ -9256,17 +9887,6 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_aac_widgets_board_toolbar_boardtoolbar",
-      "target": "statelesswidget"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/board_toolbar.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_widgets_board_toolbar_leveldots",
       "target": "statelesswidget"
     },
     {
@@ -9322,17 +9942,6 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_aac_widgets_sentence_strip_emptysentenceprompt",
-      "target": "statelesswidget"
-    },
-    {
-      "relation": "inherits",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/sentence_strip.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_widgets_sentence_strip_sentencestrip",
       "target": "statelesswidget"
     },
     {
@@ -9441,6 +10050,17 @@
       "target": "valuechanged"
     },
     {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/aac_tile.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_widgets_aac_tile",
+      "target": "cell_visual_dart"
+    },
+    {
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -9451,6 +10071,105 @@
       "_origin": "ast",
       "source": "lib_aac_widgets_aac_tile",
       "target": "icondata"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/aac_tile.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_widgets_aac_tile",
+      "target": "lib_aac_widgets_aac_tile_aactile"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/aac_tile.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_widgets_aac_tile",
+      "target": "lib_aac_widgets_aac_tile_build"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/aac_tile.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_widgets_aac_tile",
+      "target": "lib_aac_widgets_aac_tile_cell"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/aac_tile.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_widgets_aac_tile",
+      "target": "lib_aac_widgets_aac_tile_editmode"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/aac_tile.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_widgets_aac_tile",
+      "target": "lib_aac_widgets_aac_tile_enabled"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/aac_tile.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_widgets_aac_tile",
+      "target": "lib_aac_widgets_aac_tile_foreground"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/aac_tile.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_widgets_aac_tile",
+      "target": "lib_aac_widgets_aac_tile_icon"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/aac_tile.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_widgets_aac_tile",
+      "target": "lib_aac_widgets_aac_tile_ontap"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/aac_tile.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_widgets_aac_tile",
+      "target": "lib_aac_widgets_aac_tile_tilecue"
     },
     {
       "relation": "imports",
@@ -9506,105 +10225,6 @@
       "_origin": "ast",
       "source": "lib_aac_widgets_walkthrough_overlay",
       "target": "theme_app_radius_dart"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/aac_tile.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_widgets_aac_tile",
-      "target": "cell_visual_dart"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/aac_tile.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_widgets_aac_tile",
-      "target": "lib_aac_widgets_aac_tile_aactile"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/aac_tile.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_widgets_aac_tile",
-      "target": "lib_aac_widgets_aac_tile_build"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/aac_tile.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_widgets_aac_tile",
-      "target": "lib_aac_widgets_aac_tile_cell"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/aac_tile.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_widgets_aac_tile",
-      "target": "lib_aac_widgets_aac_tile_editmode"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/aac_tile.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_widgets_aac_tile",
-      "target": "lib_aac_widgets_aac_tile_foreground"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/aac_tile.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_widgets_aac_tile",
-      "target": "lib_aac_widgets_aac_tile_icon"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/aac_tile.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_widgets_aac_tile",
-      "target": "lib_aac_widgets_aac_tile_ontap"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/aac_tile.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_widgets_aac_tile",
-      "target": "lib_aac_widgets_aac_tile_tilecue"
     },
     {
       "relation": "imports",
@@ -9681,17 +10301,6 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_aac_widgets_board_toolbar",
-      "target": "lib_aac_widgets_board_toolbar_leveldots"
-    },
-    {
-      "relation": "defines",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/board_toolbar.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_widgets_board_toolbar",
       "target": "lib_aac_widgets_board_toolbar_oneditmodechanged"
     },
     {
@@ -9715,6 +10324,17 @@
       "_origin": "ast",
       "source": "lib_aac_widgets_board_toolbar",
       "target": "lib_aac_widgets_board_toolbar_onreset"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/board_toolbar.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_widgets_board_toolbar",
+      "target": "lib_aac_widgets_board_toolbar_showlabel"
     },
     {
       "relation": "defines",
@@ -10014,17 +10634,6 @@
       "target": "lib_aac_widgets_cell_editor_dialog_visualtype"
     },
     {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/aac/widgets/cell_editor_dialog.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_aac_widgets_cell_editor_dialog",
-      "target": "services_photo_storage_service_dart"
-    },
-    {
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -10193,6 +10802,39 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_aac_widgets_sentence_strip",
+      "target": "lib_aac_widgets_sentence_strip_createstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/sentence_strip.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_widgets_sentence_strip",
+      "target": "lib_aac_widgets_sentence_strip_didupdatewidget"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/sentence_strip.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_widgets_sentence_strip",
+      "target": "lib_aac_widgets_sentence_strip_dispose"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/sentence_strip.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_widgets_sentence_strip",
       "target": "lib_aac_widgets_sentence_strip_emptysentenceprompt"
     },
     {
@@ -10205,6 +10847,17 @@
       "_origin": "ast",
       "source": "lib_aac_widgets_sentence_strip",
       "target": "lib_aac_widgets_sentence_strip_enabled"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/sentence_strip.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_widgets_sentence_strip",
+      "target": "lib_aac_widgets_sentence_strip_initstate"
     },
     {
       "relation": "defines",
@@ -10248,6 +10901,28 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_aac_widgets_sentence_strip",
+      "target": "lib_aac_widgets_sentence_strip_scrollandfocuslatest"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/sentence_strip.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_widgets_sentence_strip",
+      "target": "lib_aac_widgets_sentence_strip_scrollcontroller"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/sentence_strip.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_widgets_sentence_strip",
       "target": "lib_aac_widgets_sentence_strip_sentence"
     },
     {
@@ -10270,7 +10945,88 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "lib_aac_widgets_sentence_strip",
+      "target": "lib_aac_widgets_sentence_strip_sentencestripstate"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/sentence_strip.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_widgets_sentence_strip",
       "target": "lib_aac_widgets_sentence_strip_sentenceundobutton"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/sentence_strip.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_widgets_sentence_strip",
+      "target": "lib_aac_widgets_sentence_strip_stripheight"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/sentence_strip.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "_origin": "ast",
+      "source": "lib_aac_widgets_sentence_strip",
+      "target": "scrollcontroller"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/sentence_strip.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "_origin": "ast",
+      "source": "lib_aac_widgets_sentence_strip",
+      "target": "static_const_double"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/aac/widgets/sentence_strip.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_aac_widgets_sentence_strip_sentencestripstate",
+      "target": "lib_aac_widgets_sentence_strip_sentencestrip"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/theme/app_radius.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "_origin": "ast",
+      "source": "lib_theme_app_radius",
+      "target": "static_const_double"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/theme/app_spacing.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "variable_type",
+      "_origin": "ast",
+      "source": "lib_theme_app_spacing",
+      "target": "static_const_double"
     },
     {
       "relation": "defines",
@@ -10436,17 +11192,6 @@
       "_origin": "ast",
       "source": "lib_app_topitot_app",
       "target": "aac_aac_home_page_dart"
-    },
-    {
-      "relation": "imports",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/app/topitot_app.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "lib_app_topitot_app",
-      "target": "dart_async"
     },
     {
       "relation": "defines",
@@ -10658,6 +11403,17 @@
       "_origin": "ast",
       "source": "lib_main",
       "target": "lib_main_main"
+    },
+    {
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "lib/main.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "lib_main",
+      "target": "lib_main_setenabledsystemuimode"
     },
     {
       "relation": "defines",
@@ -11092,30 +11848,6 @@
       "target": "static_const_borderradius"
     },
     {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/theme/app_radius.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "context": "variable_type",
-      "_origin": "ast",
-      "source": "lib_theme_app_radius",
-      "target": "static_const_double"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "lib/theme/app_spacing.dart",
-      "source_location": null,
-      "weight": 1.0,
-      "context": "variable_type",
-      "_origin": "ast",
-      "source": "lib_theme_app_spacing",
-      "target": "static_const_double"
-    },
-    {
       "relation": "defines",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -11400,6 +12132,17 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "test_widget_test",
+      "target": "package_topitot_app_aac_widgets_sentence_strip_dart"
+    },
+    {
+      "relation": "imports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/widget_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "test_widget_test",
       "target": "package_topitot_app_aac_widgets_walkthrough_overlay_dart"
     },
     {
@@ -11470,6 +12213,18 @@
       "target": "test_widget_test_mocktts"
     },
     {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "test/widget_test.dart",
+      "source_location": null,
+      "weight": 1.0,
+      "context": "type_lookup",
+      "_origin": "ast",
+      "source": "test_widget_test",
+      "target": "text"
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/google-play/listing.md",
@@ -11484,7 +12239,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/google-play/listing.md",
-      "source_location": "L62",
+      "source_location": "L65",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_google_play_listing_speech_relay_by_topitot_play_store_listing",
@@ -11495,7 +12250,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/google-play/listing.md",
-      "source_location": "L33",
+      "source_location": "L36",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_google_play_listing_speech_relay_by_topitot_play_store_listing",
@@ -11517,7 +12272,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/google-play/listing.md",
-      "source_location": "L30",
+      "source_location": "L33",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_google_play_listing_speech_relay_by_topitot_play_store_listing",
@@ -11539,7 +12294,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/google-play/listing.md",
-      "source_location": "L44",
+      "source_location": "L47",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_google_play_listing_data_safety",
@@ -11550,7 +12305,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/google-play/listing.md",
-      "source_location": "L54",
+      "source_location": "L57",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_google_play_listing_data_safety",
@@ -11561,7 +12316,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/google-play/listing.md",
-      "source_location": "L35",
+      "source_location": "L38",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_google_play_listing_data_safety",
@@ -11572,7 +12327,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/google-play/listing.md",
-      "source_location": "L41",
+      "source_location": "L44",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_google_play_listing_data_safety",
@@ -11583,7 +12338,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/google-play/listing.md",
-      "source_location": "L38",
+      "source_location": "L41",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_google_play_listing_data_safety",
@@ -11594,7 +12349,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/google-play/listing.md",
-      "source_location": "L47",
+      "source_location": "L50",
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_google_play_listing_data_safety",
@@ -13348,5 +14103,5 @@
       "source_file": "ios/Runner/Assets.xcassets/LaunchImage.imageset/README.md"
     }
   ],
-  "built_at_commit": "36c75cc9d8acd865ed8e3c42a8a88c6caa009e08"
+  "built_at_commit": "aa123e6ce0dabd304e5bbc1988b6a9981d8de2ec"
 }

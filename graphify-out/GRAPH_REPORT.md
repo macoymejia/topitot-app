@@ -1,21 +1,21 @@
-# Graph Report - topitot-app  (2026-09-03)
+# Graph Report - topitot-app  (2026-09-04)
 
 ## Corpus Check
-- 56 files · ~19,078 words
+- 55 files · ~161,181 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 567 nodes · 605 edges · 64 communities (46 shown, 18 thin omitted)
+- 598 nodes · 642 edges · 68 communities (49 shown, 19 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 18 edges (avg confidence: 0.92)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `36c75cc9`
+- Built from commit: `aa123e6c`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- package:flutter/material.dart
+- widget_test.dart
 - aac_home_page.dart
 - app_colors.dart
 - cell_editor_dialog.dart
@@ -25,8 +25,8 @@
 - board_storage_service.dart
 - .application
 - board_toolbar.dart
-- aac_grid.dart
-- cell_visual.dart
+- aac_controller.dart
+- package:flutter/material.dart
 - StatelessWidget
 - sentence_strip.dart
 - aac_tile.dart
@@ -73,9 +73,13 @@
 - Global Constraints
 - Global Constraints
 - First-Run Walkthrough Design
+- app_typography.dart
+- walkthrough_storage_service.dart
+- State
+- AacController
 
 ## God Nodes (most connected - your core abstractions)
-1. `_` - 20 edges
+1. `_` - 21 edges
 2. `Architecture Refactor Design` - 12 edges
 3. `Launcher Icons Design` - 11 edges
 4. `Transparent Launch Splash Design` - 11 edges
@@ -108,15 +112,15 @@
 - **iOS App Icon Renditions** — ios_runner_assets_xcassets_appicon_appiconset_icon_app_29x29_3x_ios_app_icon_87px, ios_runner_assets_xcassets_appicon_appiconset_icon_app_40x40_1x_ios_app_icon_40px, ios_runner_assets_xcassets_appicon_appiconset_icon_app_40x40_2x_ios_app_icon_80px, ios_runner_assets_xcassets_appicon_appiconset_icon_app_40x40_3x_ios_app_icon_120px, ios_runner_assets_xcassets_appicon_appiconset_icon_app_60x60_2x_ios_app_icon_120px, ios_runner_assets_xcassets_appicon_appiconset_icon_app_60x60_3x_ios_app_icon_180px, ios_runner_assets_xcassets_appicon_appiconset_icon_app_76x76_1x_ios_app_icon_76px, ios_runner_assets_xcassets_appicon_appiconset_icon_app_76x76_2x_ios_app_icon_152px, ios_runner_assets_xcassets_appicon_appiconset_icon_app_83_5x83_5_2x_ios_app_icon_167px [EXTRACTED 1.00]
 - **iOS Launch Image Renditions** — ios_runner_assets_xcassets_launchimage_imageset_launchimage_launch_image_1x, ios_runner_assets_xcassets_launchimage_imageset_launchimage_2x_launch_image_2x, ios_runner_assets_xcassets_launchimage_imageset_launchimage_3x_launch_image_3x, ios_runner_assets_xcassets_launchimage_imageset_readme_launch_screen_assets [EXTRACTED 1.00]
 
-## Communities (64 total, 18 thin omitted)
+## Communities (68 total, 19 thin omitted)
 
-### Community 0 - "package:flutter/material.dart"
-Cohesion: 0.06
-Nodes (31): app_colors.dart, app_radius.dart, app/topitot_app.dart, app_typography.dart, dart:io, FlutterTts, setup, speak (+23 more)
+### Community 0 - "widget_test.dart"
+Cohesion: 0.07
+Nodes (26): app/topitot_app.dart, dart:io, FlutterTts, setup, speak, _tts, TtsService, main (+18 more)
 
 ### Community 1 - "aac_home_page.dart"
-Cohesion: 0.04
-Nodes (48): BoardLevel get, GlobalKey, AacHomePage, _AacHomePageState, _advanceWalkthrough, _boardStorage, build, _clearSentence (+40 more)
+Cohesion: 0.08
+Nodes (25): controllers/aac_controller.dart, GlobalKey, build, _controller, createState, dispose, _gridKey, _handleCellTap (+17 more)
 
 ### Community 2 - "app_colors.dart"
 Cohesion: 0.06
@@ -124,59 +128,59 @@ Nodes (30): accent, AppColors, background, blueSoft, cellSwatches, coralSoft, di
 
 ### Community 3 - "cell_editor_dialog.dart"
 Cohesion: 0.05
-Nodes (44): bool get, dart:typed_data, _, error, failed, isSaved, matchesPhotoFormat, normalizedPhotoExtension (+36 more)
+Nodes (41): bool get, dart:typed_data, _, error, failed, isSafePhotoPath, isSaved, matchesPhotoFormat (+33 more)
 
 ### Community 4 - "board_models.dart"
-Cohesion: 0.08
-Nodes (25): blank, BoardLevel, CellKind, cells, CellVisualType, children, clone, color (+17 more)
+Cohesion: 0.05
+Nodes (38): aac_tile.dart, ../constants/aac_constants.dart, blank, BoardLevel, CellKind, cells, CellVisualType, children (+30 more)
 
 ### Community 5 - "app_spacing.dart"
 Cohesion: 0.08
 Nodes (22): AppRadius, extraLarge, extraLargeBorder, large, largeBorder, medium, mediumBorder, pill (+14 more)
 
 ### Community 6 - "walkthrough_overlay.dart"
-Cohesion: 0.12
-Nodes (15): CustomPainter, body, build, insetWalkthroughTargetRect, onPrimary, onSkip, paint, primaryLabel (+7 more)
+Cohesion: 0.13
+Nodes (14): CustomPainter, body, build, insetWalkthroughTargetRect, onPrimary, onSkip, paint, primaryLabel (+6 more)
 
 ### Community 7 - "board_storage_service.dart"
-Cohesion: 0.11
-Nodes (17): dart:convert, boardKey, BoardStorageService, loadBoard, saveBoard, hasSeenWalkthrough, markWalkthroughSeen, walkthroughSeenKey (+9 more)
+Cohesion: 0.29
+Nodes (6): dart:convert, boardKey, BoardStorageService, loadBoard, saveBoard, ../models/board_level.dart
 
 ### Community 8 - ".application"
 Cohesion: 0.15
 Nodes (10): Any, Bool, Flutter, FlutterAppDelegate, AppDelegate, RunnerTests, UIApplication, UIKit (+2 more)
 
 ### Community 9 - "board_toolbar.dart"
-Cohesion: 0.18
-Nodes (10): ../constants/aac_constants.dart, build, depth, editMode, expanded, onEditModeChanged, onExpandedChanged, onReset (+2 more)
+Cohesion: 0.17
+Nodes (11): build, depth, editMode, expanded, onEditModeChanged, onExpandedChanged, onReset, showLabel (+3 more)
 
-### Community 10 - "aac_grid.dart"
-Cohesion: 0.15
-Nodes (12): aac_tile.dart, build, canGoBack, cells, editMode, enabled, icon, label (+4 more)
+### Community 10 - "aac_controller.dart"
+Cohesion: 0.05
+Nodes (37): BoardLevel get, int get, advanceWalkthrough, _boardStorage, canGoBack, clearSentence, currentBoard, dismissWalkthrough (+29 more)
 
-### Community 11 - "cell_visual.dart"
-Cohesion: 0.15
-Nodes (12): BorderRadius, BoxFit, AacCell, borderRadius, build, cell, CellVisual, fit (+4 more)
+### Community 11 - "package:flutter/material.dart"
+Cohesion: 0.10
+Nodes (18): app_colors.dart, app_radius.dart, app_typography.dart, BorderRadius, BoxFit, AacCell, borderRadius, build (+10 more)
 
 ### Community 12 - "StatelessWidget"
-Cohesion: 0.18
-Nodes (11): AacGrid, _GridNavigationTile, AacTile, _TileCue, BoardToolbar, _LevelDots, _ToolbarIdentity, _PhotoPickerPanel (+3 more)
+Cohesion: 0.17
+Nodes (12): AacGrid, AacTile, _TileCue, BoardToolbar, _ToolbarIdentity, _PhotoPickerPanel, _PhotoPreview, CellVisual (+4 more)
 
 ### Community 13 - "sentence_strip.dart"
-Cohesion: 0.18
-Nodes (10): build, enabled, onClear, onRemoveLast, onSpeak, sentence, SentenceStrip, _SentenceUndoButton (+2 more)
+Cohesion: 0.13
+Nodes (14): build, createState, didUpdateWidget, dispose, enabled, initState, onClear, onRemoveLast (+6 more)
 
 ### Community 14 - "aac_tile.dart"
-Cohesion: 0.18
-Nodes (10): cell_visual.dart, Color, IconData, build, cell, editMode, foreground, icon (+2 more)
+Cohesion: 0.17
+Nodes (11): cell_visual.dart, Color, IconData, build, cell, editMode, enabled, foreground (+3 more)
 
 ### Community 15 - "Child-Friendly UI Design Rules"
 Cohesion: 0.22
 Nodes (9): AAC Button Guidelines, Child-Friendly UI Design Rules, Reusable Design Tokens, flutter_tts Dependency, Focused Flutter Architecture, Portrait-First AAC Experience, Sentence Strip, Topitot AAC App (+1 more)
 
 ### Community 16 - "aac_constants.dart"
-Cohesion: 0.33
-Nodes (5): boardColumns, boardRows, cellsPerPage, maxCellPhotoBytes, maxFolderDepth
+Cohesion: 0.29
+Nodes (6): boardColumns, boardRows, cellsPerPage, maxCellPhotoBytes, maxFolderDepth, maxSentenceWords
 
 ### Community 17 - "Flutter Launcher Logo hdpi"
 Cohesion: 0.40
@@ -203,8 +207,8 @@ Cohesion: 0.11
 Nodes (18): AAC Screen, Acceptance Criteria, App Entry, Architecture Refactor Design, Components, Constants, Context, Data Flow (+10 more)
 
 ### Community 45 - "topitot_app.dart"
-Cohesion: 0.13
-Nodes (15): ../aac/aac_home_page.dart, dart:async, build, createState, dispose, initState, _launchSplashDuration, _launchSplashTimer (+7 more)
+Cohesion: 0.14
+Nodes (13): ../aac/aac_home_page.dart, dart:async, build, createState, dispose, initState, _launchSplashDuration, _launchSplashTimer (+5 more)
 
 ### Community 46 - "Launcher Icons Design"
 Cohesion: 0.13
@@ -270,25 +274,37 @@ Nodes (5): First-Run Walkthrough Implementation Plan, Global Constraints, Task 1
 Cohesion: 0.33
 Nodes (5): Behavior, Fallbacks, First-Run Walkthrough Design, Summary, Visual Treatment
 
+### Community 64 - "app_typography.dart"
+Cohesion: 0.29
+Nodes (6): AppTypography, bodyFont, headingFont, textTheme, static const String, static const TextTheme
+
+### Community 65 - "walkthrough_storage_service.dart"
+Cohesion: 0.33
+Nodes (5): hasSeenWalkthrough, markWalkthroughSeen, walkthroughSeenKey, WalkthroughStorageService, package:shared_preferences/shared_preferences.dart
+
+### Community 66 - "State"
+Cohesion: 0.27
+Nodes (10): AacHomePage, _AacHomePageState, CellEditorDialog, _CellEditorDialogState, SentenceStrip, _SentenceStripState, TopitotApp, _TopitotAppState (+2 more)
+
 ## Knowledge Gaps
-- **354 isolated node(s):** `XCTest`, `_boardStorage`, `_walkthroughStorage`, `_ttsService`, `_sentence` (+349 more)
+- **377 isolated node(s):** `XCTest`, `_controller`, `_sentenceStripKey`, `_gridKey`, `_toolbarKey` (+372 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **18 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **19 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `_` connect `cell_editor_dialog.dart` to `package:flutter/material.dart`, `board_toolbar.dart`?**
-  _High betweenness centrality (0.025) - this node is a cross-community bridge._
-- **Why does `TtsService` connect `package:flutter/material.dart` to `aac_home_page.dart`?**
-  _High betweenness centrality (0.009) - this node is a cross-community bridge._
-- **Why does `AacCell` connect `cell_visual.dart` to `aac_home_page.dart`, `cell_editor_dialog.dart`, `board_models.dart`, `aac_tile.dart`?**
-  _High betweenness centrality (0.008) - this node is a cross-community bridge._
-- **What connects `XCTest`, `_boardStorage`, `_walkthroughStorage` to the rest of the system?**
-  _354 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `package:flutter/material.dart` be split into smaller, more focused modules?**
-  _Cohesion score 0.05714285714285714 - nodes in this community are weakly interconnected._
+- **Why does `_` connect `cell_editor_dialog.dart` to `widget_test.dart`, `board_models.dart`?**
+  _High betweenness centrality (0.027) - this node is a cross-community bridge._
+- **Why does `AacCell` connect `package:flutter/material.dart` to `aac_home_page.dart`, `cell_editor_dialog.dart`, `board_models.dart`, `aac_tile.dart`?**
+  _High betweenness centrality (0.006) - this node is a cross-community bridge._
+- **Why does `TtsService` connect `widget_test.dart` to `aac_controller.dart`?**
+  _High betweenness centrality (0.005) - this node is a cross-community bridge._
+- **What connects `XCTest`, `_controller`, `_sentenceStripKey` to the rest of the system?**
+  _377 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `widget_test.dart` be split into smaller, more focused modules?**
+  _Cohesion score 0.06896551724137931 - nodes in this community are weakly interconnected._
 - **Should `aac_home_page.dart` be split into smaller, more focused modules?**
-  _Cohesion score 0.041666666666666664 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07692307692307693 - nodes in this community are weakly interconnected._
 - **Should `app_colors.dart` be split into smaller, more focused modules?**
   _Cohesion score 0.06451612903225806 - nodes in this community are weakly interconnected._

@@ -108,4 +108,17 @@ class PhotoStorageService {
     await savedFile.writeAsBytes(bytes, flush: true);
     return savedFile.path;
   }
+
+  static bool isSafePhotoPath(String? path) {
+    if (path == null || path.isEmpty) {
+      return false;
+    }
+
+    if (path.contains('..')) {
+      return false;
+    }
+
+    final file = File(path);
+    return file.existsSync();
+  }
 }

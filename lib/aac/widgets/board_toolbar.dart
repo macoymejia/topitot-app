@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../theme/app_colors.dart';
 import '../../theme/app_radius.dart';
 import '../../theme/app_spacing.dart';
-import '../constants/aac_constants.dart';
 
 class BoardToolbar extends StatelessWidget {
   const BoardToolbar({
@@ -51,7 +50,7 @@ class BoardToolbar extends StatelessWidget {
               return expanded
                   ? Row(
                     children: <Widget>[
-                      const Expanded(child: _ToolbarIdentity()),
+                      const Expanded(child: _ToolbarIdentity(showLabel: true)),
                       SizedBox(
                         width: compactActions ? AppSpacing.sm : AppSpacing.lg,
                       ),
@@ -112,9 +111,7 @@ class BoardToolbar extends StatelessWidget {
                   )
                   : Row(
                     children: <Widget>[
-                      const Expanded(child: _ToolbarIdentity()),
-                      const SizedBox(width: AppSpacing.lg),
-                      _LevelDots(depth: depth),
+                      const _ToolbarIdentity(showLabel: false),
                       const Spacer(),
                       SizedBox.square(
                         dimension: 48,
@@ -135,7 +132,9 @@ class BoardToolbar extends StatelessWidget {
 }
 
 class _ToolbarIdentity extends StatelessWidget {
-  const _ToolbarIdentity();
+  const _ToolbarIdentity({required this.showLabel});
+
+  final bool showLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -149,52 +148,30 @@ class _ToolbarIdentity extends StatelessWidget {
             key: const ValueKey<String>('toolbar-app-icon'),
             width: 36,
             height: 36,
+            cacheWidth: 108,
+            cacheHeight: 108,
             fit: BoxFit.cover,
           ),
         ),
-        const SizedBox(width: 8),
-        Flexible(
-          child: FittedBox(
-            fit: BoxFit.scaleDown,
-            alignment: Alignment.centerLeft,
-            child: Text(
-              'Speech Relay',
-              maxLines: 1,
-              style: const TextStyle(
-                color: AppColors.neutral700,
-                fontSize: 18,
-                fontWeight: FontWeight.w900,
+        if (showLabel) ...[
+          const SizedBox(width: 8),
+          const Flexible(
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Speech Relay',
+                maxLines: 1,
+                style: TextStyle(
+                  color: AppColors.neutral700,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w900,
+                ),
               ),
             ),
           ),
-        ),
+        ],
       ],
-    );
-  }
-}
-
-class _LevelDots extends StatelessWidget {
-  const _LevelDots({required this.depth});
-
-  final int depth;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: List<Widget>.generate(maxFolderDepth, (index) {
-        final active = index < depth;
-        return Padding(
-          padding: const EdgeInsets.only(right: 5),
-          child: Container(
-            width: 22,
-            height: 8,
-            decoration: BoxDecoration(
-              color: active ? AppColors.primary : AppColors.neutral200,
-              borderRadius: AppRadius.mediumBorder,
-            ),
-          ),
-        );
-      }),
     );
   }
 }

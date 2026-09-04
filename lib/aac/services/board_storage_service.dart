@@ -8,13 +8,21 @@ class BoardStorageService {
   static const String boardKey = 'aac_board';
 
   Future<BoardLevel> loadBoard() async {
-    final prefs = await SharedPreferences.getInstance();
-    final savedBoard = prefs.getString(boardKey);
-    if (savedBoard == null) {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final savedBoard = prefs.getString(boardKey);
+      if (savedBoard == null) {
+        return BoardLevel.starter();
+      }
+
+      final dynamic decoded = jsonDecode(savedBoard);
+      if (decoded is Map<String, dynamic>) {
+        return BoardLevel.fromJson(decoded);
+      }
+      return BoardLevel.starter();
+    } catch (_) {
       return BoardLevel.starter();
     }
-
-    return BoardLevel.fromJson(jsonDecode(savedBoard) as Map<String, dynamic>);
   }
 
   Future<void> saveBoard(BoardLevel board) async {

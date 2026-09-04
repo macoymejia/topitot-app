@@ -11,27 +11,33 @@ class AacTile extends StatelessWidget {
     super.key,
     required this.cell,
     required this.editMode,
-    required this.onTap,
+    this.enabled = true,
+    this.onTap,
   });
 
   final AacCell cell;
   final bool editMode;
-  final VoidCallback onTap;
+  final bool enabled;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
+    final canTap = enabled && (editMode || !cell.isBlank);
+    final isEmptyCell = cell.isBlank && !editMode;
     final foreground =
         cell.color.computeLuminance() > 0.45
             ? AppColors.neutral900
             : AppColors.surface;
-    final tileColor =
-        cell.isBlank && !editMode ? AppColors.disabledSurface : cell.color;
-    final canTap = editMode || !cell.isBlank;
+    final tileColor = isEmptyCell ? AppColors.transparent : cell.color;
     final borderColor =
-        editMode
+        isEmptyCell
+            ? AppColors.transparent
+            : !enabled
+            ? AppColors.neutral200
+            : editMode
             ? AppColors.neutral900
             : cell.isFolder
-            ? AppColors.neutral900.withValues(alpha: 0.42)
+            ? AppColors.primary
             : AppColors.transparent;
 
     return Semantics(
@@ -44,7 +50,7 @@ class AacTile extends StatelessWidget {
               ? 'Empty AAC cell'
               : 'Say ${cell.label}',
       child: Material(
-        color: tileColor,
+        color: enabled ? tileColor : AppColors.disabledSurface,
         borderRadius: AppRadius.mediumBorder,
         clipBehavior: Clip.antiAlias,
         child: InkWell(
@@ -55,51 +61,55 @@ class AacTile extends StatelessWidget {
             decoration: BoxDecoration(
               border: Border.all(
                 color: borderColor,
-                width: editMode || cell.isFolder ? 3 : 0,
+                width: isEmptyCell ? 0 : (editMode || cell.isFolder ? 4 : 0),
               ),
               borderRadius: AppRadius.mediumBorder,
             ),
             child: Stack(
               children: <Widget>[
-                if (cell.isBlank && !editMode)
-                  const Positioned.fill(
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        color: AppColors.disabledSurface,
-                        backgroundBlendMode: BlendMode.srcOver,
-                      ),
-                    ),
-                  ),
                 LayoutBuilder(
                   builder: (context, constraints) {
+                    if (isEmptyCell) {
+                      return const SizedBox.expand();
+                    }
+
                     final compact = constraints.maxHeight < 112;
-                    final showContent = !cell.isBlank || editMode;
                     final shortestSide =
                         constraints.maxWidth < constraints.maxHeight
                             ? constraints.maxWidth
                             : constraints.maxHeight;
                     final symbolBoxHeight =
-                        shortestSide * (compact ? 0.66 : 0.62);
-                    final labelSize =
-                        compact ? constraints.maxHeight * 0.14 : 21.0;
+                        shortestSide * (compact ? 0.72 : 0.80);
+                    final labelSize = compact ? 8.5 : 20.0;
 
                     return Center(
                       child: Padding(
                         padding: EdgeInsets.fromLTRB(
-                          compact ? AppSpacing.xs : AppSpacing.md,
-                          compact ? AppSpacing.xs : AppSpacing.md,
-                          cell.isFolder ? 32 : (compact ? 6 : AppSpacing.md),
-                          compact ? AppSpacing.xs : AppSpacing.md,
+                          compact ? 2 : AppSpacing.sm,
+                          compact ? 2 : AppSpacing.sm,
+                          compact ? 2 : AppSpacing.sm,
+                          compact ? 2 : AppSpacing.sm,
                         ),
-                        child:
-                            showContent
-                                ? Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    SizedBox(
-                                      height: symbolBoxHeight,
-                                      width: symbolBoxHeight,
-                                      child: CellVisual(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            SizedBox(
+                              height: symbolBoxHeight,
+                              width: symbolBoxHeight,
+                              child:
+                                  cell.label == 'Back'
+                                      ? Icon(
+                                        Icons.arrow_back_rounded,
+                                        color: foreground,
+                                        size: symbolBoxHeight * 0.95,
+                                      )
+                                      : cell.label == 'Home'
+                                      ? Icon(
+                                        Icons.home_rounded,
+                                        color: foreground,
+                                        size: symbolBoxHeight * 0.95,
+                                      )
+                                      : CellVisual(
                                         cell: cell,
                                         fit: BoxFit.cover,
                                         borderRadius: BorderRadius.circular(
@@ -109,29 +119,32 @@ class AacTile extends StatelessWidget {
                                           fontWeight: FontWeight.w900,
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height: compact ? 1 : AppSpacing.sm,
-                                    ),
-                                    Flexible(
-                                      child: Text(
-                                        cell.label,
-                                        maxLines: compact ? 1 : 2,
-                                        overflow: TextOverflow.ellipsis,
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color:
-                                              cell.isBlank
-                                                  ? AppColors.neutral500
-                                                  : foreground,
-                                          fontSize: labelSize.clamp(13, 20),
-                                          fontWeight: FontWeight.w900,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                )
-                                : const SizedBox.expand(),
+                            ),
+                            if (cell.label != 'Back' &&
+                                cell.label != 'Home') ...[
+                              if (!compact)
+                                const SizedBox(height: AppSpacing.xs),
+                              Flexible(
+                                child: Text(
+                                  cell.label,
+                                  maxLines: compact ? 1 : 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color:
+                                        !enabled
+                                            ? AppColors.neutral500
+                                            : cell.isBlank
+                                            ? AppColors.neutral500
+                                            : foreground,
+                                    fontSize: labelSize.clamp(13, 20),
+                                    fontWeight: FontWeight.w900,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ],
+                        ),
                       ),
                     );
                   },
@@ -142,17 +155,17 @@ class AacTile extends StatelessWidget {
                     top: 0,
                     bottom: 0,
                     child: Container(
-                      width: 28,
+                      width: 24,
                       decoration: BoxDecoration(
-                        color: foreground.withValues(alpha: 0.16),
+                        color: AppColors.primary.withValues(alpha: 0.14),
                         borderRadius: const BorderRadius.horizontal(
                           left: Radius.circular(AppRadius.medium),
                         ),
                       ),
                       child: Icon(
                         Icons.chevron_right_rounded,
-                        color: foreground,
-                        size: 30,
+                        color: AppColors.primary,
+                        size: 28,
                       ),
                     ),
                   ),
